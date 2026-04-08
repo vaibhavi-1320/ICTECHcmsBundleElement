@@ -1,0 +1,27 @@
+{
+    "name": "i-c-t-e-c-hcms-bundle-element/i-c-t-e-c-hcms-bundle-element",
+    "description": "i-c-t-e-c-hcms-bundle-element/i-c-t-e-c-hcms-bundle-element",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "ICTECHcmsBundleElement\\ICTECHcmsBundleElement",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ICTECHcmsBundleElement\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ICTECHcmsBundleElement\\Tests\\": "tests/"
+        }
+    }
+}
