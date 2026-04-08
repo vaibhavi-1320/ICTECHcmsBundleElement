@@ -1,6 +1,6 @@
 {
-    "name": "i-c-t-e-c-hcms-bundle-element/i-c-t-e-c-hcms-bundle-element",
-    "description": "i-c-t-e-c-hcms-bundle-element/i-c-t-e-c-hcms-bundle-element",
+    "name": "ictech/ictech-cms-bundle-element",
+    "description": "Custom CMS category and three-column CMS element for Shopware 6.",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
     "license": "MIT",
@@ -10,8 +10,8 @@
     "extra": {
         "shopware-plugin-class": "ICTECHcmsBundleElement\\ICTECHcmsBundleElement",
         "label": {
-            "de-DE": "Skeleton plugin",
-            "en-GB": "Skeleton plugin"
+            "de-DE": "ICTECH CMS Bundle Element",
+            "en-GB": "ICTECH CMS Bundle Element"
         }
     },
     "autoload": {

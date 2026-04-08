@@ -1,0 +1,74 @@
+<div class="sw-cms-el-config-ict-three-column">
+    <sw-card :title="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.cardSettings')">
+        <div class="sw-cms-el-config-ict-three-column__card-grid">
+            <div class="sw-cms-el-config-ict-three-column__media">
+                <sw-media-upload-v2
+                    variant="regular"
+                    :upload-tag="getUploadTag()"
+                    :source="previewSource()"
+                    :allow-multi-select="false"
+                    :default-folder="cmsPageState.pageEntityName"
+                    :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')"
+                    @media-upload-sidebar-open="onOpenMediaModal"
+                    @media-upload-remove-image="onImageRemove"
+                />
+
+                <sw-upload-listener
+                    :upload-tag="getUploadTag()"
+                    auto-upload
+                    @media-upload-finish="onImageUpload"
+                />
+            </div>
+
+            <div class="sw-cms-el-config-ict-three-column__fields">
+                <sw-text-field
+                    v-model:value="element.config.eyebrow.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.eyebrow')"
+                    @update:value="emitUpdateElement"
+                />
+
+                <sw-text-field
+                    v-model:value="element.config.title.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.title')"
+                    @update:value="emitUpdateElement"
+                />
+
+                <sw-textarea-field
+                    v-model:value="element.config.text.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.text')"
+                    :rows="4"
+                    @update:value="emitUpdateElement"
+                />
+
+                <sw-text-field
+                    v-model:value="element.config.linkText.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.linkText')"
+                    @update:value="emitUpdateElement"
+                />
+
+                <sw-dynamic-url-field
+                    v-model:value="element.config.url.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.url')"
+                    @update:value="emitUpdateElement"
+                />
+
+                <sw-switch-field
+                    v-model:value="element.config.newTab.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictThreeColumn.config.newTab')"
+                    @update:value="emitUpdateElement"
+                />
+            </div>
+        </div>
+    </sw-card>
+
+    <sw-media-modal-v2
+        v-if="mediaModalIsOpen"
+        variant="full"
+        :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')"
+        :entity-context="cmsPageState.entityName"
+        :allow-multi-select="false"
+        :initial-folder-id="cmsPageState.defaultMediaFolderId"
+        @media-modal-selection-change="onSelectionChanges"
+        @modal-close="onCloseModal"
+    />
+</div>
