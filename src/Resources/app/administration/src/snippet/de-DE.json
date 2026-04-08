@@ -1,0 +1,37 @@
+{
+    "ict-cms-bundle-element": {
+        "cms": {
+            "blocks": {
+                "ictThreeColumn": {
+                    "label": "ICT Drei-Spalten-Layout"
+                }
+            },
+            "elements": {
+                "ictThreeColumn": {
+                    "label": "ICT Inhaltskarte",
+                    "config": {
+                        "cardSettings": "Karten-Einstellungen",
+                        "eyebrow": "Label",
+                        "title": "Titel",
+                        "text": "Text",
+                        "linkText": "Link-Beschriftung",
+                        "url": "Link-URL",
+                        "newTab": "Link in neuem Tab oeffnen",
+                        "media": "Kartenbild"
+                    }
+                }
+            }
+        }
+    },
+    "apps": {
+        "sw-cms": {
+            "detail": {
+                "label": {
+                    "blockCategory": {
+                        "ict-cms-layouts": "ICT CMS layouts"
+                    }
+                }
+            }
+        }
+    }
+}

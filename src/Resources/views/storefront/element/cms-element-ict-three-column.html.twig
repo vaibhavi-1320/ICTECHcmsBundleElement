@@ -1,0 +1,63 @@
+{% block element_ict_three_column %}
+    {% set content = element.data %}
+    {% set config = element.fieldConfig.elements %}
+    {% set eyebrow = content.eyebrow ?? config.eyebrow.value %}
+    {% set title = content.title ?? config.title.value %}
+    {% set text = content.text ?? config.text.value %}
+    {% set linkText = content.linkText ?? config.linkText.value %}
+    {% set url = content.url ?? config.url.value %}
+    {% set newTab = content.newTab ?? config.newTab.value %}
+    {% set media = content.media ?? null %}
+    {% set hasContent = media or eyebrow or title or text or (linkText and url) %}
+
+    {% if hasContent %}
+        <article class="cms-element-{{ element.type }} ict-three-column-card">
+            <div class="ict-three-column-card__media-wrapper">
+                {% if media %}
+                    {% sw_thumbnails 'ict-three-column-thumbnails' with {
+                        media: media,
+                        sizes: {
+                            'default': '540px',
+                            'xs': '100vw',
+                            'sm': '100vw',
+                            'md': '50vw',
+                            'lg': '33vw'
+                        },
+                        attributes: {
+                            'class': 'ict-three-column-card__media',
+                            'alt': media.translated.alt ?: title,
+                            'title': media.translated.title ?: title,
+                            'loading': 'lazy'
+                        }
+                    } %}
+                {% else %}
+                    <div class="ict-three-column-card__media-placeholder" aria-hidden="true"></div>
+                {% endif %}
+            </div>
+
+            <div class="ict-three-column-card__content">
+                {% if eyebrow %}
+                    <p class="ict-three-column-card__eyebrow">{{ eyebrow }}</p>
+                {% endif %}
+
+                {% if title %}
+                    <h3 class="ict-three-column-card__title">{{ title }}</h3>
+                {% endif %}
+
+                {% if text %}
+                    <p class="ict-three-column-card__text">{{ text }}</p>
+                {% endif %}
+
+                {% if linkText and url %}
+                    <a
+                        class="ict-three-column-card__link"
+                        href="{{ url }}"
+                        {% if newTab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                    >
+                        {{ linkText }}
+                    </a>
+                {% endif %}
+            </div>
+        </article>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{
+    "ict-cms-bundle-element": {
+        "cms": {
+            "blocks": {
+                "ictThreeColumn": {
+                    "label": "ICT Three Column Layout"
+                }
+            },
+            "elements": {
+                "ictThreeColumn": {
+                    "label": "ICT Content Card",
+                    "config": {
+                        "cardSettings": "Card settings",
+                        "eyebrow": "Eyebrow",
+                        "title": "Title",
+                        "text": "Text",
+                        "linkText": "Link label",
+                        "url": "Link URL",
+                        "newTab": "Open link in new tab",
+                        "media": "Card image"
+                    }
+                }
+            }
+        }
+    },
+    "apps": {
+        "sw-cms": {
+            "detail": {
+                "label": {
+                    "blockCategory": {
+                        "ict-cms-layouts": "ICT CMS layouts"
+                    }
+                }
+            }
+        }
+    }
+}
