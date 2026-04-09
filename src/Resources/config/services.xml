@@ -11,5 +11,8 @@
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctThreeColumnCmsElementResolver">
             <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
         </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctTwoColumnCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+        </service>
     </services>
 </container>
