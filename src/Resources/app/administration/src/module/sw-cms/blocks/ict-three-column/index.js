@@ -1,7 +1,5 @@
-import {
-    BLOCK_CATEGORY,
-    ELEMENT_NAME,
-} from '../../elements/ict-three-column/utils/default-columns';
+const ELEMENT_NAME = 'ict-three-column';
+const BLOCK_CATEGORY = 'ict-cms-layouts';
 
 Shopware.Component.register('sw-cms-preview-ict-three-column', () => import('./preview'));
 Shopware.Component.register('sw-cms-block-ict-three-column', () => import('./component'));

@@ -12,8 +12,9 @@
     &--placeholder {
         justify-content: center;
         border: 1px dashed #b6c2d0;
-        background: #fbfcfd;
+        background: #f8fafc;
         box-shadow: none;
+        border-radius: 10px;
     }
 
     &__placeholder {
@@ -22,11 +23,22 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        min-height: 220px;
-        padding: 24px;
+        gap: 6px;
+        min-height: 112px;
+        padding: 18px 12px;
         color: #7b8794;
         text-align: center;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &__placeholder:hover &__placeholder-icon,
+    &__placeholder:focus &__placeholder-icon {
+        color: #0b5ed7;
+    }
+
+    &__placeholder:focus {
+        box-shadow: inset 0 0 0 1px rgba(11, 94, 215, 0.35);
     }
 
     &__placeholder-icon {
@@ -34,7 +46,7 @@
     }
 
     &__placeholder-label {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 600;
         line-height: 1.4;
     }

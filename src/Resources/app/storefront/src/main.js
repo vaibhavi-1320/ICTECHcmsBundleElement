@@ -1,1 +1,1 @@
-import './scss/base.scss';
+// Storefront JavaScript entry point.
