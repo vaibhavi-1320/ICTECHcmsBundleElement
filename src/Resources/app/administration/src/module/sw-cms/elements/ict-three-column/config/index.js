@@ -1,10 +1,7 @@
 import template from './sw-cms-el-config-ict-three-column.html.twig';
 import './sw-cms-el-config-ict-three-column.scss';
 
-import {
-    ELEMENT_NAME,
-} from '../utils/default-columns';
-
+const ELEMENT_NAME = 'ict-three-column';
 const { Mixin } = Shopware;
 
 export default {
