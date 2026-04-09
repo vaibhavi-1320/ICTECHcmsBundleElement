@@ -7,10 +7,26 @@
                 },
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
+                },
+                "ictTwoColumn": {
+                    "label": "ICT Zwei-Spalten-Layout"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
+                    "label": "ICT Inhaltskarte",
+                    "config": {
+                        "cardSettings": "Karten-Einstellungen",
+                        "eyebrow": "Label",
+                        "title": "Titel",
+                        "text": "Text",
+                        "linkText": "Link-Beschriftung",
+                        "url": "Link-URL",
+                        "newTab": "Link in neuem Tab oeffnen",
+                        "media": "Kartenbild"
+                    }
+                },
+                "ictTwoColumn": {
                     "label": "ICT Inhaltskarte",
                     "config": {
                         "cardSettings": "Karten-Einstellungen",

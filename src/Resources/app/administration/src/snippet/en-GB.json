@@ -7,10 +7,26 @@
                 },
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
+                },
+                "ictTwoColumn": {
+                    "label": "ICT Two Column Layout"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
+                    "label": "ICT Content Card",
+                    "config": {
+                        "cardSettings": "Card settings",
+                        "eyebrow": "Eyebrow",
+                        "title": "Title",
+                        "text": "Text",
+                        "linkText": "Link label",
+                        "url": "Link URL",
+                        "newTab": "Open link in new tab",
+                        "media": "Card image"
+                    }
+                },
+                "ictTwoColumn": {
                     "label": "ICT Content Card",
                     "config": {
                         "cardSettings": "Card settings",

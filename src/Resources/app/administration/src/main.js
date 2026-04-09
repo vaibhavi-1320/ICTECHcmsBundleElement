@@ -2,8 +2,10 @@ import deDE from './snippet/de-DE.json';
 import enGB from './snippet/en-GB.json';
 
 import './module/sw-cms/elements/ict-three-column';
+import './module/sw-cms/elements/ict-two-column';
 import './module/sw-cms/blocks/ict-three-column';
 import './module/sw-cms/blocks/ict-four-column';
+import './module/sw-cms/blocks/ict-two-column';
 
 Shopware.Locale.extend('de-DE', deDE);
 Shopware.Locale.extend('en-GB', enGB);
