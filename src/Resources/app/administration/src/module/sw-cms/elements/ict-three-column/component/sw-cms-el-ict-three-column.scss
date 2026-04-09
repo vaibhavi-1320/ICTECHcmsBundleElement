@@ -1,3 +1,19 @@
+.sw-cms-slot.sw-cms-slot--ict-three-column {
+    .sw-cms-slot__settings-action {
+        display: none;
+    }
+
+    .sw-cms-slot__actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sw-cms-slot.sw-cms-slot--ict-three-column-placeholder {
+    .sw-cms-slot__actions {
+        display: none;
+    }
+}
+
 .sw-cms-el-ict-three-column {
     display: flex;
     flex-direction: column;

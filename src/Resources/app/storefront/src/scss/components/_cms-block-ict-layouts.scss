@@ -1,0 +1,15 @@
+.cms-block-ict-three-column {
+    .ict-three-column-layout__card-slot,
+    .ict-three-column-layout__card-slot > .cms-element-ict-three-column,
+    .ict-three-column-layout__col {
+        height: 100%;
+    }
+}
+
+.cms-block-ict-four-column {
+    .ict-four-column-layout__card-slot,
+    .ict-four-column-layout__card-slot > .cms-element-ict-three-column,
+    .ict-four-column-layout__col {
+        height: 100%;
+    }
+}

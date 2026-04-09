@@ -27,23 +27,23 @@ export default {
         },
 
         eyebrow() {
-            return this.element.config.eyebrow?.value || '';
+            return this.element.config?.eyebrow?.value || '';
         },
 
         title() {
-            return this.element.config.title?.value || '';
+            return this.element.config?.title?.value || '';
         },
 
         text() {
-            return this.element.config.text?.value || '';
+            return this.element.config?.text?.value || '';
         },
 
         linkText() {
-            return this.element.config.linkText?.value || '';
+            return this.element.config?.linkText?.value || '';
         },
 
         url() {
-            return this.element.config.url?.value || '';
+            return this.element.config?.url?.value || '';
         },
 
         isPlaceholder() {
@@ -58,6 +58,18 @@ export default {
 
     created() {
         this.createdComponent();
+    },
+
+    mounted() {
+        this.syncSlotState();
+    },
+
+    updated() {
+        this.syncSlotState();
+    },
+
+    beforeDestroy() {
+        this.clearSlotState();
     },
 
     methods: {
@@ -85,6 +97,28 @@ export default {
 
                 parent = parent.$parent;
             }
+        },
+
+        syncSlotState() {
+            const slotElement = this.$el?.closest('.sw-cms-slot');
+
+            if (!slotElement) {
+                return;
+            }
+
+            slotElement.classList.add('sw-cms-slot--ict-three-column');
+            slotElement.classList.toggle('sw-cms-slot--ict-three-column-placeholder', this.isPlaceholder);
+        },
+
+        clearSlotState() {
+            const slotElement = this.$el?.closest('.sw-cms-slot');
+
+            if (!slotElement) {
+                return;
+            }
+
+            slotElement.classList.remove('sw-cms-slot--ict-three-column');
+            slotElement.classList.remove('sw-cms-slot--ict-three-column-placeholder');
         },
     },
 };

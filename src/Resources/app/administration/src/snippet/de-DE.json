@@ -4,6 +4,9 @@
             "blocks": {
                 "ictThreeColumn": {
                     "label": "ICT Drei-Spalten-Layout"
+                },
+                "ictFourColumn": {
+                    "label": "ICT Vier-Spalten-Layout"
                 }
             },
             "elements": {

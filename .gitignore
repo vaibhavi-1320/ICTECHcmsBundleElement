@@ -1,0 +1,14 @@
+# Ignore Administration temp build folder
+src/Resources/app/administration/.tmp/
+
+# Ignore Vite build output
+src/Resources/public/administration/.vite/
+
+# Ignore generated administration assets
+src/Resources/public/administration/assets/
+
+# ignore storefront dist genrated folder
+src/Resources/app/storefront/dist/
+
+# php stan folder 
+vendor 
