@@ -6,10 +6,42 @@
     }
 }
 
+.cms-block-ict-two-column {
+    .ict-two-column-layout__card-slot,
+    .ict-two-column-layout__card-slot > .cms-element-ict-two-column,
+    .ict-two-column-layout__col {
+        height: 100%;
+    }
+}
+
+.cms-block-ict-five-column {
+    .ict-five-column-layout__card-slot,
+    .ict-five-column-layout__card-slot > .cms-element-ict-five-column,
+    .ict-five-column-layout__col {
+        height: 100%;
+    }
+}
+
+.cms-block-ict-six-column {
+    .ict-six-column-layout__card-slot,
+    .ict-six-column-layout__card-slot > .cms-element-ict-six-column,
+    .ict-six-column-layout__col {
+        height: 100%;
+    }
+}
+
 .cms-block-ict-four-column {
     .ict-four-column-layout__card-slot,
     .ict-four-column-layout__card-slot > .cms-element-ict-three-column,
     .ict-four-column-layout__col {
+        height: 100%;
+    }
+}
+
+.cms-block-ict-nine-column {
+    .ict-nine-column-layout__card-slot,
+    .ict-nine-column-layout__card-slot > .cms-element-ict-nine-column,
+    .ict-nine-column-layout__col {
         height: 100%;
     }
 }

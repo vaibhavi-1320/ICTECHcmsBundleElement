@@ -10,47 +10,30 @@
                 },
                 "ictTwoColumn": {
                     "label": "ICT Two Column Layout"
+                },
+                "ictFiveColumn": {
+                    "label": "ICT Five Column Layout"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Six Column Layout"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Nine Column Layout"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Content Card",
-                    "config": {
-                        "cardSettings": "Card settings",
-                        "eyebrow": "Eyebrow",
-                        "title": "Title",
-                        "text": "Text",
-                        "linkText": "Link label",
-                        "url": "Link URL",
-                        "newTab": "Open link in new tab",
-                        "media": "Card image"
-                    }
+                    "label": "ICT Content Card"
                 },
                 "ictTwoColumn": {
-                    "label": "ICT Content Card",
-                    "config": {
-                        "cardSettings": "Card settings",
-                        "eyebrow": "Eyebrow",
-                        "title": "Title",
-                        "text": "Text",
-                        "linkText": "Link label",
-                        "url": "Link URL",
-                        "newTab": "Open link in new tab",
-                        "media": "Card image"
-                    }
+                    "label": "ICT Content Card"
+                },
+                "ictFiveColumn": {
+                    "label": "ICT Content Card"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Content Card"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Content Card"
                 }
-            }
-        }
-    },
-    "apps": {
-        "sw-cms": {
-            "detail": {
-                "label": {
-                    "blockCategory": {
-                        "ict-cms-layouts": "ICT CMS layouts"
-                    }
-                }
-            }
-        }
-    }
-}

@@ -10,47 +10,30 @@
                 },
                 "ictTwoColumn": {
                     "label": "ICT Zwei-Spalten-Layout"
+                },
+                "ictFiveColumn": {
+                    "label": "ICT Fuenf-Spalten-Layout"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Sechs-Spalten-Layout"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Neun-Spalten-Layout"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Inhaltskarte",
-                    "config": {
-                        "cardSettings": "Karten-Einstellungen",
-                        "eyebrow": "Label",
-                        "title": "Titel",
-                        "text": "Text",
-                        "linkText": "Link-Beschriftung",
-                        "url": "Link-URL",
-                        "newTab": "Link in neuem Tab oeffnen",
-                        "media": "Kartenbild"
-                    }
+                    "label": "ICT Inhaltskarte"
                 },
                 "ictTwoColumn": {
-                    "label": "ICT Inhaltskarte",
-                    "config": {
-                        "cardSettings": "Karten-Einstellungen",
-                        "eyebrow": "Label",
-                        "title": "Titel",
-                        "text": "Text",
-                        "linkText": "Link-Beschriftung",
-                        "url": "Link-URL",
-                        "newTab": "Link in neuem Tab oeffnen",
-                        "media": "Kartenbild"
-                    }
+                    "label": "ICT Inhaltskarte"
+                },
+                "ictFiveColumn": {
+                    "label": "ICT Inhaltskarte"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Inhaltskarte"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Inhaltskarte"
                 }
-            }
-        }
-    },
-    "apps": {
-        "sw-cms": {
-            "detail": {
-                "label": {
-                    "blockCategory": {
-                        "ict-cms-layouts": "ICT CMS layouts"
-                    }
-                }
-            }
-        }
-    }
-}
