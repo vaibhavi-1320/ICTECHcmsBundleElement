@@ -3,7 +3,6 @@ Shopware.Component.register('sw-cms-el-ict-three-column', () => import('./compon
 
 Shopware.Service('cmsService').registerCmsElement({
     name: ELEMENT_NAME,
-    
     label: 'ict-cms-bundle-element.cms.elements.ictThreeColumn.label',
     component: 'sw-cms-el-ict-three-column',
     hidden: true,
