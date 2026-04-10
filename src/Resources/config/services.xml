@@ -23,5 +23,6 @@
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctNineColumnCmsElementResolver">
             <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
         </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctImageGalleryCmsElementResolver"/>
     </services>
 </container>
