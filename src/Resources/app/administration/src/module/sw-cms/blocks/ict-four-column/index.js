@@ -1,5 +1,5 @@
 const BLOCK_NAME = 'ict-four-column';
-const DEFAULT_ELEMENT_NAME = 'ict-three-column';
+const ELEMENT_NAME = 'ict-four-column';
 const BLOCK_CATEGORY = 'ict-cms-layouts';
 
 Shopware.Component.register('sw-cms-preview-ict-four-column', () => import('./preview'));
@@ -20,16 +20,16 @@ Shopware.Service('cmsService').registerCmsBlock({
     },
     slots: {
         left: {
-            type: DEFAULT_ELEMENT_NAME,
+            type: ELEMENT_NAME,
         },
         centerLeft: {
-            type: DEFAULT_ELEMENT_NAME,
+            type: ELEMENT_NAME,
         },
         centerRight: {
-            type: DEFAULT_ELEMENT_NAME,
+            type: ELEMENT_NAME,
         },
         right: {
-            type: DEFAULT_ELEMENT_NAME,
+            type: ELEMENT_NAME,
         },
     },
 });

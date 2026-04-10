@@ -19,21 +19,69 @@
                 },
                 "ictNineColumn": {
                     "label": "ICT Neun-Spalten-Layout"
+                },
+                "ictSevenColumn": {
+                    "label": "ICT Sieben-Spalten-Layout"
+                },
+                "ictEightColumn": {
+                    "label": "ICT Acht-Spalten-Layout"
+                },
+                "ictTenColumn": {
+                    "label": "ICT Zehn-Spalten-Layout"
+                },
+                "ictElevenColumn": {
+                    "label": "ICT Elf-Spalten-Layout"
+                },
+                "ictTwelveColumn": {
+                    "label": "ICT Zwoelf-Spalten-Layout"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Inhaltskarte"
+                    "label": "ICT Drei-Spalten-Layout"
                 },
                 "ictTwoColumn": {
-                    "label": "ICT Inhaltskarte"
+                    "label": "ICT Zwei-Spalten-Layout"
                 },
                 "ictFiveColumn": {
-                    "label": "ICT Inhaltskarte"
+                    "label": "ICT Fuenf-Spalten-Layout"
                 },
                 "ictSixColumn": {
-                    "label": "ICT Inhaltskarte"
+                    "label": "ICT Sechs-Spalten-Layout"
                 },
                 "ictNineColumn": {
-                    "label": "ICT Inhaltskarte"
+                    "label": "ICT Neun-Spalten-Layout"
+                },
+                "ictFourColumn": {
+                    "label": "ICT Vier-Spalten-Layout"
+                },
+                "ictSevenColumn": {
+                    "label": "ICT Sieben-Spalten-Layout"
+                },
+                "ictEightColumn": {
+                    "label": "ICT Acht-Spalten-Layout"
+                },
+                "ictTenColumn": {
+                    "label": "ICT Zehn-Spalten-Layout"
+                },
+                "ictElevenColumn": {
+                    "label": "ICT Elf-Spalten-Layout"
+                },
+                "ictTwelveColumn": {
+                    "label": "ICT Zwoelf-Spalten-Layout"
                 }
+            }
+        }
+    },
+    "apps": {
+        "sw-cms": {
+            "detail": {
+                "label": {
+                    "blockCategory": {
+                        "ict-cms-layouts": "ICT CMS layouts"
+                    }
+                }
+            }
+        }
+    }
+}

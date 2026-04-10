@@ -19,6 +19,21 @@
                 },
                 "ictNineColumn": {
                     "label": "ICT Nine Column Layout"
+                },
+                "ictSevenColumn": {
+                    "label": "ICT Seven Column Layout"
+                },
+                "ictEightColumn": {
+                    "label": "ICT Eight Column Layout"
+                },
+                "ictTenColumn": {
+                    "label": "ICT Ten Column Layout"
+                },
+                "ictElevenColumn": {
+                    "label": "ICT Eleven Column Layout"
+                },
+                "ictTwelveColumn": {
+                    "label": "ICT Twelve Column Layout"
                 }
             },
             "elements": {
@@ -36,4 +51,38 @@
                 },
                 "ictNineColumn": {
                     "label": "ICT Content Card"
+                },
+
+                "ictFourColumn": {
+                    "label": "ICT Four Column Layout"
+                },
+                "ictSevenColumn": {
+                    "label": "ICT Seven Column Layout"
+                },
+                "ictEightColumn": {
+                    "label": "ICT Eight Column Layout"
+                },
+                "ictTenColumn": {
+                    "label": "ICT Ten Column Layout"
+                },
+                "ictElevenColumn": {
+                    "label": "ICT Eleven Column Layout"
+                },
+                "ictTwelveColumn": {
+                    "label": "ICT Twelve Column Layout"
                 }
+            }
+        }
+    },
+    "apps": {
+        "sw-cms": {
+            "detail": {
+                "label": {
+                    "blockCategory": {
+                        "ict-cms-layouts": "ICT CMS layouts"
+                    }
+                }
+            }
+        }
+    }
+}

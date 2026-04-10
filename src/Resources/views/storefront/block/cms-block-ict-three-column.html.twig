@@ -1,17 +1,40 @@
 {% block block_ict_three_column %}
-    {% set slots = [
-        block.slots.getSlot('left'),
-        block.slots.getSlot('center'),
-        block.slots.getSlot('right')
-    ] %}
-    
-    {% for slot in slots %}
-        {% if slot %}
-            <div class="col-lg-4 col-md-6 col-12 ict-three-column-layout__col" data-cms-element-id="{{ slot.id }}">
-                <div class="ict-three-column-layout__card-slot">
-                    {% sw_include '@Storefront/storefront/element/cms-element-' ~ slot.type ~ '.html.twig' ignore missing with { element: slot } %}
-                </div>
+    {% block block_ict_three_column_left %}
+        {% set element = block.slots.getSlot('left') %}
+        {% if element %}
+            <div class="ict-three-column-layout__col" data-cms-element-id="{{ element.id }}">
+                {% block block_ict_three_column_left_inner %}
+                    <div class="ict-three-column-layout__card-slot">
+                        {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' ignore missing with { element: element } %}
+                    </div>
+                {% endblock %}
             </div>
         {% endif %}
-    {% endfor %}
+    {% endblock %}
+
+    {% block block_ict_three_column_center %}
+        {% set element = block.slots.getSlot('center') %}
+        {% if element %}
+            <div class="ict-three-column-layout__col" data-cms-element-id="{{ element.id }}">
+                {% block block_ict_three_column_center_inner %}
+                    <div class="ict-three-column-layout__card-slot">
+                        {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' ignore missing with { element: element } %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block block_ict_three_column_right %}
+        {% set element = block.slots.getSlot('right') %}
+        {% if element %}
+            <div class="ict-three-column-layout__col" data-cms-element-id="{{ element.id }}">
+                {% block block_ict_three_column_right_inner %}
+                    <div class="ict-three-column-layout__card-slot">
+                        {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' ignore missing with { element: element } %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endif %}
+    {% endblock %}
 {% endblock %}

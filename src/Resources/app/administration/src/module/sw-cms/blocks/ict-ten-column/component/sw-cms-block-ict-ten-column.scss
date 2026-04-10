@@ -1,6 +1,6 @@
-.sw-cms-block-ict-four-column {
+.sw-cms-block-ict-ten-column {
     display: flex;
-    gap: 16px;
+    gap: 6px;
     align-items: stretch;
 
     &__slot {
@@ -9,7 +9,7 @@
     }
 
     .sw-cms-slot,
-    .sw-cms-el-ict-four-column {
+    .sw-cms-el-ict-ten-column {
         height: 100%;
         width: 100%;
     }
