@@ -20,6 +20,17 @@
                 "ictNineColumn": {
                     "label": "ICT Neun-Spalten-Layout"
                 },
+                "ictImageGallery": {
+                    "label": "ICT Bildergalerie Layout",
+                    "config": {
+                        "galleryTitle": "Galerie-Titel",
+                        "galleryTitlePlaceholder": "Galerie-Titel eingeben",
+                        "columns": "Bilder in Spalten",
+                        "imageTitle": "Bildtitel",
+                        "imageTitlePlaceholder": "Bildtitel eingeben",
+                        "emptyState": "Füge deine Bilder zur Galerie hinzu, um das Layout zu erstellen"
+                    }
+                },
                 "ictSevenColumn": {
                     "label": "ICT Sieben-Spalten-Layout"
                 },
@@ -52,6 +63,17 @@
                 "ictNineColumn": {
                     "label": "ICT Neun-Spalten-Layout"
                 },
+                "ictImageGallery": {
+                    "label": "ICT Bildergalerie",
+                    "config": {
+                        "galleryTitle": "Galerie-Titel",
+                        "galleryTitlePlaceholder": "Galerie-Titel eingeben",
+                        "columns": "Bilder in Spalten",
+                        "imageTitle": "Bildtitel",
+                        "imageTitlePlaceholder": "Bildtitel eingeben",
+                        "emptyState": "Füge deine Bilder zur Galerie hinzu, um das Layout zu erstellen"
+                    }
+                },
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
                 },
@@ -78,7 +100,7 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-layouts": "ICT CMS layouts"
+                        "ict-cms-gallery": "ICT Galerie"
                     }
                 }
             }

@@ -4,7 +4,8 @@
 .cms-block-ict-eight-column,
 .cms-block-ict-ten-column,
 .cms-block-ict-eleven-column,
-.cms-block-ict-twelve-column {
+.cms-block-ict-twelve-column,
+.cms-block-ict-image-gallery {
     .cms-block-container-row {
         display: grid;
         gap: 32px;
@@ -122,6 +123,9 @@
 }
 
 .cms-block-ict-four-column {
+    .cms-block-container-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 
     .ict-four-column-layout__card-slot,
     .ict-four-column-layout__card-slot>.cms-element-ict-three-column,
@@ -241,11 +245,6 @@
         }
     }
     }
-
-}
-
-.cms-block-container-row {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 
@@ -369,5 +368,11 @@
     .ict-nine-column-layout__card-slot>.cms-element-ict-nine-column,
     .ict-nine-column-layout__col {
         height: 100%;
+    }
+}
+
+.cms-block-ict-image-gallery {
+    .cms-block-container-row {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
