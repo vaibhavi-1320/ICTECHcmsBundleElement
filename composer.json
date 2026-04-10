@@ -1,6 +1,6 @@
 {
     "name": "ictech/ictech-cms-bundle-element",
-    "description": "Custom CMS category and three-column CMS element for Shopware 6.",
+    "description": "Custom CMS layouts and responsive image gallery elements for Shopware 6.6.",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
     "license": "MIT",
@@ -23,9 +23,6 @@
         "psr-4": {
             "ICTECHcmsBundleElement\\Tests\\": "tests/"
         }
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^2.1"
     },
     "config": {
         "allow-plugins": {
