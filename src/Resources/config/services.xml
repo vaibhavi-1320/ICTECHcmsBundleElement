@@ -14,5 +14,14 @@
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctTwoColumnCmsElementResolver">
             <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
         </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctFiveColumnCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+        </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctSixColumnCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+        </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctNineColumnCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+        </service>
     </services>
 </container>

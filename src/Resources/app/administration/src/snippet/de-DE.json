@@ -11,6 +11,15 @@
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
                 },
+                "ictFiveColumn": {
+                    "label": "ICT Fuenf-Spalten-Layout"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Sechs-Spalten-Layout"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Neun-Spalten-Layout"
+                },
                 "ictSevenColumn": {
                     "label": "ICT Sieben-Spalten-Layout"
                 },
@@ -30,6 +39,18 @@
             "elements": {
                 "ictThreeColumn": {
                     "label": "ICT Drei-Spalten-Layout"
+                },
+                "ictTwoColumn": {
+                    "label": "ICT Zwei-Spalten-Layout"
+                },
+                "ictFiveColumn": {
+                    "label": "ICT Fuenf-Spalten-Layout"
+                },
+                "ictSixColumn": {
+                    "label": "ICT Sechs-Spalten-Layout"
+                },
+                "ictNineColumn": {
+                    "label": "ICT Neun-Spalten-Layout"
                 },
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
