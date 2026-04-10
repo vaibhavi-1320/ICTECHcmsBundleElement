@@ -5,11 +5,11 @@
                 "ictThreeColumn": {
                     "label": "ICT Three Column Layout"
                 },
-                "ictFourColumn": {
-                    "label": "ICT Four Column Layout"
-                },
                 "ictTwoColumn": {
                     "label": "ICT Two Column Layout"
+                },
+                "ictFourColumn": {
+                    "label": "ICT Four Column Layout"
                 },
                 "ictFiveColumn": {
                     "label": "ICT Five Column Layout"
@@ -38,7 +38,7 @@
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Content Card"
+                    "label": "ICT Three Column Layout"
                 },
                 "ictTwoColumn": {
                     "label": "ICT Content Card"
@@ -52,7 +52,6 @@
                 "ictNineColumn": {
                     "label": "ICT Content Card"
                 },
-
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
                 },
