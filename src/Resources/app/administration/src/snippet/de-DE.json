@@ -110,6 +110,18 @@
                 "ictBannerSlider": {
                     "label": "ICT Banner-Slider",
                     "config": {
+                        "mainTitle": "Haupttitel",
+                        "mainTitleColor": "Haupttitel-Farbe",
+                        "subTitle": "Untertitel",
+                        "subTitleColor": "Untertitel-Farbe",
+                        "description": "Beschreibung",
+                        "descriptionColor": "Beschreibungs-Farbe",
+                        "callButtonText": "Anruf-Button Text",
+                        "phoneNumber": "Telefonnummer",
+                        "emailButtonText": "E-Mail-Button Text",
+                        "emailAddress": "E-Mail-Adresse",
+                        "buttonColor": "Button-Hintergrundfarbe",
+                        "buttonTextColor": "Button-Textfarbe",
                         "navigationArrows": "Navigationspfeile",
                         "navigationArrowsNone": "Keine",
                         "navigationArrowsInside": "Innen",

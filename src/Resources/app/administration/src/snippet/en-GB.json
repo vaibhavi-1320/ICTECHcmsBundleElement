@@ -89,7 +89,6 @@
                         "emptyState": "Add your gallery images to start building the layout"
                     }
                 },
-
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
                 },
@@ -111,6 +110,18 @@
                 "ictBannerSlider": {
                     "label": "ICT Banner Slider",
                     "config": {
+                        "mainTitle": "Main Title",
+                        "mainTitleColor": "Main Title Color",
+                        "subTitle": "Sub Title",
+                        "subTitleColor": "Sub Title Color",
+                        "description": "Description",
+                        "descriptionColor": "Description Color",
+                        "callButtonText": "Call Button Text",
+                        "phoneNumber": "Phone Number",
+                        "emailButtonText": "Email Button Text",
+                        "emailAddress": "Email Address",
+                        "buttonColor": "Button Background Color",
+                        "buttonTextColor": "Button Text Color",
                         "navigationArrows": "Navigation arrows",
                         "navigationArrowsNone": "None",
                         "navigationArrowsInside": "Inside",
