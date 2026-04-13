@@ -23,31 +23,22 @@ import './module/sw-cms/elements/ict-nine-column';
 import './module/sw-cms/elements/ict-ten-column';
 import './module/sw-cms/elements/ict-eleven-column';
 import './module/sw-cms/elements/ict-twelve-column';
-<<<<<<< HEAD
-=======
->>>>>>> c4b2371c438a98274b1e7d1abf6d3b799bf88f8f
-=======
->>>>>>> c4b2371c438a98274b1e7d1abf6d3b799bf88f8f
+import './module/sw-cms/elements/ict-banner-slider';
 
 import './module/sw-cms/blocks/ict-two-column';
 import './module/sw-cms/blocks/ict-three-column';
 import './module/sw-cms/blocks/ict-four-column';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import './module/sw-cms/blocks/ict-five-column';
 import './module/sw-cms/blocks/ict-six-column';
->>>>>>> c4b2371c438a98274b1e7d1abf6d3b799bf88f8f
-=======
 import './module/sw-cms/blocks/ict-five-column';
 import './module/sw-cms/blocks/ict-six-column';
->>>>>>> c4b2371c438a98274b1e7d1abf6d3b799bf88f8f
 import './module/sw-cms/blocks/ict-seven-column';
 import './module/sw-cms/blocks/ict-eight-column';
 import './module/sw-cms/blocks/ict-nine-column';
 import './module/sw-cms/blocks/ict-ten-column';
 import './module/sw-cms/blocks/ict-eleven-column';
 import './module/sw-cms/blocks/ict-twelve-column';
+import './module/sw-cms/blocks/ict-banner-slider';
 
 import './module/sw-cms/elements/ict-image-gallery';
 import './module/sw-cms/blocks/ict-image-gallery';

@@ -1,0 +1,85 @@
+{% block element_ict_banner_slider %}
+    {% set sliderItems = element.config.sliderItems.value ?? [] %}
+    {% set displayMode = element.config.displayMode.value ?? 'contain' %}
+    {% set autoTransition = element.config.autoTransition.value ?? false %}
+    {% set navigationDots = element.config.navigationDots.value ?? 'none' %}
+    {% set navigationArrows = element.config.navigationArrows.value ?? 'outside' %}
+    {% set hasMultipleSlides = sliderItems|length > 1 %}
+
+    {% if sliderItems|length > 0 %}
+        <div class="cms-element-ict-banner-slider"
+             data-ict-banner-slider="true"
+             data-ict-banner-slider-options="{{ {
+                 slider: {
+                     nav: navigationDots != 'none' and hasMultipleSlides,
+                     autoplay: autoTransition and hasMultipleSlides,
+                     autoplayButtonOutput: false,
+                     autoplayHoverPause: true,
+                     autoplayTimeout: 5000,
+                     loop: hasMultipleSlides,
+                     rewind: false,
+                     items: 1,
+                     slideBy: 1,
+                     mode: 'carousel',
+                     mouseDrag: hasMultipleSlides,
+                     touchDrag: hasMultipleSlides,
+                     edgePadding: 0,
+                     gutter: 0,
+                     controls: navigationArrows != 'none' and hasMultipleSlides,
+                     autoHeight: false
+                 }
+             }|json_encode|e('html_attr') }}">
+
+            <div class="ict-banner-slider__container" data-ict-banner-slider-container="true">
+                {% for item in sliderItems %}
+                    <div class="ict-banner-slider__item is--{{ displayMode }}">
+                        <div class="ict-banner-slider__image-wrapper">
+                             <img src="{{ item.mediaUrl }}" 
+                                 class="ict-banner-slider__image"
+                                 alt="{{ item.mainTitle }}"
+                                 loading="lazy">
+                        </div>
+                        
+                        <div class="ict-banner-slider__content-wrapper">
+                            <div class="container">
+                                <div class="ict-banner-slider__content">
+                                    {% if item.mainTitle %}
+                                        <h1 class="ict-banner-slider__main-title">{{ item.mainTitle }}</h1>
+                                    {% endif %}
+                                    
+                                    {% if item.subTitle %}
+                                        <h2 class="ict-banner-slider__sub-title">{{ item.subTitle }}</h2>
+                                    {% endif %}
+                                    
+                                    {% if item.description %}
+                                        <p class="ict-banner-slider__description">{{ item.description }}</p>
+                                    {% endif %}
+                                    
+                                    <div class="ict-banner-slider__actions">
+                                        {% if item.callButtonText and item.callButtonNumber %}
+                                            <a href="tel:{{ item.callButtonNumber }}" class="btn btn-primary ict-banner-slider__btn ict-banner-slider__btn--call">
+                                                <span class="ict-banner-slider__btn-icon">
+                                                    {% sw_icon 'phone' %}
+                                                </span>
+                                                {{ item.callButtonText }}
+                                            </a>
+                                        {% endif %}
+                                        
+                                        {% if item.emailButtonText and item.emailButtonAddress %}
+                                            <a href="mailto:{{ item.emailButtonAddress }}" class="btn btn-primary ict-banner-slider__btn ict-banner-slider__btn--email">
+                                                <span class="ict-banner-slider__btn-icon">
+                                                    {% sw_icon 'envelope' %}
+                                                </span>
+                                                {{ item.emailButtonText }}
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
