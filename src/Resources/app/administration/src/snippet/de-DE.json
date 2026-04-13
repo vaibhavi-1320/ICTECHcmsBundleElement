@@ -60,6 +60,9 @@
                         "autoTransition": "Automatischer Wechsel",
                         "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
                     }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Kategorie-Bild-Slider"
                 }
             },
             "elements": {
@@ -132,6 +135,19 @@
                         "navigationDotsOutside": "Außen",
                         "autoTransition": "Automatischer Wechsel",
                         "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
+                    }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Kategorie-Bild-Slider",
+                    "config": {
+                        "addCard": "Kategorie-Karte hinzufügen",
+                        "removeCard": "Karte entfernen",
+                        "cardTitle": "Titel (optional)",
+                        "cardTitlePlaceholder": "Z.B. Empfehlung",
+                        "category": "Kategorie",
+                        "categoryPlaceholder": "Kategorie auswählen…",
+                        "cardErrorNoMedia": "Diese Kategorie hat kein Bild. Bitte ein Kategorie-Bild in den Kategorie-Einstellungen setzen, bevor gespeichert wird.",
+                        "errorHint": "Bitte mindestens eine Kategorie-Karte hinzufügen und sicherstellen, dass jede ausgewählte Kategorie ein Bild hat."
                     }
                 }
             }

@@ -60,6 +60,9 @@
                         "autoTransition": "Auto transition",
                         "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
                     }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Category Image Slider"
                 }
             },
             "elements": {
@@ -132,6 +135,19 @@
                         "navigationDotsOutside": "Outside",
                         "autoTransition": "Auto transition",
                         "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
+                    }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Category Image Slider",
+                    "config": {
+                        "addCard": "Add category card",
+                        "removeCard": "Remove card",
+                        "cardTitle": "Title (optional)",
+                        "cardTitlePlaceholder": "E.g. Featured",
+                        "category": "Category",
+                        "categoryPlaceholder": "Select a category…",
+                        "cardErrorNoMedia": "This category has no image. Please set a category image in the category settings before saving.",
+                        "errorHint": "Please add at least one category card and make sure every selected category has an image."
                     }
                 }
             }
