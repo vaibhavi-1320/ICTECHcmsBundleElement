@@ -12,6 +12,7 @@ import './module/sw-cms/elements/ict-nine-column';
 import './module/sw-cms/elements/ict-ten-column';
 import './module/sw-cms/elements/ict-eleven-column';
 import './module/sw-cms/elements/ict-twelve-column';
+import './module/sw-cms/elements/ict-banner-slider';
 
 import './module/sw-cms/blocks/ict-two-column';
 import './module/sw-cms/blocks/ict-three-column';
@@ -24,6 +25,7 @@ import './module/sw-cms/blocks/ict-nine-column';
 import './module/sw-cms/blocks/ict-ten-column';
 import './module/sw-cms/blocks/ict-eleven-column';
 import './module/sw-cms/blocks/ict-twelve-column';
+import './module/sw-cms/blocks/ict-banner-slider';
 
 import './module/sw-cms/elements/ict-image-gallery';
 import './module/sw-cms/blocks/ict-image-gallery';

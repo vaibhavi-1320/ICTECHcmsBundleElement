@@ -45,6 +45,21 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
+                },
+                "ictBannerSlider": {
+                    "label": "ICT Banner Slider",
+                    "config": {
+                        "navigationArrows": "Navigation arrows",
+                        "navigationArrowsNone": "None",
+                        "navigationArrowsInside": "Inside",
+                        "navigationArrowsOutside": "Outside",
+                        "navigationDots": "Navigation dots",
+                        "navigationDotsNone": "None",
+                        "navigationDotsInside": "Inside",
+                        "navigationDotsOutside": "Outside",
+                        "autoTransition": "Auto transition",
+                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
+                    }
                 }
             },
             "elements": {
@@ -92,6 +107,21 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
+                },
+                "ictBannerSlider": {
+                    "label": "ICT Banner Slider",
+                    "config": {
+                        "navigationArrows": "Navigation arrows",
+                        "navigationArrowsNone": "None",
+                        "navigationArrowsInside": "Inside",
+                        "navigationArrowsOutside": "Outside",
+                        "navigationDots": "Navigation dots",
+                        "navigationDotsNone": "None",
+                        "navigationDotsInside": "Inside",
+                        "navigationDotsOutside": "Outside",
+                        "autoTransition": "Auto transition",
+                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
+                    }
                 }
             }
         }
@@ -101,6 +131,7 @@
             "detail": {
                 "label": {
                     "blockCategory": {
+                        "ict-cms-bundle-element": "ICT Bundle Elements",
                         "ict-cms-gallery": "ICT Gallery"
                     }
                 }

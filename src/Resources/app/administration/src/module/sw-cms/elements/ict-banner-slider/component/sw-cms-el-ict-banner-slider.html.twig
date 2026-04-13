@@ -1,0 +1,30 @@
+<div class="sw-cms-el-ict-banner-slider" :style="styles">
+    <div v-if="sliderItems.length > 0" class="sw-cms-el-ict-banner-slider__container">
+        <div class="sw-cms-el-ict-banner-slider__item">
+            <img :src="sliderItems[0].mediaUrl" :class="`is--${displayMode}`">
+            <div class="sw-cms-el-ict-banner-slider__content">
+                <h1 v-if="sliderItems[0].mainTitle" class="sw-cms-el-ict-banner-slider__main-title">{{ sliderItems[0].mainTitle }}</h1>
+                <h2 v-if="sliderItems[0].subTitle" class="sw-cms-el-ict-banner-slider__sub-title">{{ sliderItems[0].subTitle }}</h2>
+                <p v-if="sliderItems[0].description" class="sw-cms-el-ict-banner-slider__description">{{ sliderItems[0].description }}</p>
+                
+                <div class="sw-cms-el-ict-banner-slider__buttons">
+                    <sw-button v-if="sliderItems[0].callButtonText" variant="primary">
+                        {{ sliderItems[0].callButtonText }}
+                    </sw-button>
+                    <sw-button v-if="sliderItems[0].emailButtonText" variant="primary">
+                        {{ sliderItems[0].emailButtonText }}
+                    </sw-button>
+                </div>
+            </div>
+        </div>
+        
+        <div v-if="sliderItems.length > 1" class="sw-cms-el-ict-banner-slider__indicator">
+             + {{ sliderItems.length - 1 }} more slides
+        </div>
+    </div>
+    
+    <div v-else class="sw-cms-el-ict-banner-slider__placeholder">
+        <sw-icon name="regular-image" size="40" />
+        <p>No slides configured</p>
+    </div>
+</div>
