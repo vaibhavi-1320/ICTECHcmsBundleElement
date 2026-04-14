@@ -1,6 +1,56 @@
 .cms-block-ict-two-column-three-image {
 	padding: 0;
 
+	.left-img-section {
+		position: relative;
+	}
+
+	.image-card {
+		position: relative;
+		width: 100%;
+		border-radius: 8px;
+		overflow: hidden;
+
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	.banner-large {
+		min-height: 400px;
+
+		img {
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.content {
+		position: absolute;
+		bottom: 60px;
+		left: 20px;
+		right: 20px;
+		z-index: 2;
+	}
+
+	.learn-more-btn {
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		right: 20px;
+		z-index: 2;
+	}
+
+	.title {
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+		margin: 0;
+		text-shadow: 0 2px 4px rgba(0,0,0,.5);
+		line-height: 1.3;
+	}
+
 	.ict-content-button {
 		--button-icon-size: 25px;
 		--button-icon-base-color: #ffffff;

@@ -1,21 +1,6 @@
 {% block element_ict_product %}
     {% set config = element.config %}
     {% set data = element.data %}
-
-    {# Normalize external URLs (e.g. "www.google.com" -> "https://www.google.com") #}
-    {% macro normalize_href(href) %}
-        {% set h = href|default('') %}
-        {% if h is empty %}
-            {{ '' }}
-        {% elseif h starts with '/' or h starts with '#' %}
-            {{ h }}
-        {% elseif h matches '~^[a-zA-Z][a-zA-Z0-9+.-]*://~' %}
-            {{ h }}
-        {% else %}
-            {{ 'https://' ~ h }}
-        {% endif %}
-    {% endmacro %}
-    {% import _self as ict_href %}
     {% set leftImageHeightRaw = config.leftImageHeight.value ?? '' %}
     {% set leftImageHeightCss = leftImageHeightRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? leftImageHeightRaw ~ 'px' : leftImageHeightRaw %}
     {% set rightTopImageHeightRaw = config.rightTopImageHeight.value ?? '' %}
@@ -30,7 +15,7 @@
             <div class="col-md-8 d-flex align-items-stretch h-auto left-img-section">
                 {% set image1Object = config.leftImageObjectFit.value %}
                 {% if data.leftMedia %}
-                    <div class="banner-large w-100 image-card">
+                    <div class="banner-large w-100 image-card" style="min-height: {{ leftImageHeightCss != '' ? leftImageHeightCss : '400px' }}">
 
                         {# IMAGE #}
                         <img src="{{ data.leftMedia.url }}"
@@ -61,7 +46,7 @@
                                 {% set leftButtonIconSizeCss = leftButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? leftButtonIconSizeRaw ~ 'px' : leftButtonIconSizeRaw %}
                                 {% set leftButtonIconHoverActive = config.leftButtonIconHoverActive.value ? 'true' : 'false' %}
                                 {% set leftButtonIconHoverColor = config.leftButtonIconHoverColor.value ?? '#000000' %}
-                                <a href="{{ ict_href.normalize_href(config.leftButtonLink.value) }}"
+                                <a href="{{ config.leftButtonLink.value }}"
                                    target="{{ config.leftButtonTarget.value }}"
                                    class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
                                    data-icon-hover-active="{{ leftButtonIconHoverActive }}"
@@ -142,7 +127,7 @@
                                 {% set rightTopButtonIconSizeCss = rightTopButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightTopButtonIconSizeRaw ~ 'px' : rightTopButtonIconSizeRaw %}
                                 {% set rightTopButtonIconHoverActive = config.rightTopButtonIconHoverActive.value ? 'true' : 'false' %}
                                 {% set rightTopButtonIconHoverColor = config.rightTopButtonIconHoverColor.value ?? '#000000' %}
-                                <a href="{{ ict_href.normalize_href(config.rightTopButtonLink.value) }}"
+                                <a href="{{ config.rightTopButtonLink.value }}"
                                    target="{{ config.rightTopButtonTarget.value }}"
                                    class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
                                    data-icon-hover-active="{{ rightTopButtonIconHoverActive }}"
@@ -217,7 +202,7 @@
                                 {% set rightBottomButtonIconSizeCss = rightBottomButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightBottomButtonIconSizeRaw ~ 'px' : rightBottomButtonIconSizeRaw %}
                                 {% set rightBottomButtonIconHoverActive = config.rightBottomButtonIconHoverActive.value ? 'true' : 'false' %}
                                 {% set rightBottomButtonIconHoverColor = config.rightBottomButtonIconHoverColor.value ?? '#000000' %}
-                                <a href="{{ ict_href.normalize_href(config.rightBottomButtonLink.value) }}"
+                                <a href="{{ config.rightBottomButtonLink.value }}"
                                    target="{{ config.rightBottomButtonTarget.value }}"
                                    class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
                                    data-icon-hover-active="{{ rightBottomButtonIconHoverActive }}"
