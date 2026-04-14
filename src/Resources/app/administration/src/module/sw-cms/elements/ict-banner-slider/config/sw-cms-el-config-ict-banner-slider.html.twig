@@ -54,35 +54,61 @@
                         </div>
 
                         <div class="sw-cms-el-config-ict-banner-slider__item-content">
-                            <sw-text-field
-                                v-model:value="item.mainTitle"
-                                label="Main Title"
-                                placeholder="Enter main title..."
-                                @update:value="emitElementUpdate"
-                            />
-                            <sw-text-field
-                                v-model:value="item.subTitle"
-                                label="Sub Title"
-                                placeholder="Enter sub title..."
-                                @update:value="emitElementUpdate"
-                            />
-                            <sw-textarea-field
-                                v-model:value="item.description"
-                                label="Description"
-                                placeholder="Enter description..."
-                                @update:value="emitElementUpdate"
-                            />
-                            
+                            <div class="sw-cms-el-config-ict-banner-slider__item-row">
+                                <sw-text-field
+                                    v-model:value="item.mainTitle"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.mainTitle')"
+                                    placeholder="Enter main title..."
+                                    @update:value="emitElementUpdate"
+                                />
+                                <sw-colorpicker
+                                    v-model:value="item.mainTitleColor"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.mainTitleColor')"
+                                    :default-value="'#ffffff'"
+                                    @update:value="emitElementUpdate"
+                                />
+                            </div>
+
+                            <div class="sw-cms-el-config-ict-banner-slider__item-row">
+                                <sw-text-field
+                                    v-model:value="item.subTitle"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.subTitle')"
+                                    placeholder="Enter sub title..."
+                                    @update:value="emitElementUpdate"
+                                />
+                                <sw-colorpicker
+                                    v-model:value="item.subTitleColor"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.subTitleColor')"
+                                    :default-value="'#ffffff'"
+                                    @update:value="emitElementUpdate"
+                                />
+                            </div>
+
+                            <div class="sw-cms-el-config-ict-banner-slider__item-row">
+                                <sw-textarea-field
+                                    v-model:value="item.description"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.description')"
+                                    placeholder="Enter description..."
+                                    @update:value="emitElementUpdate"
+                                />
+                                <sw-colorpicker
+                                    v-model:value="item.descriptionColor"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.descriptionColor')"
+                                    :default-value="'#ffffff'"
+                                    @update:value="emitElementUpdate"
+                                />
+                            </div>
+
                             <div class="sw-cms-el-config-ict-banner-slider__item-row">
                                 <sw-text-field
                                     v-model:value="item.callButtonText"
-                                    label="Call Button Text"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.callButtonText')"
                                     placeholder="Call us"
                                     @update:value="emitElementUpdate"
                                 />
                                 <sw-text-field
                                     v-model:value="item.callButtonNumber"
-                                    label="Phone Number"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.phoneNumber')"
                                     placeholder="06074 - 21 50 70"
                                     @update:value="emitElementUpdate"
                                 />
@@ -91,14 +117,29 @@
                             <div class="sw-cms-el-config-ict-banner-slider__item-row">
                                 <sw-text-field
                                     v-model:value="item.emailButtonText"
-                                    label="Email Button Text"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.emailButtonText')"
                                     placeholder="Email us"
                                     @update:value="emitElementUpdate"
                                 />
                                 <sw-text-field
                                     v-model:value="item.emailButtonAddress"
-                                    label="Email Address"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.emailAddress')"
                                     placeholder="info@example.com"
+                                    @update:value="emitElementUpdate"
+                                />
+                            </div>
+
+                            <div class="sw-cms-el-config-ict-banner-slider__item-row">
+                                <sw-colorpicker
+                                    v-model:value="item.buttonColor"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.buttonColor')"
+                                    :default-value="'#f15a24'"
+                                    @update:value="emitElementUpdate"
+                                />
+                                <sw-colorpicker
+                                    v-model:value="item.buttonTextColor"
+                                    :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.buttonTextColor')"
+                                    :default-value="'#ffffff'"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>

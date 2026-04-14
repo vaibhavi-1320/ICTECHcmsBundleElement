@@ -1,0 +1,251 @@
+{% block element_ict_product %}
+    {% set config = element.config %}
+    {% set data = element.data %}
+    {% set leftImageHeightRaw = config.leftImageHeight.value ?? '' %}
+    {% set leftImageHeightCss = leftImageHeightRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? leftImageHeightRaw ~ 'px' : leftImageHeightRaw %}
+    {% set rightTopImageHeightRaw = config.rightTopImageHeight.value ?? '' %}
+    {% set rightTopImageHeightCss = rightTopImageHeightRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightTopImageHeightRaw ~ 'px' : rightTopImageHeightRaw %}
+    {% set rightBottomImageHeightRaw = config.rightBottomImageHeight.value ?? '' %}
+    {% set rightBottomImageHeightCss = rightBottomImageHeightRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightBottomImageHeightRaw ~ 'px' : rightBottomImageHeightRaw %}
+
+    <div class="container">
+        <div class="row g-3">
+
+            {# LEFT BIG BANNER (col-md-8) #}
+            <div class="col-md-8 d-flex align-items-stretch h-auto left-img-section">
+                {% set image1Object = config.leftImageObjectFit.value %}
+                {% if data.leftMedia %}
+                    <div class="banner-large w-100 image-card" style="min-height: {{ leftImageHeightCss != '' ? leftImageHeightCss : '400px' }}">
+
+                        {# IMAGE #}
+                        <img src="{{ data.leftMedia.url }}"
+                             alt="{{ data.leftMedia.fileName }}"
+                             class="h-100 img-fluid w-100 rounded"
+                             style="
+
+                             {% if image1Object != 'contain' %}
+                                     height: {{ leftImageHeightCss }};
+                             {% endif %}
+                                     object-fit: {{ config.leftImageObjectFit.value }};
+                                     ">
+
+                        {# CONTENT OVERLAY #}
+                        <div class="content">
+
+                            {# DESCRIPTION #}
+                            {% if config.leftImageDescription.value %}
+                                <p class="title">
+                                    {{ config.leftImageDescription.value | striptags }}
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div class="learn-more-btn">
+                            {# BUTTON #}
+                            {% if config.leftButtonTitle.value %}
+                                {% set leftButtonIconSizeRaw = config.leftButtonIconSize.value ?? '25' %}
+                                {% set leftButtonIconSizeCss = leftButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? leftButtonIconSizeRaw ~ 'px' : leftButtonIconSizeRaw %}
+                                {% set leftButtonIconHoverActive = config.leftButtonIconHoverActive.value ? 'true' : 'false' %}
+                                {% set leftButtonIconHoverColor = config.leftButtonIconHoverColor.value ?? '#000000' %}
+                                <a href="{{ config.leftButtonLink.value }}"
+                                   target="{{ config.leftButtonTarget.value }}"
+                                   class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
+                                   data-icon-hover-active="{{ leftButtonIconHoverActive }}"
+                                   style="
+                                           background: {{ config.leftButtonBackgroundColor.value }};
+                                           color: {{ config.leftButtonTextColor.value }};
+                                           border: 1px solid {{ config.leftButtonBorderColor.value }};
+                                           border-radius: 0;
+                                           --button-icon-size: {{ leftButtonIconSizeCss }};
+                                           --button-icon-base-color: #ffffff;
+                                           --button-icon-hover-color: {{ leftButtonIconHoverColor }};
+                                           box-shadow: none;
+                                           "
+                                   onmouseover="
+                                           this.style.background='{{ config.leftButtonHoverBackgroundColor.value }}';
+                                           this.style.color='{{ config.leftButtonHoverTextColor.value }}';
+                                           this.style.borderColor='{{ config.leftButtonHoverBorderColor.value }}';
+                                           "
+                                   onmouseout="
+                                           this.style.background='{{ config.leftButtonBackgroundColor.value }}';
+                                           this.style.color='{{ config.leftButtonTextColor.value }}';
+                                           this.style.borderColor='{{ config.leftButtonBorderColor.value }}';
+                                           ">
+                                    {{ config.leftButtonTitle.value }}
+
+                                    {% if data.leftButtonIcon %}
+                                        {% if '.svg' in data.leftButtonIcon.url %}
+                                            <span class="button-icon button-icon-mask" style="
+                                            background-color: var(--button-icon-color);
+                                            -webkit-mask-image: url('{{ data.leftButtonIcon.url }}');
+                                            mask-image: url('{{ data.leftButtonIcon.url }}');"></span>
+                                        {% else %}
+                                            <span class="button-icon button-icon-image" style="background-image: url('{{ data.leftButtonIcon.url }}');"></span>
+                                        {% endif %}
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {# ==========================================================
+           RIGHT COLUMN (col-md-4)
+           TOP AND BOTTOM SMALL BANNERS
+        ========================================================== #}
+            <div class="col-md-4 left-img-section">
+
+                {# -------------------------
+               RIGHT TOP SMALL BANNER
+               ------------------------- #}
+                {% if data.rightTopMedia %}
+                    <div class="banner-small image-card mb-3">
+                        {% set image2Object = config.rightTopImageObjectFit.value %}
+                        <img src="{{ data.rightTopMedia.url }}"
+                             alt="{{ data.rightTopMedia.fileName }}"
+                             class="img-fluid w-100 rounded"
+                             style="
+                             {% if image2Object != 'contain' %}
+                                     height: {{ rightTopImageHeightCss }};
+                             {% endif %}
+
+                                     object-fit: {{ config.rightTopImageObjectFit.value }};
+                                     ">
+
+                        <div class="content">
+
+                            {# DESCRIPTION #}
+                            {% if config.rightTopImageDescription.value %}
+                                <p class="title">
+                                    {{ config.rightTopImageDescription.value | striptags }}
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div class="learn-more-btn">
+                            {# BUTTON #}
+                            {% if config.rightTopButtonTitle.value %}
+                                {% set rightTopButtonIconSizeRaw = config.rightTopButtonIconSize.value ?? '25' %}
+                                {% set rightTopButtonIconSizeCss = rightTopButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightTopButtonIconSizeRaw ~ 'px' : rightTopButtonIconSizeRaw %}
+                                {% set rightTopButtonIconHoverActive = config.rightTopButtonIconHoverActive.value ? 'true' : 'false' %}
+                                {% set rightTopButtonIconHoverColor = config.rightTopButtonIconHoverColor.value ?? '#000000' %}
+                                <a href="{{ config.rightTopButtonLink.value }}"
+                                   target="{{ config.rightTopButtonTarget.value }}"
+                                   class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
+                                   data-icon-hover-active="{{ rightTopButtonIconHoverActive }}"
+                                   style="
+                                           background: {{ config.rightTopButtonBackgroundColor.value }};
+                                           color: {{ config.rightTopButtonTextColor.value }};
+                                           border: 1px solid {{ config.rightTopButtonBorderColor.value }};
+                                           border-radius: 0;
+                                           --button-icon-size: {{ rightTopButtonIconSizeCss }};
+                                           --button-icon-base-color: #ffffff;
+                                           --button-icon-hover-color: {{ rightTopButtonIconHoverColor }};
+                                           box-shadow: none;"
+                                   onmouseover="
+                                           this.style.background='{{ config.rightTopButtonHoverBackgroundColor.value }}';
+                                           this.style.color='{{ config.rightTopButtonHoverTextColor.value }}';
+                                           this.style.borderColor='{{ config.rightTopButtonHoverBorderColor.value }}';
+                                           "
+                                   onmouseout="
+                                           this.style.background='{{ config.rightTopButtonBackgroundColor.value }}';
+                                           this.style.color='{{ config.rightTopButtonTextColor.value }}';
+                                           this.style.borderColor='{{ config.rightTopButtonBorderColor.value }}';
+                                           ">
+
+                                    {{ config.rightTopButtonTitle.value }}
+                                    {% if data.rightTopButtonIcon %}
+                                        {% if '.svg' in data.rightTopButtonIcon.url %}
+                                                <span class="button-icon button-icon-mask" style="
+                                                background-color: var(--button-icon-color);
+                                                -webkit-mask-image: url('{{ data.rightTopButtonIcon.url }}');
+                                                mask-image: url('{{ data.rightTopButtonIcon.url }}');"></span>
+                                            {% else %}
+                                                <span class="button-icon button-icon-image" style="background-image: url('{{ data.rightTopButtonIcon.url }}');"></span>
+                                            {% endif %}
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+
+
+                {# -------------------------
+               RIGHT BOTTOM SMALL BANNER
+               ------------------------- #}
+                {% if data.rightBottomMedia %}
+                    <div class="banner-small image-card">
+                        {% set image3Object = config.rightBottomImageObjectFit.value %}
+                        <img src="{{ data.rightBottomMedia.url }}"
+                             alt="{{ data.rightBottomMedia.fileName }}"
+                             class="img-fluid w-100 rounded"
+                             style="
+
+                             {% if image3Object != 'contain' %}
+                                     height: {{ rightBottomImageHeightCss }};
+                             {% endif %}
+                                     object-fit: {{ config.rightBottomImageObjectFit.value }};
+                                     ">
+
+                        <div class="content">
+
+                            {# DESCRIPTION #}
+                            {% if config.rightBottomImageDescription.value %}
+                                <p class="title">
+                                    {{ config.rightBottomImageDescription.value | striptags }}
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div class="learn-more-btn">
+                            {# BUTTON #}
+                            {% if config.rightBottomButtonTitle.value %}
+                                {% set rightBottomButtonIconSizeRaw = config.rightBottomButtonIconSize.value ?? '25' %}
+                                {% set rightBottomButtonIconSizeCss = rightBottomButtonIconSizeRaw matches '/^[0-9]+(\\.[0-9]+)?$/' ? rightBottomButtonIconSizeRaw ~ 'px' : rightBottomButtonIconSizeRaw %}
+                                {% set rightBottomButtonIconHoverActive = config.rightBottomButtonIconHoverActive.value ? 'true' : 'false' %}
+                                {% set rightBottomButtonIconHoverColor = config.rightBottomButtonIconHoverColor.value ?? '#000000' %}
+                                <a href="{{ config.rightBottomButtonLink.value }}"
+                                   target="{{ config.rightBottomButtonTarget.value }}"
+                                   class="ict-content-button btn-learn btn btn-lg px-5 py-3 fw-bold text-decoration-none"
+                                   data-icon-hover-active="{{ rightBottomButtonIconHoverActive }}"
+                                   style="
+                                           background: {{ config.rightBottomButtonBackgroundColor.value }};
+                                           color: {{ config.rightBottomButtonTextColor.value }};
+                                           border: 1px solid {{ config.rightBottomButtonBorderColor.value }};
+                                           border-radius: 0;
+                                           --button-icon-size: {{ rightBottomButtonIconSizeCss }};
+                                           --button-icon-base-color: #ffffff;
+                                           --button-icon-hover-color: {{ rightBottomButtonIconHoverColor }};
+                                           box-shadow: none;"
+                                   onmouseover="
+                                           this.style.background='{{ config.rightBottomButtonHoverBackgroundColor.value }}';
+                                           this.style.color='{{ config.rightBottomButtonHoverTextColor.value }}';
+                                           this.style.borderColor='{{ config.rightBottomButtonHoverBorderColor.value }}';
+                                           "
+                                   onmouseout="
+                                           this.style.background='{{ config.rightBottomButtonBackgroundColor.value }}';
+                                           this.style.color='{{ config.rightBottomButtonTextColor.value }}';
+                                           this.style.borderColor='{{ config.rightBottomButtonBorderColor.value }}';
+                                           ">
+                                    {{ config.rightBottomButtonTitle.value }}
+
+                                    {% if data.rightBottomButtonIcon %}
+                                       {% if '.svg' in data.rightBottomButtonIcon.url %}
+                                                <span class="button-icon button-icon-mask" style="
+                                                background-color: var(--button-icon-color);
+                                                -webkit-mask-image: url('{{ data.rightBottomButtonIcon.url }}');
+                                                mask-image: url('{{ data.rightBottomButtonIcon.url }}');"></span>
+                                            {% else %}
+                                                <span class="button-icon button-icon-image" style="background-image: url('{{ data.rightBottomButtonIcon.url }}');"></span>
+                                            {% endif %}
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

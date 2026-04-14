@@ -60,6 +60,9 @@
                         "autoTransition": "Automatischer Wechsel",
                         "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
                     }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Kategorie-Bild-Slider"
                 }
             },
             "elements": {
@@ -110,6 +113,18 @@
                 "ictBannerSlider": {
                     "label": "ICT Banner-Slider",
                     "config": {
+                        "mainTitle": "Haupttitel",
+                        "mainTitleColor": "Haupttitel-Farbe",
+                        "subTitle": "Untertitel",
+                        "subTitleColor": "Untertitel-Farbe",
+                        "description": "Beschreibung",
+                        "descriptionColor": "Beschreibungs-Farbe",
+                        "callButtonText": "Anruf-Button Text",
+                        "phoneNumber": "Telefonnummer",
+                        "emailButtonText": "E-Mail-Button Text",
+                        "emailAddress": "E-Mail-Adresse",
+                        "buttonColor": "Button-Hintergrundfarbe",
+                        "buttonTextColor": "Button-Textfarbe",
                         "navigationArrows": "Navigationspfeile",
                         "navigationArrowsNone": "Keine",
                         "navigationArrowsInside": "Innen",
@@ -121,6 +136,85 @@
                         "autoTransition": "Automatischer Wechsel",
                         "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
                     }
+                },
+                "ictCategoryImageSlider": {
+                    "label": "ICT Kategorie-Bild-Slider",
+                    "config": {
+                        "addCard": "Kategorie-Karte hinzufügen",
+                        "removeCard": "Karte entfernen",
+                        "cardTitle": "Titel (optional)",
+                        "cardTitlePlaceholder": "Z.B. Empfehlung",
+                        "category": "Kategorie",
+                        "categoryPlaceholder": "Kategorie auswählen…",
+                        "cardErrorNoMedia": "Diese Kategorie hat kein Bild. Bitte ein Kategorie-Bild in den Kategorie-Einstellungen setzen, bevor gespeichert wird.",
+                        "errorHint": "Bitte mindestens eine Kategorie-Karte hinzufügen und sicherstellen, dass jede ausgewählte Kategorie ein Bild hat."
+                    }
+                }
+            }
+        }
+    },
+    "sw-cms": {
+        "blocks": {
+            "ictTwoColumnThreeImage": {
+                "label": "ICT Zwei Spalten Drei Bilder"
+            }
+        },
+        "elements": {
+            "ictTwoColumnThreeImage": {
+                "label": "ICT Zwei Spalten Drei Bilder",
+                "config": {
+                    "tab": {
+                        "leftImage": "Linkes Bild",
+                        "rightTopImage": "Rechtes Bild 1",
+                        "rightBottomImage": "Rechtes Bild 2"
+                    },
+                    "label": {
+                        "leftImage": "Linkes Bild",
+                        "rightTopImage": "Rechtes oberes Bild",
+                        "rightBottomImage": "Rechtes unteres Bild",
+                        "leftImageHeight": "Linke Bildhöhe",
+                        "leftImageObjectFit": "Linke Bild-Objektanpassung",
+                        "leftImageDescription": "Linke Bildbeschreibung",
+                        "leftButtonText": "Linker Button-Text",
+                        "leftButtonIcon": "Linker Button-Symbol",
+                        "leftButtonIconSize": "Linke Button-Symbolgröße",
+                        "leftButtonIconHoverActive": "Hover für linkes Button-Symbol aktivieren",
+                        "leftButtonIconHoverColor": "Hover-Farbe linkes Button-Symbol",
+                        "rightImageHeight": "Rechte Bildhöhe",
+                        "rightImageObjectFit": "Rechte Bild-Objektanpassung",
+                        "rightImageDescription": "Rechte Bildbeschreibung",
+                        "rightButtonText": "Rechter Button-Text",
+                        "rightButtonIcon": "Rechter Button-Symbol",
+                        "rightTopButtonIconSize": "Rechts oben Button-Symbolgröße",
+                        "rightTopButtonIconHoverActive": "Hover für rechts oben Button-Symbol aktivieren",
+                        "rightTopButtonIconHoverColor": "Hover-Farbe rechts oben Button-Symbol",
+                        "rightBottomButtonIconSize": "Rechts unten Button-Symbolgröße",
+                        "rightBottomButtonIconHoverActive": "Hover für rechts unten Button-Symbol aktivieren",
+                        "rightBottomButtonIconHoverColor": "Hover-Farbe rechts unten Button-Symbol",
+                        "buttonLinkType": "Button-Link-Typ",
+                        "buttonLink": "Button-Link",
+                        "buttonTarget": "Button-Ziel",
+                        "buttonBackgroundColor": "Hintergrundfarbe",
+                        "buttonHoverBackgroundColor": "Hover-Hintergrundfarbe",
+                        "buttonTextColor": "Textfarbe",
+                        "buttonHoverTextColor": "Hover-Textfarbe",
+                        "buttonBorderColor": "Rahmenfarbe",
+                        "buttonHoverBorderColor": "Hover-Rahmenfarbe"
+                    },
+                    "option": {
+                        "buttonIconSize": {
+                            "size20": "20 x 20",
+                            "size25": "25 x 25",
+                            "size50": "50 x 50",
+                            "size80": "80 x 80",
+                            "size120": "120 x 120",
+                            "size220": "220 x 220"
+                        }
+                    },
+                    "notification": {
+                        "errorImageMessage": "Bitte wählen Sie eine gültige Bilddatei aus.",
+                        "errorSvgMessage": "Nur .svg-Dateien sind für Button-Symbole erlaubt."
+                    }
                 }
             }
         }
@@ -131,6 +225,7 @@
                 "label": {
                     "blockCategory": {
                         "ict-cms-bundle-element": "ICT Bundle-Elemente",
+                        "ict-cms-elements": "ICT Theme Optionen",
                         "ict-cms-gallery": "ICT Galerie"
                     }
                 }

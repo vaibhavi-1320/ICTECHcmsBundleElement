@@ -1,277 +1,227 @@
 .cms-element-ict-banner-slider {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    overflow: hidden;
+    .image-slider-item {
+        position: relative;
+        min-height: 500px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
 
-    .ict-banner-slider {
-        &__container {
-            width: 100%;
+        @include media-breakpoint-down(lg) {
+            min-height: 420px;
         }
 
-        &__item {
-            position: relative;
-            width: 100%;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-            @include media-breakpoint-down(md) {
-                min-height: 400px;
-            }
-
-            @include media-breakpoint-down(sm) {
-                min-height: 350px;
-            }
-
-            &.is--cover {
-                .ict-banner-slider__image {
-                    object-fit: cover;
-                }
-            }
-
-            &.is--contain {
-                .ict-banner-slider__image {
-                    object-fit: contain;
-                }
-            }
+        @include media-breakpoint-down(md) {
+            min-height: 360px;
         }
 
-        &__image-wrapper {
+        @include media-breakpoint-down(sm) {
+            min-height: 280px;
+        }
+
+        &.is-not-first {
+            display: none;
+        }
+
+        &.is-cover .ict-banner-slider__image {
+            object-fit: cover;
+        }
+
+        &.is-contain .ict-banner-slider__image {
+            object-fit: contain;
+        }
+    }
+
+    .js-slider-initialized .image-slider-item.is-not-first {
+        display: block;
+    }
+
+    .ict-banner-slider__image-wrapper {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-color: #f5f5f5;
+
+        &::after {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            background-color: #f5f5f5;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+    }
 
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.4);
-                z-index: 2;
-            }
+    .ict-banner-slider__image {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .ict-banner-slider__content-wrapper {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        padding: 40px 0;
+
+        @include media-breakpoint-down(md) {
+            padding: 28px 0;
         }
 
-        &__image {
-            width: 100%;
-            height: 100%;
-            display: block;
+        @include media-breakpoint-down(sm) {
+            padding: 20px 0;
+        }
+    }
+
+    .ict-banner-slider__content {
+        color: #ffffff;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 48px;
+
+        @include media-breakpoint-down(md) {
+            padding: 0 32px;
         }
 
-        &__content-wrapper {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            padding: 40px 0;
+        @include media-breakpoint-down(sm) {
+            padding: 0 16px;
         }
+    }
 
-        &__content {
-            color: #ffffff;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .ict-banner-slider__main-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+        word-break: break-word;
 
-        &__main-title {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            line-height: 1.1;
-
-            @include media-breakpoint-down(lg) {
-                font-size: 3rem;
-            }
-
-            @include media-breakpoint-down(md) {
-                font-size: 2.5rem;
-            }
-
-            @include media-breakpoint-down(sm) {
-                font-size: 2rem;
-            }
-        }
-
-        &__sub-title {
+        @include media-breakpoint-down(lg) {
             font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-
-            @include media-breakpoint-down(lg) {
-                font-size: 2rem;
-            }
-
-            @include media-breakpoint-down(md) {
-                font-size: 1.8rem;
-            }
-
-            @include media-breakpoint-down(sm) {
-                font-size: 1.5rem;
-            }
         }
 
-        &__description {
+        @include media-breakpoint-down(md) {
+            font-size: 1.75rem;
+        }
+
+        @include media-breakpoint-down(sm) {
             font-size: 1.25rem;
-            line-height: 1.5;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 0.35rem;
+        }
+    }
 
-            @include media-breakpoint-down(md) {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
+    .ict-banner-slider__sub-title {
+        font-size: 1.75rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
+        word-break: break-word;
 
-            @include media-breakpoint-down(sm) {
-                font-size: 1rem;
-            }
+        @include media-breakpoint-down(lg) {
+            font-size: 1.5rem;
         }
 
-        &__actions {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: nowrap;
-
-            @include media-breakpoint-down(sm) {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
+        @include media-breakpoint-down(md) {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
         }
 
-        &__btn {
-            padding: 0.8rem 2rem;
-            font-weight: 600;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
+        @include media-breakpoint-down(sm) {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .ict-banner-slider__description {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+
+        @include media-breakpoint-down(md) {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        @include media-breakpoint-down(sm) {
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+    }
+
+    .ict-banner-slider__actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include media-breakpoint-down(sm) {
             gap: 0.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            background-color: #f15a24;
-            border-color: #f15a24;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .ict-banner-slider__btn {
+        min-height: 44px;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        text-decoration: none;
+        background-color: #f15a24;
+        border: 1px solid #f15a24;
+        color: #ffffff;
+        white-space: nowrap;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+
+        @include media-breakpoint-down(md) {
+            min-height: 42px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        @include media-breakpoint-down(sm) {
+            min-height: 40px;
+            min-width: 140px;
+            padding: 0.5rem 0.875rem;
+            font-size: 0.8125rem;
+            width: auto;
+        }
+
+        &:hover,
+        &:active {
+            background-color: darken(#f15a24, 10%);
+            border-color: darken(#f15a24, 10%);
             color: #ffffff;
-            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        &-icon {
+            display: flex;
+            align-items: center;
             flex-shrink: 0;
 
-            &:hover {
-                background-color: darken(#f15a24, 10%);
-                border-color: darken(#f15a24, 10%);
-                color: #ffffff;
-            }
+            svg {
+                width: 16px;
+                height: 16px;
+                display: block;
 
-            &-icon {
-                display: flex;
-                align-items: center;
-                
-                .icon {
-                    width: 18px;
-                    height: 18px;
-                }
-            }
-        }
-    }
-
-    /* Tiny Slider Base Styles - CRITICAL for single slide view */
-    .tns-outer {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .tns-inner {
-        position: relative;
-    }
-
-    /* Ensure proper stacking before slider initializes */
-    .ict-banner-slider__container:not(.tns-slider) {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow: hidden;
-        width: 100%;
-
-        > .ict-banner-slider__item {
-            flex: 0 0 100%;
-            width: 100%;
-        }
-    }
-
-    /* Tiny Slider Customization */
-    .tns-nav {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        text-align: center;
-        
-        button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: none;
-            margin: 0 5px;
-            padding: 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-
-            &.tns-nav-active {
-                background: #f15a24;
-                width: 30px;
-                border-radius: 6px;
-            }
-        }
-    }
-
-    .tns-controls {
-        button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background: #f15a24;
-            }
-
-            &[data-controls="prev"] {
-                left: 20px;
-            }
-
-            &[data-controls="next"] {
-                right: 20px;
-            }
-
-            @include media-breakpoint-down(md) {
-                width: 40px;
-                height: 40px;
-                
-                &[data-controls="prev"] {
-                    left: 10px;
-                }
-
-                &[data-controls="next"] {
-                    right: 10px;
+                @include media-breakpoint-down(sm) {
+                    width: 14px;
+                    height: 14px;
                 }
             }
         }

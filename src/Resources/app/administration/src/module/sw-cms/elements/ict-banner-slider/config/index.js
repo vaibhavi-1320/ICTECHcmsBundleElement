@@ -75,12 +75,17 @@ export default {
                 mediaId: media.id,
                 mediaUrl: media.url,
                 mainTitle: '',
+                mainTitleColor: '#ffffff',
                 subTitle: '',
+                subTitleColor: '#ffffff',
                 description: '',
+                descriptionColor: '#ffffff',
                 callButtonText: '',
                 callButtonNumber: '',
                 emailButtonText: '',
                 emailButtonAddress: '',
+                buttonColor: '#f15a24',
+                buttonTextColor: '#ffffff',
             });
 
             this.emitElementUpdate();
