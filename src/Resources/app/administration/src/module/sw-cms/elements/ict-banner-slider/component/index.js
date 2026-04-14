@@ -25,7 +25,7 @@ export default {
         },
 
         sliderItems() {
-            const items = this.element.config.sliderItems.value;
+            const items = this.element?.config?.sliderItems?.value;
 
             if (!Array.isArray(items) || items.length === 0) {
                 return [
@@ -56,15 +56,15 @@ export default {
         },
 
         displayMode() {
-            return this.element.config.displayMode.value ?? 'contain';
+            return this.element?.config?.displayMode?.value ?? 'contain';
         },
 
         navigationArrows() {
-            return this.element.config.navigationArrows.value ?? 'outside';
+            return this.element?.config?.navigationArrows?.value ?? 'outside';
         },
 
         navigationDots() {
-            return this.element.config.navigationDots.value ?? 'none';
+            return this.element?.config?.navigationDots?.value ?? 'none';
         },
 
         showArrows() {

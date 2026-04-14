@@ -2,20 +2,26 @@
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms;
 
+use ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\BuildCategoryCard;
+use ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\ExtractCategoryIds;
 use Shopware\Core\Content\Category\CategoryDefinition;
-use Shopware\Core\Content\Category\CategoryEntity;
 use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
 use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
 use Shopware\Core\Content\Cms\DataResolver\Element\ElementDataCollection;
 use Shopware\Core\Content\Cms\DataResolver\ResolverContext\ResolverContext;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 
 final class IctCategoryImageSliderCmsElementResolver extends AbstractCmsElementResolver
 {
     private const TYPE = 'ict-category-image-slider';
+
+    public function __construct(
+        private readonly ExtractCategoryIds $extractor,
+        private readonly BuildCategoryCard $builder,
+    ) {
+    }
 
     public function getType(): string
     {
@@ -24,13 +30,8 @@ final class IctCategoryImageSliderCmsElementResolver extends AbstractCmsElementR
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        $cardsField = $slot->getFieldConfig()->get('cards');
-
-        if ($cardsField === null) {
-            return null;
-        }
-
-        $categoryIds = $this->extractCategoryIds($cardsField->getArrayValue());
+        $cards = $slot->getFieldConfig()->get('cards')?->getArrayValue() ?? [];
+        $categoryIds = $this->extractor->extract($cards);
 
         if ($categoryIds === []) {
             return null;
@@ -39,86 +40,19 @@ final class IctCategoryImageSliderCmsElementResolver extends AbstractCmsElementR
         $criteria = new Criteria($categoryIds);
         $criteria->addAssociation('media');
 
-        $criteriaCollection = new CriteriaCollection();
-        $criteriaCollection->add('category_' . $slot->getUniqueIdentifier(), CategoryDefinition::class, $criteria);
+        $collection = new CriteriaCollection();
+        $collection->add('category_' . $slot->getUniqueIdentifier(), CategoryDefinition::class, $criteria);
 
-        return $criteriaCollection;
+        return $collection;
     }
 
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
-        $config = $slot->getFieldConfig();
-        $cards = $config->get('cards')?->getArrayValue() ?? [];
+        $cards = $slot->getFieldConfig()->get('cards')?->getArrayValue() ?? [];
         $categoriesResult = $result->get('category_' . $slot->getUniqueIdentifier());
 
-        $items = [];
-
-        foreach ($cards as $card) {
-            if (!\is_array($card)) {
-                continue;
-            }
-
-            $categoryId = $card['categoryId'] ?? null;
-            if (!\is_string($categoryId) || $categoryId === '') {
-                continue;
-            }
-
-            $category = null;
-            if ($categoriesResult instanceof EntitySearchResult) {
-                $candidate = $categoriesResult->get($categoryId);
-                if ($candidate instanceof CategoryEntity) {
-                    $category = $candidate;
-                }
-            }
-
-            if (!$category instanceof CategoryEntity || $category->getMedia() === null) {
-                continue;
-            }
-
-            $items[] = [
-                'category' => $category,
-                'title' => $this->getCardTitle($card),
-            ];
-        }
-
         $slot->setData(new ArrayStruct([
-            'items' => $items,
+            'items' => $this->builder->buildAll($cards, $categoriesResult),
         ]));
     }
-
-    /**
-     * @param array<array-key, mixed> $cards
-     *
-     * @return list<string>
-     */
-    private function extractCategoryIds(array $cards): array
-    {
-        $categoryIds = [];
-
-        foreach ($cards as $card) {
-            if (!\is_array($card)) {
-                continue;
-            }
-
-            $categoryId = $card['categoryId'] ?? null;
-            if (!\is_string($categoryId) || $categoryId === '') {
-                continue;
-            }
-
-            $categoryIds[] = $categoryId;
-        }
-
-        return array_values(array_unique($categoryIds));
-    }
-
-    /**
-     * @param array<string, mixed> $card
-     */
-    private function getCardTitle(array $card): string
-    {
-        $title = $card['title'] ?? '';
-
-        return \is_string($title) ? $title : '';
-    }
 }
-

@@ -1,0 +1,47 @@
+.cms-block-ict-two-column-three-image {
+	padding: 0;
+
+	.ict-content-button {
+		--button-icon-size: 25px;
+		--button-icon-base-color: #ffffff;
+		--button-icon-color: var(--button-icon-base-color);
+		--button-icon-hover-color: #000000;
+	}
+
+	.ict-content-button .button-icon {
+		width: var(--button-icon-size);
+		height: var(--button-icon-size);
+		display: inline-block;
+		flex-shrink: 0;
+		margin-left: 3px;
+		vertical-align: middle;
+	}
+
+	.ict-content-button .button-icon-mask {
+		background-color: var(--button-icon-color);
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+	}
+
+	.ict-content-button .button-icon-image {
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+	}
+
+	.ict-content-button .button-icon-arrow {
+		color: var(--button-icon-color);
+	}
+
+	.ict-content-button[data-icon-hover-active="true"]:hover {
+		--button-icon-color: var(--button-icon-hover-color);
+	}
+	.ict-content-button:hover {
+		--button-icon-color: var(--button-icon-hover-color);
+	}
+}
+

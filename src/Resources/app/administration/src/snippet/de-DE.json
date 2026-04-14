@@ -153,12 +153,79 @@
             }
         }
     },
+    "sw-cms": {
+        "blocks": {
+            "ictTwoColumnThreeImage": {
+                "label": "ICT Zwei Spalten Drei Bilder"
+            }
+        },
+        "elements": {
+            "ictTwoColumnThreeImage": {
+                "label": "ICT Zwei Spalten Drei Bilder",
+                "config": {
+                    "tab": {
+                        "leftImage": "Linkes Bild",
+                        "rightTopImage": "Rechtes Bild 1",
+                        "rightBottomImage": "Rechtes Bild 2"
+                    },
+                    "label": {
+                        "leftImage": "Linkes Bild",
+                        "rightTopImage": "Rechtes oberes Bild",
+                        "rightBottomImage": "Rechtes unteres Bild",
+                        "leftImageHeight": "Linke Bildhöhe",
+                        "leftImageObjectFit": "Linke Bild-Objektanpassung",
+                        "leftImageDescription": "Linke Bildbeschreibung",
+                        "leftButtonText": "Linker Button-Text",
+                        "leftButtonIcon": "Linker Button-Symbol",
+                        "leftButtonIconSize": "Linke Button-Symbolgröße",
+                        "leftButtonIconHoverActive": "Hover für linkes Button-Symbol aktivieren",
+                        "leftButtonIconHoverColor": "Hover-Farbe linkes Button-Symbol",
+                        "rightImageHeight": "Rechte Bildhöhe",
+                        "rightImageObjectFit": "Rechte Bild-Objektanpassung",
+                        "rightImageDescription": "Rechte Bildbeschreibung",
+                        "rightButtonText": "Rechter Button-Text",
+                        "rightButtonIcon": "Rechter Button-Symbol",
+                        "rightTopButtonIconSize": "Rechts oben Button-Symbolgröße",
+                        "rightTopButtonIconHoverActive": "Hover für rechts oben Button-Symbol aktivieren",
+                        "rightTopButtonIconHoverColor": "Hover-Farbe rechts oben Button-Symbol",
+                        "rightBottomButtonIconSize": "Rechts unten Button-Symbolgröße",
+                        "rightBottomButtonIconHoverActive": "Hover für rechts unten Button-Symbol aktivieren",
+                        "rightBottomButtonIconHoverColor": "Hover-Farbe rechts unten Button-Symbol",
+                        "buttonLinkType": "Button-Link-Typ",
+                        "buttonLink": "Button-Link",
+                        "buttonTarget": "Button-Ziel",
+                        "buttonBackgroundColor": "Hintergrundfarbe",
+                        "buttonHoverBackgroundColor": "Hover-Hintergrundfarbe",
+                        "buttonTextColor": "Textfarbe",
+                        "buttonHoverTextColor": "Hover-Textfarbe",
+                        "buttonBorderColor": "Rahmenfarbe",
+                        "buttonHoverBorderColor": "Hover-Rahmenfarbe"
+                    },
+                    "option": {
+                        "buttonIconSize": {
+                            "size20": "20 x 20",
+                            "size25": "25 x 25",
+                            "size50": "50 x 50",
+                            "size80": "80 x 80",
+                            "size120": "120 x 120",
+                            "size220": "220 x 220"
+                        }
+                    },
+                    "notification": {
+                        "errorImageMessage": "Bitte wählen Sie eine gültige Bilddatei aus.",
+                        "errorSvgMessage": "Nur .svg-Dateien sind für Button-Symbole erlaubt."
+                    }
+                }
+            }
+        }
+    },
     "apps": {
         "sw-cms": {
             "detail": {
                 "label": {
                     "blockCategory": {
                         "ict-cms-bundle-element": "ICT Bundle-Elemente",
+                        "ict-cms-elements": "ICT Theme Optionen",
                         "ict-cms-gallery": "ICT Galerie"
                     }
                 }

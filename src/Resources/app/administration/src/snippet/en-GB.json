@@ -153,12 +153,79 @@
             }
         }
     },
+    "sw-cms": {
+        "blocks": {
+            "ictTwoColumnThreeImage": {
+                "label": "Ict Two Column Three Image"
+            }
+        },
+        "elements": {
+            "ictTwoColumnThreeImage": {
+                "label": "Ict Two Column Three Image",
+                "config": {
+                    "tab": {
+                        "leftImage": "Left Image",
+                        "rightTopImage": "Right Image 1",
+                        "rightBottomImage": "Right Image 2"
+                    },
+                    "label": {
+                        "leftImage": "Left Image",
+                        "rightTopImage": "Right Top Image",
+                        "rightBottomImage": "Right Bottom Image",
+                        "leftImageHeight": "Left Image Height",
+                        "leftImageObjectFit": "Left Image Object Fit",
+                        "leftImageDescription": "Left Image Description",
+                        "leftButtonText": "Left Button Text",
+                        "leftButtonIcon": "Left Button Icon",
+                        "leftButtonIconSize": "Left Button Icon Size",
+                        "leftButtonIconHoverActive": "Enable Left Button Icon Hover",
+                        "leftButtonIconHoverColor": "Left Button Icon Hover Color",
+                        "rightImageHeight": "Right Image Height",
+                        "rightImageObjectFit": "Right Image Object Fit",
+                        "rightImageDescription": "Right Image Description",
+                        "rightButtonText": "Right Button Text",
+                        "rightButtonIcon": "Right Button Icon",
+                        "rightTopButtonIconSize": "Right Top Button Icon Size",
+                        "rightTopButtonIconHoverActive": "Enable Right Top Button Icon Hover",
+                        "rightTopButtonIconHoverColor": "Right Top Button Icon Hover Color",
+                        "rightBottomButtonIconSize": "Right Bottom Button Icon Size",
+                        "rightBottomButtonIconHoverActive": "Enable Right Bottom Button Icon Hover",
+                        "rightBottomButtonIconHoverColor": "Right Bottom Button Icon Hover Color",
+                        "buttonLinkType": "Button Link Type",
+                        "buttonLink": "Button Link",
+                        "buttonTarget": "Button Target",
+                        "buttonBackgroundColor": "Background Color",
+                        "buttonHoverBackgroundColor": "Hover Background Color",
+                        "buttonTextColor": "Text Color",
+                        "buttonHoverTextColor": "Hover Text Color",
+                        "buttonBorderColor": "Border Color",
+                        "buttonHoverBorderColor": "Hover Border Color"
+                    },
+                    "option": {
+                        "buttonIconSize": {
+                            "size20": "20 x 20",
+                            "size25": "25 x 25",
+                            "size50": "50 x 50",
+                            "size80": "80 x 80",
+                            "size120": "120 x 120",
+                            "size220": "220 x 220"
+                        }
+                    },
+                    "notification": {
+                        "errorImageMessage": "Please select a valid image file.",
+                        "errorSvgMessage": "Only .svg files are allowed for button icons."
+                    }
+                }
+            }
+        }
+    },
     "apps": {
         "sw-cms": {
             "detail": {
                 "label": {
                     "blockCategory": {
                         "ict-cms-bundle-element": "ICT Bundle Elements",
+                        "ict-cms-elements": "ICT Theme Options",
                         "ict-cms-gallery": "ICT Gallery"
                     }
                 }
