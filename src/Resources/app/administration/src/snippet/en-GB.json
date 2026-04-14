@@ -46,25 +46,22 @@
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
                 },
+                "ictAccordion": {
+                    "label": "Accordion"
+                },
                 "ictBannerSlider": {
-                    "label": "ICT Banner Slider",
-                    "config": {
-                        "navigationArrows": "Navigation arrows",
-                        "navigationArrowsNone": "None",
-                        "navigationArrowsInside": "Inside",
-                        "navigationArrowsOutside": "Outside",
-                        "navigationDots": "Navigation dots",
-                        "navigationDotsNone": "None",
-                        "navigationDotsInside": "Inside",
-                        "navigationDotsOutside": "Outside",
-                        "autoTransition": "Auto transition",
-                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
-                    }
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerList": {
+                    "label": "Manufacturer List"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Manufacturer Slider"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Content Card"
+                    "label": "ICT Three Column Layout"
                 },
                 "ictTwoColumn": {
                     "label": "ICT Content Card"
@@ -89,6 +86,52 @@
                         "emptyState": "Add your gallery images to start building the layout"
                     }
                 },
+                "ictAccordion": {
+                    "label": "Accordion",
+                    "previewTitle": "Accordion",
+                    "previewDescription": "Show expandable content blocks.",
+                    "config": {
+                        "title": "Title",
+                        "titlePlaceholder": "Enter accordion title",
+                        "description": "Description",
+                        "descriptionPlaceholder": "Enter accordion description",
+                        "displayMode": "Display mode",
+                        "displayModeSingle": "Only one entry open",
+                        "displayModeMultiple": "Allow multiple open entries",
+                        "tabs": {
+                            "entries": "Accordion - Entries",
+                            "settings": "Advanced Settings"
+                        },
+                        "entry": {
+                            "add": "New entry",
+                            "fallbackLabel": "Entry",
+                            "title": "Headline of the entry",
+                            "titlePlaceholder": "Enter entry headline",
+                            "content": "Content of the entry",
+                            "expanded": "Entry expanded by default"
+                        }
+                    }
+                },
+                "ictBannerSlider": {
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Manufacturer Slider",
+                    "config": {
+                        "manufacturers": "Manufacturers",
+                        "manufacturersPlaceholder": "Select manufacturers",
+                        "showManufacturerName": "Show manufacturer name",
+                        "maxWidth": "Max width (px)",
+                        "maxHeight": "Max height (px)",
+                        "desktopItems": "Items on desktop",
+                        "tabletItems": "Items on tablet",
+                        "mobileItems": "Items on mobile",
+                        "emptyState": "Select manufacturers to start building the slider"
+                    }
+                },
+                "ictManufacturerList": {
+                    "label": "Manufacturer List"
+                },
 
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
@@ -107,21 +150,6 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
-                },
-                "ictBannerSlider": {
-                    "label": "ICT Banner Slider",
-                    "config": {
-                        "navigationArrows": "Navigation arrows",
-                        "navigationArrowsNone": "None",
-                        "navigationArrowsInside": "Inside",
-                        "navigationArrowsOutside": "Outside",
-                        "navigationDots": "Navigation dots",
-                        "navigationDotsNone": "None",
-                        "navigationDotsInside": "Inside",
-                        "navigationDotsOutside": "Outside",
-                        "autoTransition": "Auto transition",
-                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
-                    }
                 }
             }
         }
@@ -131,8 +159,8 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-bundle-element": "ICT Bundle Elements",
-                        "ict-cms-gallery": "ICT Gallery"
+                        "ict-cms-layouts": "ICT CMS layouts",
+                        "ict-cms-elements": "ICT CMS elements"
                     }
                 }
             }
