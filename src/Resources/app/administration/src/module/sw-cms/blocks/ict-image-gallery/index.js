@@ -1,6 +1,6 @@
 const BLOCK_NAME = 'ict-image-gallery';
 const ELEMENT_NAME = 'ict-image-gallery';
-const BLOCK_CATEGORY = 'ict-cms-gallery';
+const BLOCK_CATEGORY = 'ict-cms-elements';
 
 Shopware.Component.register('sw-cms-preview-ict-image-gallery', () => import('./preview'));
 Shopware.Component.register('sw-cms-block-ict-image-gallery', () => import('./component'));

@@ -1,0 +1,132 @@
+{% block element_ict_manufacturer_slider %}
+    {% set manufacturers = element.data.manufacturers ?? [] %}
+    {% set showManufacturerName = element.data.showManufacturerName ?? element.config.showManufacturerName.value ?? true %}
+    {% set maxWidth = element.data.maxWidth ?? element.config.maxWidth.value ?? 180 %}
+    {% set maxHeight = element.data.maxHeight ?? element.config.maxHeight.value ?? 100 %}
+    {% set desktopItems = element.data.desktopItems ?? element.config.desktopItems.value ?? 4 %}
+    {% set tabletItems = element.data.tabletItems ?? element.config.tabletItems.value ?? 2 %}
+    {% set mobileItems = element.data.mobileItems ?? element.config.mobileItems.value ?? 1 %}
+    {% set hasSliderControls = manufacturers|length > 1 %}
+    {% set sliderOptions = {
+        slider: {
+            controls: hasSliderControls,
+            nav: false,
+            mouseDrag: manufacturers|length > mobileItems,
+            autoplay: false,
+            autoplayButtonOutput: false,
+            gutter: 16,
+            items: mobileItems,
+            loop: manufacturers|length > desktopItems,
+            rewind: manufacturers|length <= desktopItems,
+            speed: 400,
+            responsive: {
+                xs: {
+                    items: mobileItems
+                },
+                sm: {
+                    items: tabletItems
+                },
+                md: {
+                    items: tabletItems
+                },
+                lg: {
+                    items: desktopItems
+                },
+                xl: {
+                    items: desktopItems
+                }
+            }
+        }
+    } %}
+
+    {% if manufacturers|length > 0 %}
+        <div
+            class="cms-element-ict-manufacturer-slider"
+            style="--ict-manufacturer-slider-max-width: {{ maxWidth }}px; --ict-manufacturer-slider-max-height: {{ maxHeight }}px;"
+        >
+            <div
+                class="base-slider ict-manufacturer-slider{% if hasSliderControls %} has-nav-outside{% endif %}"
+                data-base-slider="true"
+                data-base-slider-options='{{ sliderOptions|json_encode }}'
+                role="region"
+                aria-label="{{ 'ict-cms-bundle-element.cms.elements.ictManufacturerSlider.label'|trans|striptags }}"
+                tabindex="0"
+            >
+                <div class="ict-manufacturer-slider__container" data-base-slider-container="true">
+                    {% for manufacturer in manufacturers %}
+                        {% set media = manufacturer.media ?? null %}
+                        {% set manufacturerName = manufacturer.name ?? '' %}
+                        {% set manufacturerInitials = manufacturerName|split(' ')|filter(value => value is not empty)|map(value => value|slice(0, 1))|join('')|slice(0, 2)|upper %}
+                        {% set isTextOnlyCard = not media and showManufacturerName and manufacturerName %}
+
+                        <div class="ict-manufacturer-slider__slide product-slider-item" aria-label="{{ manufacturerName|default('Manufacturer')|sw_sanitize }}">
+                            <div class="ict-manufacturer-slider__card{% if not media %} is-no-media{% endif %}{% if isTextOnlyCard %} is-text-only{% endif %}">
+                                {% if manufacturer.link %}
+                                    <a
+                                        href="{{ manufacturer.link }}"
+                                        class="ict-manufacturer-slider__link"
+                                        {% if manufacturerName %}
+                                            aria-label="{{ manufacturerName|sw_sanitize }}"
+                                        {% endif %}
+                                    >
+                                {% endif %}
+
+                                {% if media or not showManufacturerName %}
+                                    <span class="ict-manufacturer-slider__media">
+                                        {% if media %}
+                                            {% sw_thumbnails 'ict-manufacturer-slider-thumbnails' with {
+                                                media: media,
+                                                attributes: {
+                                                    'class': 'ict-manufacturer-slider__image',
+                                                    'alt': media.translated.alt|default(manufacturerName),
+                                                    'title': media.translated.title|default(manufacturerName),
+                                                    'loading': 'lazy',
+                                                    'decoding': 'async'
+                                                }
+                                            } %}
+                                        {% else %}
+                                            <span class="ict-manufacturer-slider__fallback">
+                                                {{ manufacturerInitials ?: 'M' }}
+                                            </span>
+                                        {% endif %}
+                                    </span>
+                                {% endif %}
+
+                                {% if showManufacturerName and manufacturerName %}
+                                    <span class="ict-manufacturer-slider__name" title="{{ manufacturerName }}">
+                                        {{ manufacturerName }}
+                                    </span>
+                                {% endif %}
+
+                                {% if manufacturer.link %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if hasSliderControls %}
+                    <div
+                        class="base-slider-controls ict-manufacturer-slider__controls"
+                        data-base-slider-controls="true"
+                        role="navigation"
+                    >
+                        <button
+                            class="base-slider-controls-prev ict-manufacturer-slider__control is-nav-prev-outside"
+                            aria-label="{{ 'general.previous'|trans|striptags }}"
+                        >
+                            {% sw_icon 'arrow-head-left' %}
+                        </button>
+                        <button
+                            class="base-slider-controls-next ict-manufacturer-slider__control is-nav-next-outside"
+                            aria-label="{{ 'general.next'|trans|striptags }}"
+                        >
+                            {% sw_icon 'arrow-head-right' %}
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

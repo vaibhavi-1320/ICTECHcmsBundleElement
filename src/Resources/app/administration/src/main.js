@@ -6,30 +6,20 @@ import './module/sw-cms/elements/ict-three-column';
 import './module/sw-cms/elements/ict-four-column';
 import './module/sw-cms/elements/ict-five-column';
 import './module/sw-cms/elements/ict-six-column';
-<<<<<<< HEAD
 import './module/sw-cms/elements/ict-seven-column';
 import './module/sw-cms/elements/ict-eight-column';
 import './module/sw-cms/elements/ict-nine-column';
 import './module/sw-cms/elements/ict-ten-column';
 import './module/sw-cms/elements/ict-eleven-column';
 import './module/sw-cms/elements/ict-twelve-column';
-<<<<<<< HEAD
-import './module/sw-cms/elements/ict-four-column';
-=======
->>>>>>> c4b2371c438a98274b1e7d1abf6d3b799bf88f8f
-import './module/sw-cms/elements/ict-seven-column';
-import './module/sw-cms/elements/ict-eight-column';
-import './module/sw-cms/elements/ict-nine-column';
-import './module/sw-cms/elements/ict-ten-column';
-import './module/sw-cms/elements/ict-eleven-column';
-import './module/sw-cms/elements/ict-twelve-column';
+import './module/sw-cms/elements/ict-accordion';
 import './module/sw-cms/elements/ict-banner-slider';
+import './module/sw-cms/elements/ict-manufacturer-list';
+import './module/sw-cms/elements/ict-manufacturer-slider';
 
 import './module/sw-cms/blocks/ict-two-column';
 import './module/sw-cms/blocks/ict-three-column';
 import './module/sw-cms/blocks/ict-four-column';
-import './module/sw-cms/blocks/ict-five-column';
-import './module/sw-cms/blocks/ict-six-column';
 import './module/sw-cms/blocks/ict-five-column';
 import './module/sw-cms/blocks/ict-six-column';
 import './module/sw-cms/blocks/ict-seven-column';
@@ -39,6 +29,9 @@ import './module/sw-cms/blocks/ict-ten-column';
 import './module/sw-cms/blocks/ict-eleven-column';
 import './module/sw-cms/blocks/ict-twelve-column';
 import './module/sw-cms/blocks/ict-banner-slider';
+import './module/sw-cms/blocks/ict-accordion';
+import './module/sw-cms/blocks/ict-manufacturer-list';
+import './module/sw-cms/blocks/ict-manufacturer-slider';
 
 import './module/sw-cms/elements/ict-image-gallery';
 import './module/sw-cms/blocks/ict-image-gallery';

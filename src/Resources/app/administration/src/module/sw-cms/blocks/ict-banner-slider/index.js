@@ -7,7 +7,7 @@ Shopware.Component.register('sw-cms-block-ict-banner-slider', component);
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-banner-slider',
     label: 'ict-cms-bundle-element.cms.blocks.ictBannerSlider.label',
-    category: 'ict-cms-bundle-element',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-banner-slider',
     previewComponent: 'sw-cms-preview-ict-banner-slider',
     defaultConfig: {

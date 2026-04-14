@@ -45,6 +45,18 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Zwoelf-Spalten-Layout"
+                },
+                "ictAccordion": {
+                    "label": "Akkordeon"
+                },
+                "ictBannerSlider": {
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerList": {
+                    "label": "Hersteller Liste"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Hersteller Slider"
                 }
             },
             "elements": {
@@ -74,6 +86,52 @@
                         "emptyState": "Füge deine Bilder zur Galerie hinzu, um das Layout zu erstellen"
                     }
                 },
+                "ictAccordion": {
+                    "label": "Akkordeon",
+                    "previewTitle": "Akkordeon",
+                    "previewDescription": "Zeigt aufklappbare Inhaltsbereiche an.",
+                    "config": {
+                        "title": "Titel",
+                        "titlePlaceholder": "Akkordeon-Titel eingeben",
+                        "description": "Beschreibung",
+                        "descriptionPlaceholder": "Akkordeon-Beschreibung eingeben",
+                        "displayMode": "Anzeigemodus",
+                        "displayModeSingle": "Nur ein Eintrag geoeffnet",
+                        "displayModeMultiple": "Mehrere Eintraege geoeffnet",
+                        "tabs": {
+                            "entries": "Akkordeon - Eintraege",
+                            "settings": "Erweiterte Einstellungen"
+                        },
+                        "entry": {
+                            "add": "Neuer Eintrag",
+                            "fallbackLabel": "Eintrag",
+                            "title": "Ueberschrift des Eintrags",
+                            "titlePlaceholder": "Ueberschrift eingeben",
+                            "content": "Inhalt des Eintrags",
+                            "expanded": "Eintrag standardmaessig geoeffnet"
+                        }
+                    }
+                },
+                "ictBannerSlider": {
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Hersteller Slider",
+                    "config": {
+                        "manufacturers": "Hersteller",
+                        "manufacturersPlaceholder": "Hersteller auswaehlen",
+                        "showManufacturerName": "Herstellername anzeigen",
+                        "maxWidth": "Maximale Breite (px)",
+                        "maxHeight": "Maximale Hoehe (px)",
+                        "desktopItems": "Elemente auf Desktop",
+                        "tabletItems": "Elemente auf Tablet",
+                        "mobileItems": "Elemente auf Mobil",
+                        "emptyState": "Waehlen Sie Hersteller aus, um den Slider zu erstellen"
+                    }
+                },
+                "ictManufacturerList": {
+                    "label": "Hersteller Liste"
+                },
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
                 },
@@ -100,7 +158,8 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-gallery": "ICT Galerie"
+                        "ict-cms-layouts": "ICT CMS layouts",
+                        "ict-cms-elements": "ICT CMS elements"
                     }
                 }
             }
