@@ -15,6 +15,10 @@ import './module/sw-cms/elements/ict-twelve-column';
 import './module/sw-cms/elements/ict-banner-slider';
 import './module/sw-cms/elements/ict-category-image-slider';
 import './module/sw-cms/elements/ict-two-column-three-image';
+import './module/sw-cms/elements/ict-platform-support';
+import './module/sw-cms/elements/ict-overview-cards-6';
+import './module/sw-cms/elements/ict-platform-support';
+import './module/sw-cms/elements/ict-overview-cards-6';
 
 import './module/sw-cms/blocks/ict-two-column';
 import './module/sw-cms/blocks/ict-three-column';
@@ -30,6 +34,10 @@ import './module/sw-cms/blocks/ict-twelve-column';
 import './module/sw-cms/blocks/ict-banner-slider';
 import './module/sw-cms/blocks/ict-category-image-slider';
 import './module/sw-cms/blocks/ict-two-column-three-image';
+import './module/sw-cms/blocks/ict-platform-support';
+import './module/sw-cms/blocks/ict-overview-cards-6';
+import './module/sw-cms/blocks/ict-platform-support';
+import './module/sw-cms/blocks/ict-overview-cards-6';
 
 import './module/sw-cms/elements/ict-image-gallery';
 import './module/sw-cms/blocks/ict-image-gallery';

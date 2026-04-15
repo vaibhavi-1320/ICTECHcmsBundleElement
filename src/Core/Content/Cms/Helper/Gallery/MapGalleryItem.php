@@ -13,13 +13,14 @@ final class MapGalleryItem
 
     /**
      * @param array<string, mixed> $item
+     *
      * @return array{media: MediaEntity, mediaId: string, mediaUrl: string, title: string}|null
      */
     public function map(array $item, mixed $mediaCollection): ?array
     {
         $mediaId = $item['mediaId'] ?? null;
 
-        if (!\is_string($mediaId) || $mediaId === '') {
+        if (! \is_string($mediaId) || $mediaId === '') {
             return null;
         }
 
@@ -30,10 +31,10 @@ final class MapGalleryItem
         }
 
         return [
-            'media'    => $media,
-            'mediaId'  => $mediaId,
+            'media' => $media,
+            'mediaId' => $mediaId,
             'mediaUrl' => $media->getUrl(),
-            'title'    => \is_string($item['title'] ?? null) ? $item['title'] : '',
+            'title' => \is_string($item['title'] ?? null) ? $item['title'] : '',
         ];
     }
 }

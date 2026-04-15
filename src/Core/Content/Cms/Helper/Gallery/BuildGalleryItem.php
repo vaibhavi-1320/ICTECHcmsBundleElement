@@ -12,7 +12,7 @@ final class BuildGalleryItem
     }
 
     /**
-     * @param array<array-key, mixed> $rawItems
+     * @param list<mixed> $rawItems
      * @return list<array{media: MediaEntity, mediaId: string, mediaUrl: string, title: string}>
      */
     public function buildAll(array $rawItems, mixed $mediaCollection): array
@@ -20,11 +20,11 @@ final class BuildGalleryItem
         $items = [];
 
         foreach ($rawItems as $item) {
-            if (!\is_array($item)) {
+            if (!is_array($item)) {
                 continue;
             }
 
-            $mapped = $this->mapper->map($item, $mediaCollection);
+            $mapped = $this->mapper->map($this->toStringKeyedArray($item), $mediaCollection);
 
             if ($mapped !== null) {
                 $items[] = $mapped;
@@ -32,5 +32,24 @@ final class BuildGalleryItem
         }
 
         return $items;
+    }
+
+    /**
+     * Converts an array with mixed keys to array<string, mixed> by casting
+     * all keys to strings, which is safe for config arrays from Shopware CMS.
+     *
+     * @param array<array-key, mixed> $input
+     * @return array<string, mixed>
+     */
+    private function toStringKeyedArray(array $input): array
+    {
+        /** @var array<string, mixed> $result */
+        $result = [];
+
+        foreach ($input as $key => $value) {
+            $result[(string) $key] = $value;
+        }
+
+        return $result;
     }
 }

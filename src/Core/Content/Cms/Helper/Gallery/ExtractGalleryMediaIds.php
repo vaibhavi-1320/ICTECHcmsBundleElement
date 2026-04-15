@@ -6,6 +6,7 @@ final class ExtractGalleryMediaIds
 {
     /**
      * @param array<array-key, mixed> $rawItems
+     *
      * @return list<string>
      */
     public function extract(array $rawItems): array

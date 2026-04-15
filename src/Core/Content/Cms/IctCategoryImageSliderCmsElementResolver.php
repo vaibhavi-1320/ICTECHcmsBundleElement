@@ -30,7 +30,7 @@ final class IctCategoryImageSliderCmsElementResolver extends AbstractCmsElementR
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        $cards = $slot->getFieldConfig()->get('cards')?->getArrayValue() ?? [];
+        $cards = array_values($slot->getFieldConfig()->get('cards')?->getArrayValue() ?? []);
         $categoryIds = $this->extractor->extract($cards);
 
         if ($categoryIds === []) {
@@ -48,7 +48,7 @@ final class IctCategoryImageSliderCmsElementResolver extends AbstractCmsElementR
 
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
-        $cards = $slot->getFieldConfig()->get('cards')?->getArrayValue() ?? [];
+        $cards = array_values($slot->getFieldConfig()->get('cards')?->getArrayValue() ?? []);
         $categoriesResult = $result->get('category_' . $slot->getUniqueIdentifier());
 
         $slot->setData(new ArrayStruct([

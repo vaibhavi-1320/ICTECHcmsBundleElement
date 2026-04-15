@@ -1,0 +1,87 @@
+.sw-cms-el-config-ict-platform-support {
+    .title-settings-grid,
+    .responsive-grid,
+    .gap-grid,
+    .spacing-grid,
+    .label-settings-grid,
+    .link-settings-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .platforms-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+
+        h3 { margin: 0; }
+    }
+
+    .platform-config {
+        margin-bottom: 8px;
+    }
+
+    .ict-accordion {
+        border: 1px solid #d1d9e0;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .ict-accordion-header {
+        padding: 12px 16px;
+        background: #f8f9fa;
+        cursor: pointer;
+
+        &:hover { background: #eef1f4; }
+    }
+
+    .ict-card-accordion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 { margin: 0; font-size: 13px; }
+    }
+
+    .ict-card-accordion-arrow {
+        transition: transform 0.2s;
+        &.open { transform: rotate(90deg); }
+    }
+
+    .ict-accordion-content {
+        display: none;
+        padding: 16px;
+
+        &.open { display: block; }
+    }
+
+    .icon-settings-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .remove-platform-section {
+        margin-top: 16px;
+        padding-top: 12px;
+        border-top: 1px solid #d1d9e0;
+    }
+
+    h5 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 16px 0 8px;
+        color: #1a1a2e;
+    }
+
+    h6 {
+        font-size: 12px;
+        font-weight: 600;
+        margin: 12px 0 6px;
+        color: #52667a;
+    }
+}

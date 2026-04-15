@@ -6,6 +6,7 @@ final class ExtractCategoryIds
 {
     /**
      * @param array<array-key, mixed> $cards
+     *
      * @return list<string>
      */
     public function extract(array $cards): array

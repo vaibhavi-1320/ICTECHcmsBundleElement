@@ -20,7 +20,7 @@ final class BuildMediaCriteria
         foreach ($mediaConfigs as $configKey => $conf) {
             $mediaValue = $slot->getFieldConfig()->get($configKey)?->getValue();
 
-            if (!\is_string($mediaValue) || $mediaValue === '') {
+            if (! \is_string($mediaValue) || $mediaValue === '') {
                 continue;
             }
 

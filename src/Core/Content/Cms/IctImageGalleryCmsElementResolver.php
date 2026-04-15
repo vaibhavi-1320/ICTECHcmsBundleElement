@@ -30,7 +30,7 @@ final class IctImageGalleryCmsElementResolver extends AbstractCmsElementResolver
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        $rawItems = $slot->getFieldConfig()->get('galleryItems')?->getArrayValue() ?? [];
+        $rawItems = array_values($slot->getFieldConfig()->get('galleryItems')?->getArrayValue() ?? []);
         $mediaIds = $this->extractor->extract($rawItems);
 
         if ($mediaIds === []) {
@@ -46,13 +46,13 @@ final class IctImageGalleryCmsElementResolver extends AbstractCmsElementResolver
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
         $config = $slot->getFieldConfig();
-        $rawItems = $config->get('galleryItems')?->getArrayValue() ?? [];
+        $rawItems = array_values($config->get('galleryItems')?->getArrayValue() ?? []);
         $mediaCollection = $result->get('media_' . $slot->getUniqueIdentifier());
         $columns = $this->normalizeColumns($config->get('columns')?->getValue());
 
         $slot->setData(new ArrayStruct([
             'galleryTitle' => $config->get('galleryTitle')?->getStringValue() ?? '',
-            'columns'      => $columns,
+            'columns' => $columns,
             'galleryItems' => $this->builder->buildAll($rawItems, $mediaCollection),
         ]));
     }

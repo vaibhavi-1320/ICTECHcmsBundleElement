@@ -9,7 +9,7 @@ final class ResolveGalleryMedia
 {
     public function resolve(string $mediaId, mixed $mediaCollection): ?MediaEntity
     {
-        if (!$mediaCollection instanceof EntitySearchResult) {
+        if (! $mediaCollection instanceof EntitySearchResult) {
             return null;
         }
 

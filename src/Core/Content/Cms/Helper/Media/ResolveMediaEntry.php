@@ -9,6 +9,7 @@ final class ResolveMediaEntry
 {
     /**
      * @param array<string, array{prefix: string, dataKey: string}> $mediaConfigs
+     *
      * @return array<string, mixed>
      */
     public function resolveAll(CmsSlotEntity $slot, ElementDataCollection $result, array $mediaConfigs): array
@@ -17,7 +18,7 @@ final class ResolveMediaEntry
         $uniqueId = $slot->getUniqueIdentifier();
 
         foreach ($mediaConfigs as $configKey => $conf) {
-            if (!$slot->getFieldConfig()->get($configKey)?->getValue()) {
+            if (! $slot->getFieldConfig()->get($configKey)?->getValue()) {
                 continue;
             }
 

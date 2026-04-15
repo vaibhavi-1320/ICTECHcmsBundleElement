@@ -65,5 +65,13 @@
             <argument type="service" id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Media\ResolveMediaEntry"/>
             <tag name="shopware.cms.data_resolver"/>
         </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctPlatformSupportCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctOverviewCards6CmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
     </services>
 </container>

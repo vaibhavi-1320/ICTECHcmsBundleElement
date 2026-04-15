@@ -9,13 +9,13 @@ final class ResolveCategoryEntity
 {
     public function resolve(string $categoryId, mixed $categoriesResult): ?CategoryEntity
     {
-        if (!$categoriesResult instanceof EntitySearchResult) {
+        if (! $categoriesResult instanceof EntitySearchResult) {
             return null;
         }
 
         $candidate = $categoriesResult->get($categoryId);
 
-        if (!$candidate instanceof CategoryEntity) {
+        if (! $candidate instanceof CategoryEntity) {
             return null;
         }
 

@@ -19,7 +19,7 @@ final class MapCategoryCard
     {
         $categoryId = $card['categoryId'] ?? null;
 
-        if (!\is_string($categoryId) || $categoryId === '') {
+        if (! \is_string($categoryId) || $categoryId === '') {
             return null;
         }
 
@@ -31,7 +31,7 @@ final class MapCategoryCard
 
         return [
             'category' => $category,
-            'title'    => \is_string($card['title'] ?? null) ? $card['title'] : '',
+            'title' => \is_string($card['title'] ?? null) ? $card['title'] : '',
         ];
     }
 }
