@@ -46,35 +46,23 @@
                 "ictTwelveColumn": {
                     "label": "ICT Zwoelf-Spalten-Layout"
                 },
+                "ictAccordion": {
+                    "label": "Akkordeon"
+                },
                 "ictBannerSlider": {
-                    "label": "ICT Banner-Slider",
-                    "config": {
-                        "navigationArrows": "Navigationspfeile",
-                        "navigationArrowsNone": "Keine",
-                        "navigationArrowsInside": "Innen",
-                        "navigationArrowsOutside": "Außen",
-                        "navigationDots": "Navigationspunkte",
-                        "navigationDotsNone": "Keine",
-                        "navigationDotsInside": "Innen",
-                        "navigationDotsOutside": "Außen",
-                        "autoTransition": "Automatischer Wechsel",
-                        "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
-                    }
+                    "label": "Banner Slider"
                 },
-                "ictCategoryImageSlider": {
-                    "label": "ICT Kategorie-Bild-Slider"
+                "ictManufacturerList": {
+                    "label": "Hersteller Liste"
                 },
-                "ictPlatformSupport": {
-                    "label": "ICT Plattform-Unterstützung"
+                "ictManufacturerSlider": {
+                    "label": "Hersteller Slider"
                 },
-                "ictOverviewCards6": {
-                    "label": "ICT Übersichtskarten"
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Bereich"
                 },
-                "ictFeatureGrid": {
-                    "label": "ICT Feature-Raster"
-                },
-                "ictContentTabs": {
-                    "label": "ICT Inhalts-Tabs"
+                "ictTitleActionPanel": {
+                    "label": "Einzeltitel Button Bereich"
                 }
             },
             "elements": {
@@ -104,6 +92,104 @@
                         "emptyState": "Füge deine Bilder zur Galerie hinzu, um das Layout zu erstellen"
                     }
                 },
+                "ictAccordion": {
+                    "label": "Akkordeon",
+                    "previewTitle": "Akkordeon",
+                    "previewDescription": "Zeigt aufklappbare Inhaltsbereiche an.",
+                    "config": {
+                        "title": "Titel",
+                        "titlePlaceholder": "Akkordeon-Titel eingeben",
+                        "description": "Beschreibung",
+                        "descriptionPlaceholder": "Akkordeon-Beschreibung eingeben",
+                        "displayMode": "Anzeigemodus",
+                        "displayModeSingle": "Nur ein Eintrag geoeffnet",
+                        "displayModeMultiple": "Mehrere Eintraege geoeffnet",
+                        "tabs": {
+                            "entries": "Akkordeon - Eintraege",
+                            "settings": "Erweiterte Einstellungen"
+                        },
+                        "entry": {
+                            "add": "Neuer Eintrag",
+                            "fallbackLabel": "Eintrag",
+                            "title": "Ueberschrift des Eintrags",
+                            "titlePlaceholder": "Ueberschrift eingeben",
+                            "content": "Inhalt des Eintrags",
+                            "expanded": "Eintrag standardmaessig geoeffnet"
+                        }
+                    }
+                },
+                "ictBannerSlider": {
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Hersteller Slider",
+                    "config": {
+                        "manufacturers": "Hersteller",
+                        "manufacturersPlaceholder": "Hersteller auswaehlen",
+                        "showManufacturerName": "Herstellername anzeigen",
+                        "maxWidth": "Maximale Breite (px)",
+                        "maxHeight": "Maximale Hoehe (px)",
+                        "desktopItems": "Elemente auf Desktop",
+                        "tabletItems": "Elemente auf Tablet",
+                        "mobileItems": "Elemente auf Mobil",
+                        "emptyState": "Waehlen Sie Hersteller aus, um den Slider zu erstellen"
+                    }
+                },
+                "ictManufacturerList": {
+                    "label": "Hersteller Liste"
+                },
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Bereich",
+                    "config": {
+                        "eyebrow": "Label",
+                        "title": "Titel",
+                        "description": "Beschreibung",
+                        "backgroundImage": "Hintergrundbild",
+                        "overlayColor": "Overlay Farbe",
+                        "overlayOpacity": "Overlay Deckkraft (%)",
+                        "minHeight": "Minimale Hoehe (px)",
+                        "contentAlign": "Inhalt Ausrichtung",
+                        "alignLeft": "Links",
+                        "alignCenter": "Zentriert",
+                        "alignRight": "Rechts",
+                        "primaryButtonText": "Primaerer Button Text",
+                        "primaryButtonLink": "Primaerer Button Link",
+                        "secondaryButtonText": "Sekundaerer Button Text",
+                        "secondaryButtonLink": "Sekundaerer Button Link",
+                        "openNewTab": "In neuem Tab oeffnen",
+                        "featureItems": "Feature Karten",
+                        "featureTitle": "Feature Titel",
+                        "featureText": "Feature Text",
+                        "addFeature": "Feature hinzufuegen",
+                        "remove": "Entfernen"
+                    }
+                },
+                "ictTitleActionPanel": {
+                    "label": "Einzeltitel Button Bereich",
+                    "config": {
+                        "title": "Titel",
+                        "description": "Beschreibung",
+                        "backgroundImage": "Hintergrundbild",
+                        "backgroundColor": "Hintergrundfarbe",
+                        "textAlign": "Text Ausrichtung",
+                        "alignLeft": "Links",
+                        "alignCenter": "Zentriert",
+                        "alignRight": "Rechts",
+                        "titleColor": "Titel Farbe",
+                        "descriptionColor": "Beschreibung Farbe",
+                        "buttonStyle": "Button Stil",
+                        "buttonSolid": "Voll",
+                        "buttonOutline": "Kontur",
+                        "buttonText": "Button Text",
+                        "buttonLink": "Button Link",
+                        "secondaryButtonText": "Sekundaerer Button Text",
+                        "secondaryButtonLink": "Sekundaerer Button Link",
+                        "buttonBackgroundColor": "Button Hintergrund",
+                        "buttonTextColor": "Button Textfarbe",
+                        "openNewTab": "In neuem Tab oeffnen",
+                        "panelHeight": "Panel Mindesthoehe (px)"
+                    }
+                },
                 "ictFourColumn": {
                     "label": "ICT Vier-Spalten-Layout"
                 },
@@ -121,341 +207,6 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Zwoelf-Spalten-Layout"
-                },
-                "ictBannerSlider": {
-                    "label": "ICT Banner-Slider",
-                    "config": {
-                        "mainTitle": "Haupttitel",
-                        "mainTitleColor": "Haupttitel-Farbe",
-                        "subTitle": "Untertitel",
-                        "subTitleColor": "Untertitel-Farbe",
-                        "description": "Beschreibung",
-                        "descriptionColor": "Beschreibungs-Farbe",
-                        "callButtonText": "Anruf-Button Text",
-                        "phoneNumber": "Telefonnummer",
-                        "emailButtonText": "E-Mail-Button Text",
-                        "emailAddress": "E-Mail-Adresse",
-                        "buttonColor": "Button-Hintergrundfarbe",
-                        "buttonTextColor": "Button-Textfarbe",
-                        "navigationArrows": "Navigationspfeile",
-                        "navigationArrowsNone": "Keine",
-                        "navigationArrowsInside": "Innen",
-                        "navigationArrowsOutside": "Außen",
-                        "navigationDots": "Navigationspunkte",
-                        "navigationDotsNone": "Keine",
-                        "navigationDotsInside": "Innen",
-                        "navigationDotsOutside": "Außen",
-                        "autoTransition": "Automatischer Wechsel",
-                        "autoTransitionHelp": "Wenn aktiviert, wechselt der Slider im Storefront automatisch."
-                    }
-                },
-                "ictCategoryImageSlider": {
-                    "label": "ICT Kategorie-Bild-Slider",
-                    "config": {
-                        "addCard": "Kategorie-Karte hinzufügen",
-                        "removeCard": "Karte entfernen",
-                        "cardTitle": "Titel (optional)",
-                        "cardTitlePlaceholder": "Z.B. Empfehlung",
-                        "category": "Kategorie",
-                        "categoryPlaceholder": "Kategorie auswählen…",
-                        "cardErrorNoMedia": "Diese Kategorie hat kein Bild. Bitte ein Kategorie-Bild in den Kategorie-Einstellungen setzen, bevor gespeichert wird.",
-                        "errorHint": "Bitte mindestens eine Kategorie-Karte hinzufügen und sicherstellen, dass jede ausgewählte Kategorie ein Bild hat."
-                    }
-                },
-                "ictPlatformSupport": {
-                    "label": "ICT Plattform-Unterstützung"
-                },
-                "ictOverviewCards6": {
-                    "label": "ICT Übersichtskarten"
-                },
-                "ictFeatureGrid": {
-                    "label": "ICT Feature-Raster"
-                },
-                "ictContentTabs": {
-                    "label": "ICT Inhalts-Tabs",
-                    "addTabHint": "Klicken Sie, um Tabs in den Element-Einstellungen hinzuzufügen",
-                    "addTab": "+ Neuer Tab",
-                    "tabLabel": "Tab-Bezeichnung",
-                    "tabContent": "Inhalt des Tabs",
-                    "configTab": {
-                        "settings": "Einstellungen",
-                        "elements": "Tab - Elemente"
-                    },
-                    "displayModeLabel": "Anzeigemodus",
-                    "tabStyleLabel": "Stil der Tabs",
-                    "verticalAlignLabel": "Vertikale Ausrichtung",
-                    "displayMode": {
-                        "topbar": "Tab-Liste - Oben",
-                        "sidebar": "Tab-Liste - Seitenleiste"
-                    },
-                    "tabStyle": {
-                        "buttons": "Schaltflächen",
-                        "underline": "Unterstrich",
-                        "pills": "Pillen"
-                    },
-                    "verticalAlign": {
-                        "default": "Vertikale Ausrichtung",
-                        "top": "Oben",
-                        "center": "Mitte",
-                        "bottom": "Unten"
-                    }
-                }
-            }
-        }
-    },
-    "sw-cms": {
-        "blocks": {
-            "ictTwoColumnThreeImage": {
-                "label": "ICT Zwei Spalten Drei Bilder"
-            }
-        },
-        "elements": {
-            "ictOverviewCards": {
-                "label": "Übersichtskarten",
-                "config": {
-                    "section": {
-                        "backgroundSettings": "Hintergrundeinstellungen",
-                        "layoutSettings": "Layout-Einstellungen",
-                        "cardDesign": "Karten-Design",
-                        "iconSettings": "Symbol-Einstellungen",
-                        "headlineSettings": "Überschrift",
-                        "subheadlineSettings": "Unterüberschrift",
-                        "bodyTextSettings": "Fließtext",
-                        "buttonSettings": "Button-Einstellungen"
-                    },
-                    "label": {
-                        "backgroundType": "Hintergrundtyp",
-                        "backgroundColor": "Hintergrundfarbe",
-                        "backgroundGradientColor1": "Verlaufsfarbe 1",
-                        "backgroundGradientColor2": "Verlaufsfarbe 2",
-                        "backgroundGradientDirection": "Verlaufsrichtung",
-                        "backgroundImage": "Hintergrundbild",
-                        "backgroundVideo": "Hintergrundvideo",
-                        "backgroundVideoUploadType": "Video-Upload-Typ",
-                        "backgroundVideoUploadUrl": "Video-URL",
-                        "numberOfColumns": "Anzahl der Spalten",
-                        "cardSpacing": "Kartenabstand (px)",
-                        "verticalAlignment": "Vertikale Ausrichtung",
-                        "card": "Karte",
-                        "showIcon": "Symbol anzeigen",
-                        "iconImage": "Symbol-Bild",
-                        "iconShape": "Symbol-Form",
-                        "iconSize": "Symbol-Größe",
-                        "iconAlignment": "Symbol-Ausrichtung",
-                        "iconColor": "Symbol-Farbe",
-                        "iconBackgroundColor": "Symbol-Hintergrundfarbe",
-                        "iconOutlineColor": "Symbol-Rahmenfarbe",
-                        "iconOutlineThickness": "Symbol-Rahmendicke (px)",
-                        "iconOutlinePosition": "Symbol-Rahmenposition",
-                        "iconBorderRadius": "Symbol-Eckenradius (px)",
-                        "iconHoverEffect": "Symbol-Hover-Effekt",
-                        "showHeadline": "Überschrift anzeigen",
-                        "headline": "Überschrift",
-                        "headlineSize": "Überschriftgröße",
-                        "headlineAlignment": "Überschrift-Ausrichtung",
-                        "headlineColor": "Überschrift-Farbe",
-                        "showSubheadline": "Unterüberschrift anzeigen",
-                        "subheadline": "Unterüberschrift",
-                        "subheadlineSize": "Unterüberschrift-Größe",
-                        "subheadlineAlignment": "Unterüberschrift-Ausrichtung",
-                        "subheadlineColor": "Unterüberschrift-Farbe",
-                        "showBodyText": "Fließtext anzeigen",
-                        "bodyText": "Fließtext",
-                        "bodyTextSize": "Fließtext-Schriftgröße",
-                        "bodyTextAlignment": "Fließtext-Ausrichtung",
-                        "bodyTextColor": "Fließtext-Farbe",
-                        "showButton": "Button anzeigen",
-                        "buttonText": "Button-Text",
-                        "buttonUrl": "Button-URL",
-                        "buttonTarget": "Button-Ziel",
-                        "buttonAlignment": "Button-Ausrichtung",
-                        "buttonIcon": "Button-Symbol",
-                        "buttonIconColor": "Button-Symbol-Farbe",
-                        "buttonIconHoverActive": "Button-Symbol-Hover aktivieren",
-                        "buttonIconHoverColor": "Button-Symbol-Hover-Farbe",
-                        "buttonIconSize": "Button-Symbol-Größe",
-                        "buttonBackgroundColor": "Button-Hintergrundfarbe",
-                        "buttonHoverBackgroundColor": "Button-Hover-Hintergrundfarbe",
-                        "buttonTextColor": "Button-Textfarbe",
-                        "buttonHoverTextColor": "Button-Hover-Textfarbe",
-                        "cardBackgroundType": "Karten-Hintergrundtyp",
-                        "cardBackgroundColor": "Karten-Hintergrundfarbe",
-                        "cardBackgroundImage": "Karten-Hintergrundbild",
-                        "cardBackgroundVideo": "Karten-Hintergrundvideo",
-                        "videoUploadType": "Video-Upload-Typ",
-                        "videoUrl": "Video-URL",
-                        "gradientColor1": "Verlaufsfarbe 1",
-                        "gradientColor2": "Verlaufsfarbe 2",
-                        "gradientDirection": "Verlaufsrichtung",
-                        "cardOutlineColor": "Karten-Rahmenfarbe",
-                        "cardOutlineThickness": "Karten-Rahmendicke (px)",
-                        "cardBorderRadius": "Karten-Eckenradius (px)",
-                        "cardShadowTop": "Karten-Schatten oben (px)",
-                        "cardShadowRight": "Karten-Schatten rechts (px)",
-                        "cardShadowBottom": "Karten-Schatten unten (px)",
-                        "cardShadowLeft": "Karten-Schatten links (px)",
-                        "cardShadowColor": "Karten-Schattenfarbe",
-                        "cardHoverShadowTop": "Karten-Hover-Schatten oben (px)",
-                        "cardHoverShadowRight": "Karten-Hover-Schatten rechts (px)",
-                        "cardHoverShadowBottom": "Karten-Hover-Schatten unten (px)",
-                        "cardHoverShadowLeft": "Karten-Hover-Schatten links (px)",
-                        "cardHoverShadowColor": "Karten-Hover-Schattenfarbe"
-                    },
-                    "button": {
-                        "addCard": "Karte hinzufügen",
-                        "removeCard": "Karte entfernen"
-                    },
-                    "tab": {
-                        "cards": "Karten verwalten"
-                    },
-                    "option": {
-                        "columns": {
-                            "one": "1 Spalte",
-                            "two": "2 Spalten",
-                            "three": "3 Spalten",
-                            "four": "4 Spalten"
-                        },
-                        "iconShape": {
-                            "square": "Quadrat",
-                            "round": "Rund"
-                        },
-                        "iconSize": {
-                            "small": "Klein (50x50)",
-                            "medium": "Mittel (80x80)",
-                            "large": "Groß (120x120)",
-                            "xl150": "XL (150x150)",
-                            "xl180": "XXL (180x180)",
-                            "xl200": "XXXL (200x200)",
-                            "xl220": "Max (220x220)"
-                        },
-                        "featureIconSize": {
-                            "size20": "20x20",
-                            "size25": "25x25",
-                            "size40": "40x40",
-                            "size50": "50x50"
-                        },
-                        "iconHoverEffect": {
-                            "none": "Keiner",
-                            "scale": "Skalieren",
-                            "rotate": "Drehen",
-                            "pulse": "Pulsieren"
-                        },
-                        "outlinePosition": {
-                            "inside": "Innen",
-                            "outside": "Außen"
-                        },
-                        "verticalAlignment": {
-                            "stretch": "Strecken",
-                            "top": "Oben",
-                            "center": "Mitte",
-                            "bottom": "Unten"
-                        },
-                        "headlineSize": {
-                            "size1": "Größe 1 (24px)",
-                            "size2": "Größe 2 (42px)"
-                        },
-                        "subheadlineSize": {
-                            "default": "Standard (20px)",
-                            "optional": "Optional (24px)"
-                        },
-                        "alignment": {
-                            "left": "Links",
-                            "center": "Mitte",
-                            "right": "Rechts"
-                        },
-                        "backgroundType": {
-                            "color": "Farbe",
-                            "gradient": "Verlauf",
-                            "image": "Bild",
-                            "video": "Video"
-                        },
-                        "videoUpload": {
-                            "file": "Datei-Upload",
-                            "url": "YouTube-URL"
-                        },
-                        "gradientDirection": {
-                            "top": "Oben nach unten",
-                            "right": "Links nach rechts",
-                            "bottom": "Unten nach oben",
-                            "left": "Rechts nach links"
-                        },
-                        "shadow": {
-                            "none": "Keiner",
-                            "light": "Leicht",
-                            "medium": "Mittel",
-                            "heavy": "Stark"
-                        },
-                        "target": {
-                            "same": "Gleiches Fenster",
-                            "new": "Neues Fenster"
-                        }
-                    }
-                }
-            },
-            "ictTopics": {
-                "config": {
-                    "borderStyle": {
-                        "solid": "Durchgezogen",
-                        "dotted": "Gepunktet",
-                        "dashed": "Gestrichelt"
-                    }
-                }
-            },
-            "ictTwoColumnThreeImage": {
-                "label": "ICT Zwei Spalten Drei Bilder",
-                "config": {
-                    "tab": {
-                        "leftImage": "Linkes Bild",
-                        "rightTopImage": "Rechtes Bild 1",
-                        "rightBottomImage": "Rechtes Bild 2"
-                    },
-                    "label": {
-                        "leftImage": "Linkes Bild",
-                        "rightTopImage": "Rechtes oberes Bild",
-                        "rightBottomImage": "Rechtes unteres Bild",
-                        "leftImageHeight": "Linke Bildhöhe",
-                        "leftImageObjectFit": "Linke Bild-Objektanpassung",
-                        "leftImageDescription": "Linke Bildbeschreibung",
-                        "leftButtonText": "Linker Button-Text",
-                        "leftButtonIcon": "Linker Button-Symbol",
-                        "leftButtonIconSize": "Linke Button-Symbolgröße",
-                        "leftButtonIconHoverActive": "Hover für linkes Button-Symbol aktivieren",
-                        "leftButtonIconHoverColor": "Hover-Farbe linkes Button-Symbol",
-                        "rightImageHeight": "Rechte Bildhöhe",
-                        "rightImageObjectFit": "Rechte Bild-Objektanpassung",
-                        "rightImageDescription": "Rechte Bildbeschreibung",
-                        "rightButtonText": "Rechter Button-Text",
-                        "rightButtonIcon": "Rechter Button-Symbol",
-                        "rightTopButtonIconSize": "Rechts oben Button-Symbolgröße",
-                        "rightTopButtonIconHoverActive": "Hover für rechts oben Button-Symbol aktivieren",
-                        "rightTopButtonIconHoverColor": "Hover-Farbe rechts oben Button-Symbol",
-                        "rightBottomButtonIconSize": "Rechts unten Button-Symbolgröße",
-                        "rightBottomButtonIconHoverActive": "Hover für rechts unten Button-Symbol aktivieren",
-                        "rightBottomButtonIconHoverColor": "Hover-Farbe rechts unten Button-Symbol",
-                        "buttonLinkType": "Button-Link-Typ",
-                        "buttonLink": "Button-Link",
-                        "buttonTarget": "Button-Ziel",
-                        "buttonBackgroundColor": "Hintergrundfarbe",
-                        "buttonHoverBackgroundColor": "Hover-Hintergrundfarbe",
-                        "buttonTextColor": "Textfarbe",
-                        "buttonHoverTextColor": "Hover-Textfarbe",
-                        "buttonBorderColor": "Rahmenfarbe",
-                        "buttonHoverBorderColor": "Hover-Rahmenfarbe"
-                    },
-                    "option": {
-                        "buttonIconSize": {
-                            "size20": "20 x 20",
-                            "size25": "25 x 25",
-                            "size50": "50 x 50",
-                            "size80": "80 x 80",
-                            "size120": "120 x 120",
-                            "size220": "220 x 220"
-                        }
-                    },
-                    "notification": {
-                        "errorImageMessage": "Bitte wählen Sie eine gültige Bilddatei aus.",
-                        "errorSvgMessage": "Nur .svg-Dateien sind für Button-Symbole erlaubt."
-                    }
                 }
             }
         }
@@ -465,9 +216,153 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-bundle-element": "ICT Bundle-Elemente",
-                        "ict-cms-elements": "ICT Theme Optionen",
-                        "ict-cms-gallery": "ICT Galerie"
+                        "ict-cms-layouts": "ICT CMS layouts",
+                        "ict-cms-elements": "ICT CMS elements"
+                    }
+                }
+            }
+        }
+    },
+    "sw-cms": {
+        "blocks": {
+            "ictHeroSection": {
+                "label": "ICT Hero-Bereich"
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Einzeltitel-Button-Bereich"
+            }
+        },
+        "elements": {
+            "ictHeroSection": {
+                "label": "ICT Hero-Bereich",
+                "config": {
+                    "tab": {
+                        "content": "Hauptbereich",
+                        "leftContent": "Linker Bereich",
+                        "rightContent": "Rechter Bereich"
+                    },
+                    "label": {
+                        "mainBackgroundType": "Hintergrundtyp",
+                        "mainBackgroundColor": "Hintergrundfarbe",
+                        "backgroundType": "Hintergrundtyp",
+                        "backgroundImage": "Hintergrundbild",
+                        "backgroundVideo": "Hintergrundvideo",
+                        "videoUploadType": "Video-Upload-Typ",
+                        "videoSelect": "Video hochladen",
+                        "videoUrl": "Video-URL",
+                        "gradientColor1": "Erste Verlaufsfarbe",
+                        "gradientColor2": "Zweite Verlaufsfarbe",
+                        "gradientDirection": "Verlaufsrichtung",
+                        "labelText": "Label-Text",
+                        "labelBackgroundColor": "Label-Hintergrundfarbe",
+                        "labelTextColor": "Label-Textfarbe",
+                        "headline": "Überschrift",
+                        "headlineText": "Überschrift Text",
+                        "headlineColorType": "Überschrift Farbtyp",
+                        "headlineColor": "Überschrift Farbe",
+                        "headlineGradientColor1": "Überschrift Verlaufsfarbe 1",
+                        "headlineGradientColor2": "Überschrift Verlaufsfarbe 2",
+                        "headlineGradientDirection": "Überschrift Verlaufsrichtung",
+                        "descriptionText": "Beschreibungstext",
+                        "description": "Beschreibung",
+                        "descriptionColor": "Beschreibungsfarbe",
+                        "primaryButton": "Primärer Button",
+                        "secondaryButton": "Sekundärer Button",
+                        "buttonText": "Button Text",
+                        "linkType": "Link Typ",
+                        "target": "Ziel",
+                        "backgroundColor": "Hintergrundfarbe",
+                        "hoverBackgroundColor": "Hover Hintergrundfarbe",
+                        "textColor": "Textfarbe",
+                        "hoverTextColor": "Hover Textfarbe",
+                        "showSecondaryButton": "Sekundären Button anzeigen",
+                        "cardBackgroundColor": "Karten Hintergrundfarbe",
+                        "cardShadow": "Karten Schatten",
+                        "featureItems": "Feature Elemente",
+                        "featureItem": "Feature Element",
+                        "title": "Titel",
+                        "titleColor": "Titel Farbe",
+                        "iconColor": "Icon Farbe",
+                        "minHeight": "Mindesthöhe",
+                        "primaryButtonText": "Primärer Button Text",
+                        "primaryButtonUrl": "Primärer Button URL",
+                        "primaryButtonTarget": "Primärer Button Ziel",
+                        "primaryButtonBackgroundColor": "Primärer Button Hintergrundfarbe",
+                        "primaryButtonTextColor": "Primärer Button Textfarbe",
+                        "secondaryButtonText": "Sekundärer Button Text",
+                        "secondaryButtonUrl": "Sekundärer Button URL",
+                        "secondaryButtonTarget": "Sekundärer Button Ziel",
+                        "secondaryButtonBackgroundColor": "Sekundärer Button Hintergrundfarbe",
+                        "secondaryButtonTextColor": "Sekundärer Button Textfarbe",
+                        "rightSectionBackgroundType": "Rechter Bereich Hintergrundtyp",
+                        "rightSectionBackgroundColor": "Rechter Bereich Hintergrundfarbe",
+                        "rightSectionBackgroundImage": "Rechter Bereich Hintergrundbild",
+                        "rightSectionGradientColor1": "Rechter Bereich Verlaufsfarbe 1",
+                        "rightSectionGradientColor2": "Rechter Bereich Verlaufsfarbe 2",
+                        "rightSectionGradientDirection": "Rechter Bereich Verlaufsrichtung",
+                        "rightSectionHoverBackgroundColor": "Rechter Bereich Hover Hintergrundfarbe",
+                        "leftSectionHoverBackgroundColor": "Linker Bereich Hover Hintergrundfarbe",
+                        "primaryButtonIcon": "Primärer Button Icon",
+                        "secondaryButtonIcon": "Sekundärer Button Icon",
+                        "buttonIcon": "Button Icon",
+                        "uploadIcon": "Icon hochladen",
+                        "features": "Feature Elemente",
+                        "featureIcon": "Feature Icon",
+                        "featureTitle": "Feature Titel",
+                        "featureDescription": "Feature Beschreibung",
+                        "addFeature": "Feature hinzufügen",
+                        "removeFeature": "Feature entfernen"
+                    },
+                    "button": {
+                        "addFeature": "Feature hinzufügen",
+                        "removeFeature": "Feature entfernen"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Bitte wählen Sie ein Bild aus",
+                        "errorVideoMessage": "Bitte wählen Sie ein Video aus"
+                    }
+                }
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Einzeltitel-Button-Bereich",
+                "config": {
+                    "tab": {
+                        "content": "Hauptinhalt",
+                        "leftButton": "Linker Button",
+                        "rightButton": "Rechter Button"
+                    },
+                    "label": {
+                        "backgroundType": "Hintergrund-Typ",
+                        "backgroundColor": "Hintergrundfarbe",
+                        "videoUploadType": "Video-Upload-Typ",
+                        "videoSelect": "Video hochladen",
+                        "videoUrl": "Video-URL",
+                        "gradientColor1": "Erste Verlaufsfarbe",
+                        "gradientColor2": "Zweite Verlaufsfarbe",
+                        "gradientDirection": "Verlaufsrichtung",
+                        "title": "Titel",
+                        "titleColor": "Titel-Farbe",
+                        "description": "Beschreibung",
+                        "descriptionColor": "Beschreibungsfarbe",
+                        "leftButtonText": "Linker Button-Text",
+                        "leftButtonColorType": "Linker Button-Farb-Typ",
+                        "leftButtonGradientColor1": "Linker Button-Verlaufsfarbe 1",
+                        "leftButtonGradientColor2": "Linker Button-Verlaufsfarbe 2",
+                        "leftButtonGradientDirection": "Linker Button-Verlaufsrichtung",
+                        "leftButtonHoverGradientColor1": "Linker Button-Hover-Verlaufsfarbe 1",
+                        "leftButtonHoverGradientColor2": "Linker Button-Hover-Verlaufsfarbe 2",
+                        "rightButtonText": "Rechter Button-Text",
+                        "rightButtonColorType": "Rechter Button-Farb-Typ",
+                        "rightButtonGradientColor1": "Rechter Button-Verlaufsfarbe 1",
+                        "rightButtonGradientColor2": "Rechter Button-Verlaufsfarbe 2",
+                        "rightButtonGradientDirection": "Rechter Button-Verlaufsrichtung",
+                        "rightButtonHoverGradientColor1": "Rechter Button-Hover-Verlaufsfarbe 1",
+                        "rightButtonHoverGradientColor2": "Rechter Button-Hover-Verlaufsfarbe 2",
+                        "buttonIconColor": "Farbe des Schaltflächensymbols"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Bitte wählen Sie ein Bild aus",
+                        "errorVideoMessage": "Bitte wählen Sie ein Video aus"
                     }
                 }
             }

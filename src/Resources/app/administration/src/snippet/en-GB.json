@@ -46,43 +46,28 @@
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
                 },
+                "ictAccordion": {
+                    "label": "Accordion"
+                },
                 "ictBannerSlider": {
-                    "label": "ICT Banner Slider",
-                    "config": {
-                        "navigationArrows": "Navigation arrows",
-                        "navigationArrowsNone": "None",
-                        "navigationArrowsInside": "Inside",
-                        "navigationArrowsOutside": "Outside",
-                        "navigationDots": "Navigation dots",
-                        "navigationDotsNone": "None",
-                        "navigationDotsInside": "Inside",
-                        "navigationDotsOutside": "Outside",
-                        "autoTransition": "Auto transition",
-                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
-                    }
+                    "label": "Banner Slider"
                 },
-                "ictCategoryImageSlider": {
-                    "label": "ICT Category Image Slider"
+                "ictManufacturerList": {
+                    "label": "Manufacturer List"
                 },
-                "ictPlatformSupport": {
-                    "label": "ICT Platform Support"
+                "ictManufacturerSlider": {
+                    "label": "Manufacturer Slider"
                 },
-                "ictOverviewCards6": {
-                    "label": "ICT Overview Cards"
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Section"
                 },
-                "ictFeatureGrid": {
-                    "label": "ICT Feature Grid"
-                },
-                "ictContentTabs": {
-                    "label": "ICT Content Tabs"
-                },
-                "ictProductMatrix": {
-                    "label": "ICT Product Matrix"
+                "ictTitleActionPanel": {
+                    "label": "Single Title Button Section"
                 }
             },
             "elements": {
                 "ictThreeColumn": {
-                    "label": "ICT Content Card"
+                    "label": "ICT Three Column Layout"
                 },
                 "ictTwoColumn": {
                     "label": "ICT Content Card"
@@ -107,6 +92,104 @@
                         "emptyState": "Add your gallery images to start building the layout"
                     }
                 },
+                "ictAccordion": {
+                    "label": "Accordion",
+                    "previewTitle": "Accordion",
+                    "previewDescription": "Show expandable content blocks.",
+                    "config": {
+                        "title": "Title",
+                        "titlePlaceholder": "Enter accordion title",
+                        "description": "Description",
+                        "descriptionPlaceholder": "Enter accordion description",
+                        "displayMode": "Display mode",
+                        "displayModeSingle": "Only one entry open",
+                        "displayModeMultiple": "Allow multiple open entries",
+                        "tabs": {
+                            "entries": "Accordion - Entries",
+                            "settings": "Advanced Settings"
+                        },
+                        "entry": {
+                            "add": "New entry",
+                            "fallbackLabel": "Entry",
+                            "title": "Headline of the entry",
+                            "titlePlaceholder": "Enter entry headline",
+                            "content": "Content of the entry",
+                            "expanded": "Entry expanded by default"
+                        }
+                    }
+                },
+                "ictBannerSlider": {
+                    "label": "Banner Slider"
+                },
+                "ictManufacturerSlider": {
+                    "label": "Manufacturer Slider",
+                    "config": {
+                        "manufacturers": "Manufacturers",
+                        "manufacturersPlaceholder": "Select manufacturers",
+                        "showManufacturerName": "Show manufacturer name",
+                        "maxWidth": "Max width (px)",
+                        "maxHeight": "Max height (px)",
+                        "desktopItems": "Items on desktop",
+                        "tabletItems": "Items on tablet",
+                        "mobileItems": "Items on mobile",
+                        "emptyState": "Select manufacturers to start building the slider"
+                    }
+                },
+                "ictManufacturerList": {
+                    "label": "Manufacturer List"
+                },
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Section",
+                    "config": {
+                        "eyebrow": "Eyebrow",
+                        "title": "Title",
+                        "description": "Description",
+                        "backgroundImage": "Background image",
+                        "overlayColor": "Overlay color",
+                        "overlayOpacity": "Overlay opacity (%)",
+                        "minHeight": "Min height (px)",
+                        "contentAlign": "Content align",
+                        "alignLeft": "Left",
+                        "alignCenter": "Center",
+                        "alignRight": "Right",
+                        "primaryButtonText": "Primary button text",
+                        "primaryButtonLink": "Primary button link",
+                        "secondaryButtonText": "Secondary button text",
+                        "secondaryButtonLink": "Secondary button link",
+                        "openNewTab": "Open in new tab",
+                        "featureItems": "Feature cards",
+                        "featureTitle": "Feature title",
+                        "featureText": "Feature text",
+                        "addFeature": "Add feature",
+                        "remove": "Remove"
+                    }
+                },
+                "ictTitleActionPanel": {
+                    "label": "Single Title Button Section",
+                    "config": {
+                        "title": "Title",
+                        "description": "Description",
+                        "backgroundImage": "Background image",
+                        "backgroundColor": "Background color",
+                        "textAlign": "Text align",
+                        "alignLeft": "Left",
+                        "alignCenter": "Center",
+                        "alignRight": "Right",
+                        "titleColor": "Title color",
+                        "descriptionColor": "Description color",
+                        "buttonStyle": "Button style",
+                        "buttonSolid": "Solid",
+                        "buttonOutline": "Outline",
+                        "buttonText": "Button text",
+                        "buttonLink": "Button link",
+                        "secondaryButtonText": "Secondary button text",
+                        "secondaryButtonLink": "Secondary button link",
+                        "buttonBackgroundColor": "Button background",
+                        "buttonTextColor": "Button text color",
+                        "openNewTab": "Open in new tab",
+                        "panelHeight": "Panel min height (px)"
+                    }
+                },
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
                 },
@@ -124,390 +207,7 @@
                 },
                 "ictTwelveColumn": {
                     "label": "ICT Twelve Column Layout"
-                },
-                "ictBannerSlider": {
-                    "label": "ICT Banner Slider",
-                    "config": {
-                        "mainTitle": "Main Title",
-                        "mainTitleColor": "Main Title Color",
-                        "subTitle": "Sub Title",
-                        "subTitleColor": "Sub Title Color",
-                        "description": "Description",
-                        "descriptionColor": "Description Color",
-                        "callButtonText": "Call Button Text",
-                        "phoneNumber": "Phone Number",
-                        "emailButtonText": "Email Button Text",
-                        "emailAddress": "Email Address",
-                        "buttonColor": "Button Background Color",
-                        "buttonTextColor": "Button Text Color",
-                        "navigationArrows": "Navigation arrows",
-                        "navigationArrowsNone": "None",
-                        "navigationArrowsInside": "Inside",
-                        "navigationArrowsOutside": "Outside",
-                        "navigationDots": "Navigation dots",
-                        "navigationDotsNone": "None",
-                        "navigationDotsInside": "Inside",
-                        "navigationDotsOutside": "Outside",
-                        "autoTransition": "Auto transition",
-                        "autoTransitionHelp": "When enabled, the storefront slider advances automatically."
-                    }
-                },
-                "ictCategoryImageSlider": {
-                    "label": "ICT Category Image Slider",
-                    "config": {
-                        "addCard": "Add category card",
-                        "removeCard": "Remove card",
-                        "cardTitle": "Title (optional)",
-                        "cardTitlePlaceholder": "E.g. Featured",
-                        "category": "Category",
-                        "categoryPlaceholder": "Select a category…",
-                        "cardErrorNoMedia": "This category has no image. Please set a category image in the category settings before saving.",
-                        "errorHint": "Please add at least one category card and make sure every selected category has an image."
-                    }
-                },
-                "ictPlatformSupport": {
-                    "label": "ICT Platform Support"
-                },
-                "ictOverviewCards6": {
-                    "label": "ICT Overview Cards"
-                },
-                "ictFeatureGrid": {
-                    "label": "ICT Feature Grid"
-                },
-                "ictContentTabs": {
-                    "label": "ICT Content Tabs",
-                    "addTabHint": "Click to add tabs in the element settings",
-                    "addTab": "+ New Tab",
-                    "tabLabel": "Tab Label",
-                    "tabContent": "Content of the Tab",
-                    "configTab": {
-                        "settings": "Settings",
-                        "elements": "Tab - Elements"
-                    },
-                    "displayModeLabel": "Display mode",
-                    "tabStyleLabel": "Style of the Tabs",
-                    "verticalAlignLabel": "Vertical align",
-                    "displayMode": {
-                        "topbar": "Tab List - Topbar",
-                        "sidebar": "Tab List - Sidebar"
-                    },
-                    "tabStyle": {
-                        "buttons": "Buttons",
-                        "underline": "Underline",
-                        "pills": "Pills"
-                    },
-                    "verticalAlign": {
-                        "default": "Vertical align",
-                        "top": "Top",
-                        "center": "Center",
-                        "bottom": "Bottom"
-                    }
-                },
-                "ictProductMatrix": {
-                    "label": "ICT Product Matrix",
-                    "noProductTitle": "No Product Selected",
-                    "noProductHint": "Please select a product to display the variant table",
-                    "chooseProduct": "Choose main product",
-                    "chooseProductPlaceholder": "Select a product...",
-                    "autoRetrievalTitle": "Automatic Data Retrieval",
-                    "autoRetrievalHint": "All variants are displayed in a table depending on the parent product.",
-                    "displayModeLabel": "Display mode",
-                    "displayMode": {
-                        "standard": "Standard",
-                        "highlighted": "Highlighted rows",
-                        "compact": "Compact"
-                    },
-                    "colArticle": "Article",
-                    "colDelivery": "Delivery",
-                    "colPrice": "Price",
-                    "colBuy": "Buy",
-                    "addToCart": "Add to Cart"
                 }
-            }
-        }
-    },
-    "storefront": {
-        "productMatrix": {
-            "noProduct": "No product configured.",
-            "noVariants": "No variants found for this product.",
-            "colArticle": "Article",
-            "colDelivery": "Delivery",
-            "colPrice": "Price",
-            "colBuy": "Buy",
-            "freeShipping": "Free shipping",
-            "addToCart": "Add to shopping cart",
-            "quantity": "Quantity",
-            "decrease": "Decrease quantity",
-            "increase": "Increase quantity"
-        }
-    },
-    "sw-cms": {
-        "blocks": {
-            "ictTwoColumnThreeImage": {
-                "label": "Ict Two Column Three Image"
-            }
-        },
-        "elements": {
-            "ictOverviewCards": {
-                "label": "Overview Cards",
-                "config": {
-                    "section": {
-                        "backgroundSettings": "Background Settings",
-                        "layoutSettings": "Layout Settings",
-                        "cardDesign": "Card Design",
-                        "iconSettings": "Icon Settings",
-                        "headlineSettings": "Headline",
-                        "subheadlineSettings": "Subheadline",
-                        "bodyTextSettings": "Body Text",
-                        "buttonSettings": "Button Settings"
-                    },
-                    "label": {
-                        "backgroundType": "Background Type",
-                        "backgroundColor": "Background Color",
-                        "backgroundGradientColor1": "Gradient Color 1",
-                        "backgroundGradientColor2": "Gradient Color 2",
-                        "backgroundGradientDirection": "Gradient Direction",
-                        "backgroundImage": "Background Image",
-                        "backgroundVideo": "Background Video",
-                        "backgroundVideoUploadType": "Video Upload Type",
-                        "backgroundVideoUploadUrl": "Video URL",
-                        "numberOfColumns": "Number of Columns",
-                        "cardSpacing": "Card Spacing (px)",
-                        "verticalAlignment": "Vertical Alignment",
-                        "card": "Card",
-                        "showIcon": "Show Icon",
-                        "iconImage": "Icon Image",
-                        "iconShape": "Icon Shape",
-                        "iconSize": "Icon Size",
-                        "iconAlignment": "Icon Alignment",
-                        "iconColor": "Icon Color",
-                        "iconBackgroundColor": "Icon Background Color",
-                        "iconOutlineColor": "Icon Outline Color",
-                        "iconOutlineThickness": "Icon Outline Thickness (px)",
-                        "iconOutlinePosition": "Icon Outline Position",
-                        "iconBorderRadius": "Icon Border Radius (px)",
-                        "iconHoverEffect": "Icon Hover Effect",
-                        "showHeadline": "Show Headline",
-                        "headline": "Headline Text",
-                        "headlineSize": "Headline Size",
-                        "headlineAlignment": "Headline Alignment",
-                        "headlineColor": "Headline Color",
-                        "showSubheadline": "Show Subheadline",
-                        "subheadline": "Subheadline Text",
-                        "subheadlineSize": "Subheadline Size",
-                        "subheadlineAlignment": "Subheadline Alignment",
-                        "subheadlineColor": "Subheadline Color",
-                        "showBodyText": "Show Body Text",
-                        "bodyText": "Body Text",
-                        "bodyTextSize": "Body Text Font Size",
-                        "bodyTextAlignment": "Body Text Alignment",
-                        "bodyTextColor": "Body Text Color",
-                        "showButton": "Show Button",
-                        "buttonText": "Button Text",
-                        "buttonUrl": "Button URL",
-                        "buttonTarget": "Button Target",
-                        "buttonAlignment": "Button Alignment",
-                        "buttonIcon": "Button Icon",
-                        "buttonIconColor": "Button Icon Color",
-                        "buttonIconHoverActive": "Enable Button Icon Hover Color",
-                        "buttonIconHoverColor": "Button Icon Hover Color",
-                        "buttonIconSize": "Button Icon Size",
-                        "buttonBackgroundColor": "Button Background Color",
-                        "buttonHoverBackgroundColor": "Button Hover Background Color",
-                        "buttonTextColor": "Button Text Color",
-                        "buttonHoverTextColor": "Button Hover Text Color",
-                        "cardBackgroundType": "Card Background Type",
-                        "cardBackgroundColor": "Card Background Color",
-                        "cardBackgroundImage": "Card Background Image",
-                        "cardBackgroundVideo": "Card Background Video",
-                        "videoUploadType": "Video Upload Type",
-                        "videoUrl": "Video URL",
-                        "gradientColor1": "Gradient Color 1",
-                        "gradientColor2": "Gradient Color 2",
-                        "gradientDirection": "Gradient Direction",
-                        "cardOutlineColor": "Card Outline Color",
-                        "cardOutlineThickness": "Card Outline Thickness (px)",
-                        "cardBorderRadius": "Card Border Radius (px)",
-                        "cardShadowTop": "Card Shadow Top (px)",
-                        "cardShadowRight": "Card Shadow Right (px)",
-                        "cardShadowBottom": "Card Shadow Bottom (px)",
-                        "cardShadowLeft": "Card Shadow Left (px)",
-                        "cardShadowColor": "Card Shadow Color",
-                        "cardHoverShadowTop": "Card Hover Shadow Top (px)",
-                        "cardHoverShadowRight": "Card Hover Shadow Right (px)",
-                        "cardHoverShadowBottom": "Card Hover Shadow Bottom (px)",
-                        "cardHoverShadowLeft": "Card Hover Shadow Left (px)",
-                        "cardHoverShadowColor": "Card Hover Shadow Color"
-                    },
-                    "button": {
-                        "addCard": "Add Card",
-                        "removeCard": "Remove Card"
-                    },
-                    "tab": {
-                        "cards": "Manage Cards"
-                    },
-                    "option": {
-                        "columns": {
-                            "one": "1 Column",
-                            "two": "2 Columns",
-                            "three": "3 Columns",
-                            "four": "4 Columns"
-                        },
-                        "iconShape": {
-                            "square": "Square",
-                            "round": "Round"
-                        },
-                        "iconSize": {
-                            "small": "Small (50x50)",
-                            "medium": "Medium (80x80)",
-                            "large": "Large (120x120)",
-                            "xl150": "XL (150x150)",
-                            "xl180": "XXL (180x180)",
-                            "xl200": "XXXL (200x200)",
-                            "xl220": "Max (220x220)"
-                        },
-                        "featureIconSize": {
-                            "size20": "20x20",
-                            "size25": "25x25",
-                            "size40": "40x40",
-                            "size50": "50x50"
-                        },
-                        "iconHoverEffect": {
-                            "none": "None",
-                            "scale": "Scale",
-                            "rotate": "Rotate",
-                            "pulse": "Pulse"
-                        },
-                        "outlinePosition": {
-                            "inside": "Inside",
-                            "outside": "Outside"
-                        },
-                        "verticalAlignment": {
-                            "stretch": "Stretch",
-                            "top": "Top",
-                            "center": "Center",
-                            "bottom": "Bottom"
-                        },
-                        "headlineSize": {
-                            "size1": "Size 1 (24px)",
-                            "size2": "Size 2 (42px)"
-                        },
-                        "subheadlineSize": {
-                            "default": "Default (20px)",
-                            "optional": "Optional (24px)"
-                        },
-                        "alignment": {
-                            "left": "Left",
-                            "center": "Center",
-                            "right": "Right"
-                        },
-                        "backgroundType": {
-                            "color": "Color",
-                            "gradient": "Gradient",
-                            "image": "Image",
-                            "video": "Video"
-                        },
-                        "videoUpload": {
-                            "file": "File Upload",
-                            "url": "YouTube URL"
-                        },
-                        "gradientDirection": {
-                            "top": "Top to Bottom",
-                            "right": "Left to Right",
-                            "bottom": "Bottom to Top",
-                            "left": "Right to Left"
-                        },
-                        "shadow": {
-                            "none": "None",
-                            "light": "Light",
-                            "medium": "Medium",
-                            "heavy": "Heavy"
-                        },
-                        "target": {
-                            "same": "Same Window",
-                            "new": "New Window"
-                        }
-                    }
-                }
-            },
-            "ictTopics": {
-                "config": {
-                    "borderStyle": {
-                        "solid": "Solid",
-                        "dotted": "Dotted",
-                        "dashed": "Dashed"
-                    }
-                }
-            },
-            "ictTwoColumnThreeImage": {
-                "label": "Ict Two Column Three Image",
-                "config": {
-                    "tab": {
-                        "leftImage": "Left Image",
-                        "rightTopImage": "Right Image 1",
-                        "rightBottomImage": "Right Image 2"
-                    },
-                    "label": {
-                        "leftImage": "Left Image",
-                        "rightTopImage": "Right Top Image",
-                        "rightBottomImage": "Right Bottom Image",
-                        "leftImageHeight": "Left Image Height",
-                        "leftImageObjectFit": "Left Image Object Fit",
-                        "leftImageDescription": "Left Image Description",
-                        "leftButtonText": "Left Button Text",
-                        "leftButtonIcon": "Left Button Icon",
-                        "leftButtonIconSize": "Left Button Icon Size",
-                        "leftButtonIconHoverActive": "Enable Left Button Icon Hover",
-                        "leftButtonIconHoverColor": "Left Button Icon Hover Color",
-                        "rightImageHeight": "Right Image Height",
-                        "rightImageObjectFit": "Right Image Object Fit",
-                        "rightImageDescription": "Right Image Description",
-                        "rightButtonText": "Right Button Text",
-                        "rightButtonIcon": "Right Button Icon",
-                        "rightTopButtonIconSize": "Right Top Button Icon Size",
-                        "rightTopButtonIconHoverActive": "Enable Right Top Button Icon Hover",
-                        "rightTopButtonIconHoverColor": "Right Top Button Icon Hover Color",
-                        "rightBottomButtonIconSize": "Right Bottom Button Icon Size",
-                        "rightBottomButtonIconHoverActive": "Enable Right Bottom Button Icon Hover",
-                        "rightBottomButtonIconHoverColor": "Right Bottom Button Icon Hover Color",
-                        "buttonLinkType": "Button Link Type",
-                        "buttonLink": "Button Link",
-                        "buttonTarget": "Button Target",
-                        "buttonBackgroundColor": "Background Color",
-                        "buttonHoverBackgroundColor": "Hover Background Color",
-                        "buttonTextColor": "Text Color",
-                        "buttonHoverTextColor": "Hover Text Color",
-                        "buttonBorderColor": "Border Color",
-                        "buttonHoverBorderColor": "Hover Border Color"
-                    },
-                    "option": {
-                        "buttonIconSize": {
-                            "size20": "20 x 20",
-                            "size25": "25 x 25",
-                            "size50": "50 x 50",
-                            "size80": "80 x 80",
-                            "size120": "120 x 120",
-                            "size220": "220 x 220"
-                        }
-                    },
-                    "notification": {
-                        "errorImageMessage": "Please select a valid image file.",
-                        "errorSvgMessage": "Only .svg files are allowed for button icons."
-                    }
-                }
-            }
-        },
-        "media": {
-            "helpText": {
-                "imageHelpText": "Supports JPG, PNG, WEBP, GIF, BMP, TIFF and EPS files.",
-                "buttonIconHelpText": "This is for button icon and supports only SVG type.",
-                "videoHelpText": "Supports WEBM, MP4, MOV, AVI, FLV, OGV, OGG and WMV files."
-            }
-        },
-        "button": {
-            "helpText": {
-                "buttonLinkHelpText": "Internal: link within the same site. External: link to another site.",
-                "buttonTargetHelpText": "New Window: opens in a new tab. Same Window: opens in the same tab."
             }
         }
     },
@@ -516,10 +216,154 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-bundle-element": "ICT Bundle Elements",
-                        "ict-cms-elements": "ICT Theme Options",
-                        "ict-cms-gallery": "ICT Gallery"
+                        "ict-cms-layouts": "ICT CMS layouts",
+                        "ict-cms-elements": "ICT CMS elements"
                     }
+                }
+            }
+        }
+    },
+    "sw-cms": {
+        "blocks": {
+            "ictHeroSection": {
+                "label": "ICT Hero Section"
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Single Title Button Section"
+            }
+        },
+        "elements": {
+            "ictHeroSection": {
+                "label": "ICT Hero Section",
+                "config": {
+                    "tab": {
+                        "content": "Main Section",
+                        "leftContent": "Left Section",
+                        "rightContent": "Right Section"
+                    },
+                    "label": {
+                        "backgroundType": "Background Type",
+                        "backgroundImage": "Background Image",
+                        "backgroundVideo": "Background Video",
+                        "videoUploadType": "Video Upload Type",
+                        "videoSelect": "Upload Video",
+                        "videoUrl": "Video URL",
+                        "gradientColor1": "First Gradient Color",
+                        "gradientColor2": "Second Gradient Color",
+                        "gradientDirection": "Gradient Direction",
+                        "labelText": "Label Text",
+                        "labelBackgroundColor": "Label Background Color",
+                        "labelTextColor": "Label Text Color",
+                        "headline": "Headline",
+                        "headlineText": "Headline Text",
+                        "headlineColorType": "Headline Color Type",
+                        "headlineColor": "Headline Color",
+                        "headlineGradientColor1": "Headline Gradient Color 1",
+                        "headlineGradientColor2": "Headline Gradient Color 2",
+                        "headlineGradientDirection": "Headline Gradient Direction",
+                        "descriptionText": "Description Text",
+                        "description": "Description",
+                        "descriptionColor": "Description Color",
+                        "primaryButton": "Primary Button",
+                        "secondaryButton": "Secondary Button",
+                        "buttonText": "Button Text",
+                        "linkType": "Link Type",
+                        "target": "Target",
+                        "backgroundColor": "Background Color",
+                        "hoverBackgroundColor": "Hover Background Color",
+                        "textColor": "Text Color",
+                        "hoverTextColor": "Hover Text Color",
+                        "showSecondaryButton": "Show Secondary Button",
+                        "cardBackgroundColor": "Card Background Color",
+                        "cardShadow": "Card Shadow",
+                        "featureItems": "Feature Items",
+                        "featureItem": "Feature Item",
+                        "title": "Title",
+                        "titleColor": "Title Color",
+                        "iconColor": "Icon Color",
+                        "minHeight": "Minimum Height",
+                        "primaryButtonText": "Primary Button Text",
+                        "primaryButtonUrl": "Primary Button URL",
+                        "primaryButtonTarget": "Primary Button Target",
+                        "primaryButtonBackgroundColor": "Primary Button Background Color",
+                        "primaryButtonTextColor": "Primary Button Text Color",
+                        "secondaryButtonText": "Secondary Button Text",
+                        "secondaryButtonUrl": "Secondary Button URL",
+                        "secondaryButtonTarget": "Secondary Button Target",
+                        "secondaryButtonBackgroundColor": "Secondary Button Background Color",
+                        "secondaryButtonTextColor": "Secondary Button Text Color",
+                        "features": "Feature Items",
+                        "featureIcon": "Feature Icon",
+                        "featureTitle": "Feature Title",
+                        "featureDescription": "Feature Description",
+                        "rightSectionBackgroundType": "Right Section Background Type",
+                        "rightSectionBackgroundColor": "Right Section Background Color",
+                        "rightSectionBackgroundImage": "Right Section Background Image",
+                        "rightSectionGradientColor1": "Right Section Gradient Color 1",
+                        "rightSectionGradientColor2": "Right Section Gradient Color 2",
+                        "rightSectionGradientDirection": "Right Section Gradient Direction",
+                        "rightSectionHoverBackgroundColor": "Right Section Hover Background Color",
+                        "leftSectionHoverBackgroundColor": "Left Section Hover Background Color",
+                        "primaryButtonIcon": "Primary Button Icon",
+                        "primaryButtonLogo": "Primary Button Logo",
+                        "secondaryButtonIcon": "Secondary Button Icon",
+                        "buttonIcon": "Button Icon",
+                        "uploadIcon": "Upload Icon",
+                        "addFeature": "Add Feature",
+                        "removeFeature": "Remove Feature"
+                    },
+                    "button": {
+                        "addFeature": "Add Feature",
+                        "removeFeature": "Remove Feature"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Please Select an image",
+                        "errorVideoMessage": "Please Select video",
+                        "errorSvgImageMessage": "Please Select svg image"
+                    }
+                }
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Single Title Button Section",
+                "config": {
+                    "tab": {
+                        "content": "Main Content",
+                        "leftButton": "Left Button",
+                        "rightButton": "Right Button"
+                    },
+                    "label": {
+                        "backgroundType": "Background Type",
+                        "backgroundColor": "Background Color",
+                        "videoUploadType": "Video Upload Type",
+                        "videoSelect": "Upload Video",
+                        "videoUrl": "Video URL",
+                        "gradientColor1": "First Gradient Color",
+                        "gradientColor2": "Second Gradient Color",
+                        "gradientDirection": "Gradient Direction",
+                        "title": "Title",
+                        "titleColor": "Title Color",
+                        "description": "Description",
+                        "descriptionColor": "Description Color",
+                        "leftButtonText": "Left Button Text",
+                        "leftButtonColorType": "Left Button Color Type",
+                        "leftButtonGradientColor1": "Left Button Gradient Color 1",
+                        "leftButtonGradientColor2": "Left Button Gradient Color 2",
+                        "leftButtonGradientDirection": "Left Button Gradient Direction",
+                        "leftButtonHoverGradientColor1": "Left Button Hover Gradient Color 1",
+                        "leftButtonHoverGradientColor2": "Left Button Hover Gradient Color 2",
+                        "rightButtonText": "Right Button Text",
+                        "rightButtonColorType": "Right Button Color Type",
+                        "rightButtonGradientColor1": "Right Button Gradient Color 1",
+                        "rightButtonGradientColor2": "Right Button Gradient Color 2",
+                        "rightButtonGradientDirection": "Right Button Gradient Direction",
+                        "rightButtonHoverGradientColor1": "Right Button Hover Gradient Color 1",
+                        "rightButtonHoverGradientColor2": "Right Button Hover Gradient Color 2",
+                        "buttonIconColor": "Button Icon Color"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Please Select an image",
+                        "errorVideoMessage": "Please Select video"
+                   }
                 }
             }
         }
