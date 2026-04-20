@@ -16,8 +16,10 @@ import './module/sw-cms/elements/ict-accordion';
 import './module/sw-cms/elements/ict-banner-slider';
 import './module/sw-cms/elements/ict-manufacturer-list';
 import './module/sw-cms/elements/ict-manufacturer-slider';
+import './module/sw-cms/elements/ict-hero-section';
+import './module/sw-cms/elements/ict-single-title-button-section';
 
-import './module/sw-cms/blocks/ict-two-column';
+import './module/sw-cms/blocks/ict-two-column'; 
 import './module/sw-cms/blocks/ict-three-column';
 import './module/sw-cms/blocks/ict-four-column';
 import './module/sw-cms/blocks/ict-five-column';
@@ -32,6 +34,8 @@ import './module/sw-cms/blocks/ict-banner-slider';
 import './module/sw-cms/blocks/ict-accordion';
 import './module/sw-cms/blocks/ict-manufacturer-list';
 import './module/sw-cms/blocks/ict-manufacturer-slider';
+import './module/sw-cms/blocks/ict-hero-section';
+import './module/sw-cms/blocks/ict-single-title-button-section';
 
 import './module/sw-cms/elements/ict-image-gallery';
 import './module/sw-cms/blocks/ict-image-gallery';
