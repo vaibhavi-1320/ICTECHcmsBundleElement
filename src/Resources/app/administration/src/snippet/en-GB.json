@@ -57,6 +57,12 @@
                 },
                 "ictManufacturerSlider": {
                     "label": "Manufacturer Slider"
+                },
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Section"
+                },
+                "ictTitleActionPanel": {
+                    "label": "Single Title Button Section"
                 }
             },
             "elements": {
@@ -132,7 +138,58 @@
                 "ictManufacturerList": {
                     "label": "Manufacturer List"
                 },
-
+                "ictShowcaseHero": {
+                    "label": "ICT Hero Section",
+                    "config": {
+                        "eyebrow": "Eyebrow",
+                        "title": "Title",
+                        "description": "Description",
+                        "backgroundImage": "Background image",
+                        "overlayColor": "Overlay color",
+                        "overlayOpacity": "Overlay opacity (%)",
+                        "minHeight": "Min height (px)",
+                        "contentAlign": "Content align",
+                        "alignLeft": "Left",
+                        "alignCenter": "Center",
+                        "alignRight": "Right",
+                        "primaryButtonText": "Primary button text",
+                        "primaryButtonLink": "Primary button link",
+                        "secondaryButtonText": "Secondary button text",
+                        "secondaryButtonLink": "Secondary button link",
+                        "openNewTab": "Open in new tab",
+                        "featureItems": "Feature cards",
+                        "featureTitle": "Feature title",
+                        "featureText": "Feature text",
+                        "addFeature": "Add feature",
+                        "remove": "Remove"
+                    }
+                },
+                "ictTitleActionPanel": {
+                    "label": "Single Title Button Section",
+                    "config": {
+                        "title": "Title",
+                        "description": "Description",
+                        "backgroundImage": "Background image",
+                        "backgroundColor": "Background color",
+                        "textAlign": "Text align",
+                        "alignLeft": "Left",
+                        "alignCenter": "Center",
+                        "alignRight": "Right",
+                        "titleColor": "Title color",
+                        "descriptionColor": "Description color",
+                        "buttonStyle": "Button style",
+                        "buttonSolid": "Solid",
+                        "buttonOutline": "Outline",
+                        "buttonText": "Button text",
+                        "buttonLink": "Button link",
+                        "secondaryButtonText": "Secondary button text",
+                        "secondaryButtonLink": "Secondary button link",
+                        "buttonBackgroundColor": "Button background",
+                        "buttonTextColor": "Button text color",
+                        "openNewTab": "Open in new tab",
+                        "panelHeight": "Panel min height (px)"
+                    }
+                },
                 "ictFourColumn": {
                     "label": "ICT Four Column Layout"
                 },
@@ -161,6 +218,151 @@
                     "blockCategory": {
                         "ict-cms-layouts": "ICT CMS layouts",
                         "ict-cms-elements": "ICT CMS elements"
+                    }
+                }
+            }
+        }
+    },
+    "sw-cms": {
+        "blocks": {
+            "ictHeroSection": {
+                "label": "ICT Hero Section"
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Single Title Button Section"
+            }
+        },
+        "elements": {
+            "ictHeroSection": {
+                "label": "ICT Hero Section",
+                "config": {
+                    "tab": {
+                        "content": "Main Section",
+                        "leftContent": "Left Section",
+                        "rightContent": "Right Section"
+                    },
+                    "label": {
+                        "backgroundType": "Background Type",
+                        "backgroundImage": "Background Image",
+                        "backgroundVideo": "Background Video",
+                        "videoUploadType": "Video Upload Type",
+                        "videoSelect": "Upload Video",
+                        "videoUrl": "Video URL",
+                        "gradientColor1": "First Gradient Color",
+                        "gradientColor2": "Second Gradient Color",
+                        "gradientDirection": "Gradient Direction",
+                        "labelText": "Label Text",
+                        "labelBackgroundColor": "Label Background Color",
+                        "labelTextColor": "Label Text Color",
+                        "headline": "Headline",
+                        "headlineText": "Headline Text",
+                        "headlineColorType": "Headline Color Type",
+                        "headlineColor": "Headline Color",
+                        "headlineGradientColor1": "Headline Gradient Color 1",
+                        "headlineGradientColor2": "Headline Gradient Color 2",
+                        "headlineGradientDirection": "Headline Gradient Direction",
+                        "descriptionText": "Description Text",
+                        "description": "Description",
+                        "descriptionColor": "Description Color",
+                        "primaryButton": "Primary Button",
+                        "secondaryButton": "Secondary Button",
+                        "buttonText": "Button Text",
+                        "linkType": "Link Type",
+                        "target": "Target",
+                        "backgroundColor": "Background Color",
+                        "hoverBackgroundColor": "Hover Background Color",
+                        "textColor": "Text Color",
+                        "hoverTextColor": "Hover Text Color",
+                        "showSecondaryButton": "Show Secondary Button",
+                        "cardBackgroundColor": "Card Background Color",
+                        "cardShadow": "Card Shadow",
+                        "featureItems": "Feature Items",
+                        "featureItem": "Feature Item",
+                        "title": "Title",
+                        "titleColor": "Title Color",
+                        "iconColor": "Icon Color",
+                        "minHeight": "Minimum Height",
+                        "primaryButtonText": "Primary Button Text",
+                        "primaryButtonUrl": "Primary Button URL",
+                        "primaryButtonTarget": "Primary Button Target",
+                        "primaryButtonBackgroundColor": "Primary Button Background Color",
+                        "primaryButtonTextColor": "Primary Button Text Color",
+                        "secondaryButtonText": "Secondary Button Text",
+                        "secondaryButtonUrl": "Secondary Button URL",
+                        "secondaryButtonTarget": "Secondary Button Target",
+                        "secondaryButtonBackgroundColor": "Secondary Button Background Color",
+                        "secondaryButtonTextColor": "Secondary Button Text Color",
+                        "features": "Feature Items",
+                        "featureIcon": "Feature Icon",
+                        "featureTitle": "Feature Title",
+                        "featureDescription": "Feature Description",
+                        "rightSectionBackgroundType": "Right Section Background Type",
+                        "rightSectionBackgroundColor": "Right Section Background Color",
+                        "rightSectionBackgroundImage": "Right Section Background Image",
+                        "rightSectionGradientColor1": "Right Section Gradient Color 1",
+                        "rightSectionGradientColor2": "Right Section Gradient Color 2",
+                        "rightSectionGradientDirection": "Right Section Gradient Direction",
+                        "rightSectionHoverBackgroundColor": "Right Section Hover Background Color",
+                        "leftSectionHoverBackgroundColor": "Left Section Hover Background Color",
+                        "primaryButtonIcon": "Primary Button Icon",
+                        "primaryButtonLogo": "Primary Button Logo",
+                        "secondaryButtonIcon": "Secondary Button Icon",
+                        "buttonIcon": "Button Icon",
+                        "uploadIcon": "Upload Icon",
+                        "addFeature": "Add Feature",
+                        "removeFeature": "Remove Feature"
+                    },
+                    "button": {
+                        "addFeature": "Add Feature",
+                        "removeFeature": "Remove Feature"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Please Select an image",
+                        "errorVideoMessage": "Please Select video",
+                        "errorSvgImageMessage": "Please Select svg image"
+                    }
+                }
+            },
+            "ictSingleTitleButtonSection": {
+                "label": "Single Title Button Section",
+                "config": {
+                    "tab": {
+                        "content": "Main Content",
+                        "leftButton": "Left Button",
+                        "rightButton": "Right Button"
+                    },
+                    "label": {
+                        "backgroundType": "Background Type",
+                        "backgroundColor": "Background Color",
+                        "videoUploadType": "Video Upload Type",
+                        "videoSelect": "Upload Video",
+                        "videoUrl": "Video URL",
+                        "gradientColor1": "First Gradient Color",
+                        "gradientColor2": "Second Gradient Color",
+                        "gradientDirection": "Gradient Direction",
+                        "title": "Title",
+                        "titleColor": "Title Color",
+                        "description": "Description",
+                        "descriptionColor": "Description Color",
+                        "leftButtonText": "Left Button Text",
+                        "leftButtonColorType": "Left Button Color Type",
+                        "leftButtonGradientColor1": "Left Button Gradient Color 1",
+                        "leftButtonGradientColor2": "Left Button Gradient Color 2",
+                        "leftButtonGradientDirection": "Left Button Gradient Direction",
+                        "leftButtonHoverGradientColor1": "Left Button Hover Gradient Color 1",
+                        "leftButtonHoverGradientColor2": "Left Button Hover Gradient Color 2",
+                        "rightButtonText": "Right Button Text",
+                        "rightButtonColorType": "Right Button Color Type",
+                        "rightButtonGradientColor1": "Right Button Gradient Color 1",
+                        "rightButtonGradientColor2": "Right Button Gradient Color 2",
+                        "rightButtonGradientDirection": "Right Button Gradient Direction",
+                        "rightButtonHoverGradientColor1": "Right Button Hover Gradient Color 1",
+                        "rightButtonHoverGradientColor2": "Right Button Hover Gradient Color 2",
+                        "buttonIconColor": "Button Icon Color"
+                    },
+                    "notification": {
+                        "errorImageMessage": "Please Select an image",
+                        "errorVideoMessage": "Please Select video"
                     }
                 }
             }
