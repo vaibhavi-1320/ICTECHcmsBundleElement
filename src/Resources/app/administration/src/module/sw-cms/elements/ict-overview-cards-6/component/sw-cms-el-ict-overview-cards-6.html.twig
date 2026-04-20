@@ -48,11 +48,7 @@
                     backgroundColor: card.cardMainBackgroundType === 'color' ? card.cardMainBackgroundColor : '#FFFFFF',
                     background: card.cardMainBackgroundType === 'gradient'
                         ? `linear-gradient(to ${card.cardMainBackgroundGradientDirection}, ${card.cardMainBackgroundGradientColor1}, ${card.cardMainBackgroundGradientColor2})`
-                        : '',
-                    border: `${card.cardOutlineThickness}px solid ${card.cardOutlineColor}`,
-                    borderRadius: `${card.cardBorderRadius}px`,
-                    '--card-shadow': getCardShadowValue(card),
-                    '--card-hover-shadow': getCardHoverShadowValue(card)
+                        : ''
                 }"
             >
                 <div
@@ -125,7 +121,7 @@
                     </div>
 
                     <div class="card-content">
-                        <div v-if="card.showIcon" class="card-icon" :style="{ textAlign: getTextAlignment(card.iconAlignment) }">
+                        <div class="card-icon" :style="{ textAlign: getTextAlignment(card.iconAlignment) }">
                             <div
                                 class="icon-box"
                                 :data-hover-effect="card.iconHoverEffect || 'none'"
@@ -165,7 +161,6 @@
                         </div>
 
                         <h3
-                            v-if="card.showHeadline"
                             class="card-headline"
                             :style="{
                                 fontSize: getCssSizeValue(card.headlineSize, '24px'),
@@ -178,7 +173,6 @@
                         </h3>
 
                         <h4
-                            v-if="card.showSubheadline"
                             class="card-subheadline"
                             :style="{
                                 fontSize: getCssSizeValue(card.subheadlineSize, '20px'),
@@ -239,7 +233,7 @@
                         </div>
 
                         <div
-                            v-if="card.showInfoText && (card.infoText || '').trim()"
+                            v-if="(card.infoText || '').trim()"
                             class="card-info-text"
                             :style="{
                                 borderBottom: `${card.detailRowsOutlineThickness || 1}px solid ${card.detailRowsOutlineColor || '#E4E4E3'}`,
@@ -254,9 +248,9 @@
                         </div>
 
                         <div
-                            v-if="card.showButton && getCardButtons(card).length"
+                            v-if="getCardButtons(card).length"
                             class="card-buttons"
-                            :style="{ justifyContent: getButtonJustifyContent(getCardButtons(card)[0]?.buttonAlignment || 'left') }"
+                            :style="{ justifyContent: 'flex-start' }"
                         >
                             <div
                                 v-for="(button, buttonIndex) in getCardButtons(card).slice(0, 1)"
@@ -266,51 +260,16 @@
                                 <span
                                     class="card-button"
                                     :style="{
-                                        '--button-bg': button.buttonBackgroundColor || '#005AE5',
                                         '--button-text': button.buttonTextColor || '#FFFFFF',
-                                        '--button-hover-bg': button.buttonHoverBackgroundColor || '#00f5ff',
                                         '--button-hover-text': button.buttonHoverTextColor || '#000000',
                                         '--button-border-width': getCssSizeValue(button.buttonBorderWidth, '0px'),
                                         '--button-border-style': button.buttonBorderStyle || 'solid',
-                                        '--button-border-color': button.buttonBorderColor || '#00f5ff',
-                                        '--button-hover-border-color': button.buttonHoverBorderColor || '#f3f4f6',
-                                        '--button-radius': getCssSizeValue(button.buttonBorderRadius, '8px'),
-                                        '--button-shadow': `${getCssSizeValue(button.buttonShadowLeft, '0px')} ${getCssSizeValue(button.buttonShadowTop, '0px')} ${getCssSizeValue(button.buttonShadowRight, '0px')} ${getCssSizeValue(button.buttonShadowBottom, '0px')} ${button.buttonShadowColor || '#26262440'}`,
-                                        '--button-icon-size': getCssSizeValue(button.buttonIconSize, '25px'),
-                                        '--button-icon-base-color': button.buttonIconColor || '#FFFFFF',
-                                        '--button-icon-hover-color': button.buttonIconHoverColor || '#000000',
-                                        fontSize: getCssSizeValue(button.buttonFontSize, '14px')
+                                        '--button-border-color': button.buttonBorderColor || 'transparent',
+                                        '--button-hover-border-color': button.buttonHoverBorderColor || 'transparent',
+                                        '--button-radius': getCssSizeValue(button.buttonBorderRadius, '6px')
                                     }"
-                                    :data-icon-hover-active="button.buttonIconHoverActive ? 'true' : 'false'"
                                 >
                                     <span>{{ button.buttonText || 'LEARN MORE' }}</span>
-                                    <template v-if="button.buttonShowIcon !== false">
-                                        <span
-                                            v-if="getButtonIconMediaItem(index, buttonIndex) && isSvgUrl(getButtonIconMediaItem(index, buttonIndex).url)"
-                                            class="button-icon button-icon-mask"
-                                            :style="{
-                                                backgroundColor: 'var(--button-icon-color)',
-                                                WebkitMaskImage: `url(${getButtonIconMediaItem(index, buttonIndex).url})`,
-                                                maskImage: `url(${getButtonIconMediaItem(index, buttonIndex).url})`
-                                            }"
-                                        ></span>
-                                        <span
-                                            v-else-if="getButtonIconMediaItem(index, buttonIndex)"
-                                            class="button-icon button-icon-image"
-                                            :style="{
-                                                backgroundImage: `url(${getButtonIconMediaItem(index, buttonIndex).url})`
-                                            }"
-                                        ></span>
-                                        <svg
-                                            v-else
-                                            class="button-icon button-icon-arrow"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M5 12h12.17l-5.59-5.59L13 5l8 8-8 8-1.41-1.41L17.17 13H5z"/>
-                                        </svg>
-                                    </template>
                                 </span>
                             </div>
                         </div>

@@ -73,5 +73,17 @@
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctOverviewCards6CmsElementResolver">
             <tag name="shopware.cms.data_resolver"/>
         </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctFeatureGridCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctContentTabsCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctProductMatrixCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
     </services>
 </container>

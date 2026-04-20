@@ -69,6 +69,15 @@
                 },
                 "ictOverviewCards6": {
                     "label": "ICT Overview Cards"
+                },
+                "ictFeatureGrid": {
+                    "label": "ICT Feature Grid"
+                },
+                "ictContentTabs": {
+                    "label": "ICT Content Tabs"
+                },
+                "ictProductMatrix": {
+                    "label": "ICT Product Matrix"
                 }
             },
             "elements": {
@@ -161,8 +170,75 @@
                 },
                 "ictOverviewCards6": {
                     "label": "ICT Overview Cards"
+                },
+                "ictFeatureGrid": {
+                    "label": "ICT Feature Grid"
+                },
+                "ictContentTabs": {
+                    "label": "ICT Content Tabs",
+                    "addTabHint": "Click to add tabs in the element settings",
+                    "addTab": "+ New Tab",
+                    "tabLabel": "Tab Label",
+                    "tabContent": "Content of the Tab",
+                    "configTab": {
+                        "settings": "Settings",
+                        "elements": "Tab - Elements"
+                    },
+                    "displayModeLabel": "Display mode",
+                    "tabStyleLabel": "Style of the Tabs",
+                    "verticalAlignLabel": "Vertical align",
+                    "displayMode": {
+                        "topbar": "Tab List - Topbar",
+                        "sidebar": "Tab List - Sidebar"
+                    },
+                    "tabStyle": {
+                        "buttons": "Buttons",
+                        "underline": "Underline",
+                        "pills": "Pills"
+                    },
+                    "verticalAlign": {
+                        "default": "Vertical align",
+                        "top": "Top",
+                        "center": "Center",
+                        "bottom": "Bottom"
+                    }
+                },
+                "ictProductMatrix": {
+                    "label": "ICT Product Matrix",
+                    "noProductTitle": "No Product Selected",
+                    "noProductHint": "Please select a product to display the variant table",
+                    "chooseProduct": "Choose main product",
+                    "chooseProductPlaceholder": "Select a product...",
+                    "autoRetrievalTitle": "Automatic Data Retrieval",
+                    "autoRetrievalHint": "All variants are displayed in a table depending on the parent product.",
+                    "displayModeLabel": "Display mode",
+                    "displayMode": {
+                        "standard": "Standard",
+                        "highlighted": "Highlighted rows",
+                        "compact": "Compact"
+                    },
+                    "colArticle": "Article",
+                    "colDelivery": "Delivery",
+                    "colPrice": "Price",
+                    "colBuy": "Buy",
+                    "addToCart": "Add to Cart"
                 }
             }
+        }
+    },
+    "storefront": {
+        "productMatrix": {
+            "noProduct": "No product configured.",
+            "noVariants": "No variants found for this product.",
+            "colArticle": "Article",
+            "colDelivery": "Delivery",
+            "colPrice": "Price",
+            "colBuy": "Buy",
+            "freeShipping": "Free shipping",
+            "addToCart": "Add to shopping cart",
+            "quantity": "Quantity",
+            "decrease": "Decrease quantity",
+            "increase": "Increase quantity"
         }
     },
     "sw-cms": {

@@ -17,13 +17,10 @@ export default {
         createButton(overrides = {}) {
             return Object.assign({
                 show: true, buttonText: 'Learn More', buttonLinkType: 'internal', buttonUrl: '',
-                buttonTarget: '_self', buttonAlignment: 'left', buttonShowIcon: true, buttonIcon: null,
-                buttonIconColor: '#FFFFFF', buttonIconHoverColor: '#000000', buttonIconHoverActive: true,
-                buttonIconSize: '20', buttonBackgroundColor: '#005AE5', buttonHoverBackgroundColor: '#0044bb',
-                buttonTextColor: '#FFFFFF', buttonHoverTextColor: '#FFFFFF', buttonBorderColor: 'transparent',
+                buttonTarget: '_self', buttonTextColor: '#FFFFFF',
+                buttonHoverTextColor: '#FFFFFF', buttonBorderColor: 'transparent',
                 buttonHoverBorderColor: 'transparent', buttonBorderStyle: 'solid', buttonBorderWidth: 0,
-                buttonBorderRadius: 6, buttonFontSize: '13', buttonShadowColor: 'rgba(0,0,0,0)',
-                buttonShadowLeft: 0, buttonShadowRight: 0, buttonShadowTop: 0, buttonShadowBottom: 0
+                buttonBorderRadius: 6
             }, overrides);
         },
 
@@ -41,17 +38,11 @@ export default {
         createButtonFromLegacyCard(card) {
             return this.createButton({
                 show: card?.show, buttonText: card?.buttonText, buttonLinkType: card?.buttonLinkType,
-                buttonUrl: card?.buttonUrl, buttonTarget: card?.buttonTarget, buttonAlignment: card?.buttonAlignment,
-                buttonShowIcon: card?.buttonShowIcon, buttonIcon: card?.buttonIcon, buttonIconColor: card?.buttonIconColor,
-                buttonIconHoverColor: card?.buttonIconHoverColor, buttonIconHoverActive: card?.buttonIconHoverActive,
-                buttonIconSize: card?.buttonIconSize, buttonBackgroundColor: card?.buttonBackgroundColor,
-                buttonHoverBackgroundColor: card?.buttonHoverBackgroundColor, buttonTextColor: card?.buttonTextColor,
+                buttonUrl: card?.buttonUrl, buttonTarget: card?.buttonTarget,
+                buttonTextColor: card?.buttonTextColor,
                 buttonHoverTextColor: card?.buttonHoverTextColor, buttonBorderColor: card?.buttonBorderColor,
                 buttonHoverBorderColor: card?.buttonHoverBorderColor, buttonBorderStyle: card?.buttonBorderStyle,
-                buttonBorderWidth: card?.buttonBorderWidth, buttonBorderRadius: card?.buttonBorderRadius,
-                buttonFontSize: card?.buttonFontSize, buttonShadowColor: card?.buttonShadowColor,
-                buttonShadowLeft: card?.buttonShadowLeft, buttonShadowRight: card?.buttonShadowRight,
-                buttonShadowTop: card?.buttonShadowTop, buttonShadowBottom: card?.buttonShadowBottom
+                buttonBorderWidth: card?.buttonBorderWidth, buttonBorderRadius: card?.buttonBorderRadius
             });
         },
 
@@ -137,17 +128,9 @@ export default {
             }
             return [];
         },
-
-
         getCardDetailRows(card) {
             if (!card?.showDetailRows || !Array.isArray(card?.detailRows)) return [];
             return card.detailRows.filter(r => r && typeof r === 'object' && (String(r.title || '').trim() || String(r.value || '').trim()));
-        },
-
-        getButtonJustifyContent(alignment) {
-            if (alignment === 'center') return 'center';
-            if (alignment === 'right') return 'flex-end';
-            return 'flex-start';
         },
 
         getMediaDisplayMode(card) {
@@ -165,42 +148,6 @@ export default {
             return 'contain';
         },
 
-        getButtonIconMediaItem(cardIndex, buttonIndex) {
-            const key = `${cardIndex}-${buttonIndex}`;
-            return this.element.data?.buttonIcons?.[key] || (buttonIndex === 0 ? this.element.data?.buttonIcons?.[cardIndex] : null) || null;
-        },
-
-        getLegacyCardShadowPreset(shadowType, isHover = false) {
-            const t = (shadowType || '').toString().trim().toLowerCase();
-            if (t === 'light') return { top: '0', right: '4', bottom: '12', left: '0', color: 'rgba(0,0,0,0.08)' };
-            if (t === 'medium') return { top: '0', right: '8', bottom: '24', left: '0', color: 'rgba(0,0,0,0.12)' };
-            if (t === 'heavy') return { top: '0', right: '12', bottom: '32', left: '0', color: 'rgba(0,0,0,0.18)' };
-            return { top: '0', right: '0', bottom: '0', left: '0', color: 'rgba(0,0,0,0)' };
-        },
-
-        hasAnyCustomShadowValue(card, prefix) {
-            return ['Top', 'Right', 'Bottom', 'Left', 'Color'].some(s => {
-                const v = card?.[`${prefix}${s}`];
-                return v !== undefined && v !== null && String(v).trim() !== '';
-            });
-        },
-
-        buildCardShadowValue(card, isHover = false) {
-            const prefix = isHover ? 'cardHoverShadow' : 'cardShadow';
-            const preset = this.getLegacyCardShadowPreset(card?.[prefix] || (isHover ? 'light' : 'none'), isHover);
-            const has = this.hasAnyCustomShadowValue(card, prefix);
-            const top = this.getCssSizeValue(has ? card?.[`${prefix}Top`] : preset.top, `${preset.top}px`);
-            const right = this.getCssSizeValue(has ? card?.[`${prefix}Right`] : preset.right, `${preset.right}px`);
-            const bottom = this.getCssSizeValue(has ? card?.[`${prefix}Bottom`] : preset.bottom, `${preset.bottom}px`);
-            const left = this.getCssSizeValue(has ? card?.[`${prefix}Left`] : preset.left, `${preset.left}px`);
-            let color = preset.color;
-            const cc = card?.[`${prefix}Color`];
-            if (has && cc !== undefined && cc !== null && String(cc).trim() !== '') color = String(cc).trim();
-            return `${top} ${right} ${bottom} ${left} ${color}`;
-        },
-
-        getCardShadowValue(card) { return this.buildCardShadowValue(card, false); },
-        getCardHoverShadowValue(card) { return this.buildCardShadowValue(card, true); },
 
         isSvgUrl(url) {
             if (!url || typeof url !== 'string') return false;

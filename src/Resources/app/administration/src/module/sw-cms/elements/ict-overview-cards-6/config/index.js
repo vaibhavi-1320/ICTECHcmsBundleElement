@@ -29,7 +29,6 @@ export default {
             cardMainVideoModals: {},
             iconImageModals: {},
             featureIconModals: {},
-            buttonIconModals: {},
             backgroundMediaModalIsOpen: false,
             backgroundVideoModalIsOpen: false
         };
@@ -246,45 +245,6 @@ export default {
             this.ensureCardDefaults();
         },
 
-        getLegacyCardShadowPreset(shadowType, isHover = false) {
-            const normalizedShadowType = (shadowType || '').toString().trim().toLowerCase();
-
-            if (normalizedShadowType === 'light') {
-                return isHover
-                    ? {top: '0', right: '2', bottom: '8', left: '0', color: 'rgba(0, 0, 0, 0.1)'}
-                    : {top: '0', right: '2', bottom: '8', left: '0', color: 'rgba(0, 0, 0, 0.1)'};
-            }
-
-            if (normalizedShadowType === 'medium') {
-                return isHover
-                    ? {top: '0', right: '4', bottom: '16', left: '0', color: 'rgba(0, 0, 0, 0.15)'}
-                    : {top: '0', right: '4', bottom: '16', left: '0', color: 'rgba(0, 0, 0, 0.15)'};
-            }
-
-            if (normalizedShadowType === 'heavy') {
-                return isHover
-                    ? {top: '0', right: '8', bottom: '24', left: '0', color: 'rgba(0, 0, 0, 0.2)'}
-                    : {top: '0', right: '8', bottom: '24', left: '0', color: 'rgba(0, 0, 0, 0.2)'};
-            }
-
-            return {top: '0', right: '0', bottom: '0', left: '0', color: 'rgba(0, 0, 0, 0)'};
-        },
-
-        hasAnyCustomShadowValue(card, prefix) {
-            return ['Top', 'Right', 'Bottom', 'Left', 'Color'].some((suffix) => {
-                const value = card?.[`${prefix}${suffix}`];
-                return value !== undefined && value !== null && String(value).trim() !== '';
-            });
-        },
-
-        applyShadowPreset(card, prefix, preset) {
-            card[`${prefix}Top`] = preset.top;
-            card[`${prefix}Right`] = preset.right;
-            card[`${prefix}Bottom`] = preset.bottom;
-            card[`${prefix}Left`] = preset.left;
-            card[`${prefix}Color`] = preset.color;
-        },
-
         createButton(overrides = {}) {
             return Object.assign({
                 show: true,
@@ -292,28 +252,13 @@ export default {
                 buttonLinkType: 'internal',
                 buttonUrl: '',
                 buttonTarget: '_self',
-                buttonAlignment: 'left',
-                buttonShowIcon: true,
-                buttonIcon: null,
-                buttonIconColor: '#FFFFFF',
-                buttonIconHoverColor: '#000000',
-                buttonIconHoverActive: true,
-                buttonIconSize: '25',
-                buttonBackgroundColor: '#005AE5',
-                buttonHoverBackgroundColor: '#00f5ff',
                 buttonTextColor: '#FFFFFF',
                 buttonHoverTextColor: '#000000',
                 buttonBorderColor: '#00f5ff',
                 buttonHoverBorderColor: '#f3f4f6',
                 buttonBorderStyle: 'solid',
                 buttonBorderWidth: 0,
-                buttonBorderRadius: 8,
-                buttonFontSize: '14',
-                buttonShadowColor: '#26262440',
-                buttonShadowLeft: 0,
-                buttonShadowRight: 0,
-                buttonShadowTop: 0,
-                buttonShadowBottom: 0
+                buttonBorderRadius: 8
             }, overrides);
         },
 
@@ -333,28 +278,13 @@ export default {
                 buttonLinkType: card?.buttonLinkType,
                 buttonUrl: card?.buttonUrl,
                 buttonTarget: card?.buttonTarget,
-                buttonAlignment: card?.buttonAlignment,
-                buttonShowIcon: card?.buttonShowIcon,
-                buttonIcon: card?.buttonIcon,
-                buttonIconColor: card?.buttonIconColor,
-                buttonIconHoverColor: card?.buttonIconHoverColor,
-                buttonIconHoverActive: card?.buttonIconHoverActive,
-                buttonIconSize: card?.buttonIconSize,
-                buttonBackgroundColor: card?.buttonBackgroundColor,
-                buttonHoverBackgroundColor: card?.buttonHoverBackgroundColor,
                 buttonTextColor: card?.buttonTextColor,
                 buttonHoverTextColor: card?.buttonHoverTextColor,
                 buttonBorderColor: card?.buttonBorderColor,
                 buttonHoverBorderColor: card?.buttonHoverBorderColor,
                 buttonBorderStyle: card?.buttonBorderStyle,
                 buttonBorderWidth: card?.buttonBorderWidth,
-                buttonBorderRadius: card?.buttonBorderRadius,
-                buttonFontSize: card?.buttonFontSize,
-                buttonShadowColor: card?.buttonShadowColor,
-                buttonShadowLeft: card?.buttonShadowLeft,
-                buttonShadowRight: card?.buttonShadowRight,
-                buttonShadowTop: card?.buttonShadowTop,
-                buttonShadowBottom: card?.buttonShadowBottom
+                buttonBorderRadius: card?.buttonBorderRadius
             });
         },
 
@@ -367,14 +297,8 @@ export default {
                 }
             });
 
-            if (String(button.buttonFontSize).trim() === '9') {
-                button.buttonFontSize = '14';
-            }
             if (String(button.buttonBorderRadius).trim() === '4') {
                 button.buttonBorderRadius = 8;
-            }
-            if (button.buttonShowIcon === undefined || button.buttonShowIcon === null) {
-                button.buttonShowIcon = true;
             }
         },
 
@@ -473,9 +397,6 @@ export default {
                 if (card.cardMainBackgroundGradientDirection === undefined || card.cardMainBackgroundGradientDirection === null || String(card.cardMainBackgroundGradientDirection).trim() === '') {
                     card.cardMainBackgroundGradientDirection = 'top';
                 }
-                if (card.showIcon === undefined || card.showIcon === null) {
-                    card.showIcon = false;
-                }
                 if (card.iconAlignment === undefined || card.iconAlignment === null || String(card.iconAlignment).trim() === '') {
                     card.iconAlignment = 'left';
                 }
@@ -545,9 +466,6 @@ export default {
                 if (card.detailRowsOutlineThickness === undefined || card.detailRowsOutlineThickness === null || String(card.detailRowsOutlineThickness).trim() === '') {
                     card.detailRowsOutlineThickness = '1';
                 }
-                if (card.showInfoText === undefined || card.showInfoText === null) {
-                    card.showInfoText = true;
-                }
                 if (card.infoText === undefined || card.infoText === null || String(card.infoText).trim() === '') {
                     card.infoText = 'Infotext';
                 }
@@ -578,15 +496,6 @@ export default {
                 if (card.buttonTarget === undefined || card.buttonTarget === null || String(card.buttonTarget).trim() === '') {
                     card.buttonTarget = '_self';
                 }
-                if (card.buttonAlignment === undefined || card.buttonAlignment === null || String(card.buttonAlignment).trim() === '') {
-                    card.buttonAlignment = 'left';
-                }
-                if (card.buttonBackgroundColor === undefined || card.buttonBackgroundColor === null || String(card.buttonBackgroundColor).trim() === '') {
-                    card.buttonBackgroundColor = '#005AE5';
-                }
-                if (card.buttonHoverBackgroundColor === undefined || card.buttonHoverBackgroundColor === null || String(card.buttonHoverBackgroundColor).trim() === '') {
-                    card.buttonHoverBackgroundColor = '#00f5ff';
-                }
                 if (card.buttonTextColor === undefined || card.buttonTextColor === null || String(card.buttonTextColor).trim() === '') {
                     card.buttonTextColor = '#FFFFFF';
                 }
@@ -608,52 +517,6 @@ export default {
                 if (card.buttonBorderRadius === undefined || card.buttonBorderRadius === null || String(card.buttonBorderRadius).trim() === '') {
                     card.buttonBorderRadius = 8;
                 }
-                if (card.buttonFontSize === undefined || card.buttonFontSize === null || String(card.buttonFontSize).trim() === '') {
-                    card.buttonFontSize = '14';
-                }
-                if (card.buttonShadowColor === undefined || card.buttonShadowColor === null || String(card.buttonShadowColor).trim() === '') {
-                    card.buttonShadowColor = '#26262440';
-                }
-                if (card.buttonShadowLeft === undefined || card.buttonShadowLeft === null || String(card.buttonShadowLeft).trim() === '') {
-                    card.buttonShadowLeft = 0;
-                }
-                if (card.buttonShadowRight === undefined || card.buttonShadowRight === null || String(card.buttonShadowRight).trim() === '') {
-                    card.buttonShadowRight = 0;
-                }
-                if (card.buttonShadowTop === undefined || card.buttonShadowTop === null || String(card.buttonShadowTop).trim() === '') {
-                    card.buttonShadowTop = 0;
-                }
-                if (card.buttonShadowBottom === undefined || card.buttonShadowBottom === null || String(card.buttonShadowBottom).trim() === '') {
-                    card.buttonShadowBottom = 0;
-                }
-                if (card.buttonIconColor === undefined || card.buttonIconColor === null || String(card.buttonIconColor).trim() === '') {
-                    card.buttonIconColor = '#FFFFFF';
-                }
-                if (card.buttonIconHoverColor === undefined || card.buttonIconHoverColor === null || String(card.buttonIconHoverColor).trim() === '') {
-                    card.buttonIconHoverColor = '#000000';
-                }
-                if (card.buttonIconHoverActive === undefined || card.buttonIconHoverActive === null) {
-                    card.buttonIconHoverActive = true;
-                }
-                if (card.buttonIcon === undefined) {
-                    card.buttonIcon = null;
-                }
-                if (card.buttonShowIcon === undefined || card.buttonShowIcon === null) {
-                    card.buttonShowIcon = true;
-                }
-                if (card.buttonIconSize === undefined || card.buttonIconSize === null || String(card.buttonIconSize).trim() === '') {
-                    card.buttonIconSize = '25';
-                }
-
-                if (!this.hasAnyCustomShadowValue(card, 'cardShadow')) {
-                    const cardShadowPreset = this.getLegacyCardShadowPreset(card.cardShadow || 'none');
-                    this.applyShadowPreset(card, 'cardShadow', cardShadowPreset);
-                }
-
-                if (!this.hasAnyCustomShadowValue(card, 'cardHoverShadow')) {
-                    const cardHoverShadowPreset = this.getLegacyCardShadowPreset(card.cardHoverShadow || 'light', true);
-                    this.applyShadowPreset(card, 'cardHoverShadow', cardHoverShadowPreset);
-                }
             });
         },
 
@@ -665,7 +528,6 @@ export default {
             }
 
             return {
-                showIcon: false,
                 iconShape: 'square',
                 iconSize: '80',
                 iconAlignment: 'left',
@@ -677,13 +539,11 @@ export default {
                 iconBorderRadius: '8',
                 iconImage: null,
                 iconHoverEffect: 'none',
-                showHeadline: true,
                 headline: 'Headline',
                 headlineSize: '24',
                 headlineLineHeight: '28',
                 headlineAlignment: 'left',
                 headlineColor: '#262624',
-                showSubheadline: true,
                 subheadline: 'Subheadline',
                 subheadlineSize: '20',
                 subheadlineLineHeight: '25',
@@ -712,7 +572,6 @@ export default {
                 detailRowsValueFontWeight: '400',
                 detailRowsOutlineColor: '#E4E4E3',
                 detailRowsOutlineThickness: '1',
-                showInfoText: true,
                 infoText: 'Infotext',
                 infoTextAlignment: 'left',
                 infoTextSize: '16',
@@ -722,20 +581,10 @@ export default {
                 buttons: [
                     this.createButton()
                 ],
-                showButton: true,
                 buttonText: 'LEARN MORE',
                 buttonLinkType: 'internal',
                 buttonUrl: '',
                 buttonTarget: '_self',
-                buttonAlignment: 'left',
-                buttonShowIcon: true,
-                buttonIcon: null,
-                buttonIconColor: '#FFFFFF',
-                buttonIconHoverColor: '#000000',
-                buttonIconHoverActive: true,
-                buttonIconSize: '25',
-                buttonBackgroundColor: '#005AE5',
-                buttonHoverBackgroundColor: '#00f5ff',
                 buttonTextColor: '#FFFFFF',
                 buttonHoverTextColor: '#000000',
                 buttonBorderColor: '#00f5ff',
@@ -743,12 +592,6 @@ export default {
                 buttonBorderStyle: 'solid',
                 buttonBorderWidth: 0,
                 buttonBorderRadius: 8,
-                buttonFontSize: '14',
-                buttonShadowColor: '#26262440',
-                buttonShadowLeft: 0,
-                buttonShadowRight: 0,
-                buttonShadowTop: 0,
-                buttonShadowBottom: 0,
                 mediaPosition: 'center',
                 mediaWidth: '50',
                 contentWidth: '50',
@@ -771,22 +614,7 @@ export default {
                 cardBackgroundVideoUploadUrl: '',
                 cardBackgroundGradientColor1: '#005AE5',
                 cardBackgroundGradientColor2: '#0080FF',
-                cardBackgroundGradientDirection: 'top',
-                cardOutlineColor: '#E4E4E3',
-                cardOutlineThickness: '1',
-                cardBorderRadius: '10',
-                cardShadowTop: '0',
-                cardShadowRight: '0',
-                cardShadowBottom: '0',
-                cardShadowLeft: '0',
-                cardShadowColor: 'rgba(0, 0, 0, 0)',
-                cardShadow: 'none',
-                cardHoverShadowTop: '0',
-                cardHoverShadowRight: '0',
-                cardHoverShadowBottom: '0',
-                cardHoverShadowLeft: '0',
-                cardHoverShadowColor: 'rgba(0, 0, 0, 0)',
-                cardHoverShadow: 'none'
+                cardBackgroundGradientDirection: 'top'
             };
         },
 
@@ -1339,22 +1167,6 @@ export default {
             return this.element.data?.featureIcons?.[key] || null;
         },
 
-        // Button Icon Upload Methods
-        onOpenButtonIconModal(cardIndex, buttonIndex) {
-            const key = this.getButtonMediaKey(cardIndex, buttonIndex);
-            this.buttonIconModals = {...this.buttonIconModals, [key]: true};
-        },
-        onCloseButtonIconModal(cardIndex, buttonIndex) {
-            const key = this.getButtonMediaKey(cardIndex, buttonIndex);
-            this.buttonIconModals = {...this.buttonIconModals, [key]: false};
-        },
-        onButtonIconUpload(cardIndex, buttonIndex, {targetId}) {
-            this.mediaRepository.get(targetId).then((mediaEntity) => {
-                this.element.config.cards.value[cardIndex].buttons[buttonIndex].buttonIcon = targetId;
-                this.updateButtonIconData(cardIndex, buttonIndex, mediaEntity);
-                this.$emit('element-update', this.element);
-            });
-        },
         updateButtonIconData(cardIndex, buttonIndex, media = null) {
             if (!this.element.data) {
                 this.element.data = {};
@@ -1364,34 +1176,11 @@ export default {
             }
             const key = this.getButtonMediaKey(cardIndex, buttonIndex);
             this.element.data.buttonIcons[key] = media;
-
             if (buttonIndex === 0) {
                 this.element.data.buttonIcons[cardIndex] = media;
             }
         },
-        onButtonIconRemove(cardIndex, buttonIndex) {
-            this.element.config.cards.value[cardIndex].buttons[buttonIndex].buttonIcon = null;
-            this.updateButtonIconData(cardIndex, buttonIndex, null);
-            this.$emit('element-update', this.element);
-        },
-        onButtonIconSelectionChanges(cardIndex, buttonIndex, mediaEntity) {
-            if (!mediaEntity || mediaEntity.length === 0) {
-                return;
-            }
-            const media = mediaEntity[0];
-            if (media && (media.mediaType.name === 'IMAGE' || media.mediaType.name === 'VECTOR_GRAPHIC')) {
-                this.element.config.cards.value[cardIndex].buttons[buttonIndex].buttonIcon = media.id;
-                this.updateButtonIconData(cardIndex, buttonIndex, media);
-                this.$emit('element-update', this.element);
-            } else {
-                this.createNotificationError({
-                    message: 'Please select a valid image or SVG file'
-                });
-            }
-        },
-        getButtonIconUploadTag(cardIndex, buttonIndex) {
-            return `cms-button-icon-${this.element.id}-${cardIndex}-${buttonIndex}`;
-        },
+
         getButtonIconMediaItem(cardIndex, buttonIndex) {
             const key = this.getButtonMediaKey(cardIndex, buttonIndex);
             return this.element.data?.buttonIcons?.[key] || (buttonIndex === 0 ? this.element.data?.buttonIcons?.[cardIndex] || null : null);

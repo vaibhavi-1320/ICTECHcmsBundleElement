@@ -1,0 +1,19 @@
+{
+    "ict-cms-bundle-element": {
+        "storefront": {
+            "productMatrix": {
+                "noProduct": "Kein Produkt konfiguriert.",
+                "noVariants": "Keine Varianten für dieses Produkt gefunden.",
+                "colArticle": "Artikel",
+                "colDelivery": "Lieferung",
+                "colPrice": "Preis",
+                "colBuy": "Kaufen",
+                "freeShipping": "Kostenloser Versand",
+                "addToCart": "In den Warenkorb",
+                "quantity": "Menge",
+                "decrease": "Menge verringern",
+                "increase": "Menge erhöhen"
+            }
+        }
+    }
+}

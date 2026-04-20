@@ -81,9 +81,6 @@
                 {% set detailValueLineHeightCss = detailValueLineHeightRaw ? (detailValueLineHeightRaw matches '/^[0-9]+(\.[0-9]+)?$/' ? detailValueLineHeightRaw ~ 'px' : detailValueLineHeightRaw) : '24px' %}
                 {% set infoTextLineHeightCss = infoTextLineHeightRaw ? (infoTextLineHeightRaw matches '/^[0-9]+(\.[0-9]+)?$/' ? infoTextLineHeightRaw ~ 'px' : infoTextLineHeightRaw) : '24px' %}
                 {% set detailRowBorder = (card.detailRowsOutlineThickness ?? 1) ~ 'px solid ' ~ (card.detailRowsOutlineColor ?? '#E4E4E3') %}
-                {% set buttonAlignment = activeButton and activeButton.buttonAlignment is defined ? activeButton.buttonAlignment : 'left' %}
-                {% set buttonJustify = buttonAlignment == 'center' ? 'center' : (buttonAlignment == 'right' ? 'flex-end' : 'flex-start') %}
-
                 <div
                     class="ict-overview-card"
                     style="
@@ -94,9 +91,6 @@
                         {% else %}
                             background-color: #FFFFFF;
                         {% endif %}
-                        border: {{ card.cardOutlineThickness ?? 1 }}px solid {{ card.cardOutlineColor ?? '#E4E4E3' }};
-                        border-radius: {{ card.cardBorderRadius ?? 10 }}px;
-                        box-shadow: {{ (card.cardShadowLeft ?? 0) ~ 'px ' ~ (card.cardShadowTop ?? 0) ~ 'px ' ~ (card.cardShadowRight ?? 0) ~ 'px ' ~ (card.cardShadowBottom ?? 0) ~ 'px ' ~ (card.cardShadowColor ?? 'rgba(0, 0, 0, 0)') }};
                     "
                 >
                     {% if card.cardMainBackgroundType == 'image' and cardMainImageMedia %}
@@ -133,7 +127,6 @@
                         </div>
 
                         <div class="card-content">
-                            {% if card.showIcon %}
                                 <div class="card-icon" style="text-align: {{ card.iconAlignment ?? 'left' }};">
                                     <div class="icon-wrapper" style="
                                         width: {{ card.iconSize ?? 80 }}px;
@@ -160,19 +153,14 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                            {% endif %}
 
-                            {% if card.showHeadline %}
                                 <h3 class="card-headline" style="font-size: {{ headlineCssSize }}; line-height: {{ headlineLineHeightCss }}; text-align: {{ card.headlineAlignment ?? 'left' }}; color: {{ card.headlineColor ?? '#262624' }};">
                                     {{ card.headline }}
                                 </h3>
-                            {% endif %}
 
-                            {% if card.showSubheadline %}
                                 <h4 class="card-subheadline" style="font-size: {{ subheadlineCssSize }}; line-height: {{ subheadlineLineHeightCss }}; text-align: {{ card.subheadlineAlignment ?? 'left' }}; color: {{ card.subheadlineColor ?? '#262624' }};">
                                     {{ card.subheadline }}
                                 </h4>
-                            {% endif %}
 
                             {% if card.showBodyText %}
                                 <div class="card-body-text" style="font-size: {{ bodyTextCssSize }}; line-height: {{ bodyTextLineHeightCss }}; text-align: {{ card.bodyTextAlignment ?? 'left' }}; color: {{ card.bodyTextColor ?? '#262624' }};">
@@ -199,57 +187,31 @@
                                 </div>
                             {% endif %}
 
-                            {% if card.showInfoText and card.infoText is defined and (card.infoText ~ '')|trim %}
+                            {% if card.infoText is defined and (card.infoText ~ '')|trim %}
                                 <div class="card-info-text" style="border-bottom: {{ detailRowBorder }}; text-align: {{ card.infoTextAlignment ?? 'left' }}; font-size: {{ infoTextCssSize }}; line-height: {{ infoTextLineHeightCss }}; color: {{ card.infoTextColor ?? '#262624' }}; font-weight: {{ card.infoTextFontWeight ?? '700' }};">
                                     {{ card.infoText }}
                                 </div>
                             {% endif %}
 
-                            {% if card.showButton and activeButton %}
-                                {% set buttonIconMedia = slotData.buttonIcons[cardIndex ~ '-' ~ activeButtonIndex] ?? slotData.buttonIcons[cardIndex] ?? null %}
-                                {% set buttonIconSizeRaw = activeButton.buttonIconSize is defined and activeButton.buttonIconSize is not null ? (activeButton.buttonIconSize ~ '')|trim : '' %}
-                                {% set buttonFontSizeRaw = activeButton.buttonFontSize is defined and activeButton.buttonFontSize is not null ? (activeButton.buttonFontSize ~ '')|trim : '' %}
-                                {% set buttonIconSizeCss = buttonIconSizeRaw ? (buttonIconSizeRaw matches '/^[0-9]+(\.[0-9]+)?$/' ? buttonIconSizeRaw ~ 'px' : buttonIconSizeRaw) : '25px' %}
-                                {% set buttonFontSizeCss = buttonFontSizeRaw ? (buttonFontSizeRaw matches '/^[0-9]+(\.[0-9]+)?$/' ? buttonFontSizeRaw ~ 'px' : buttonFontSizeRaw) : '14px' %}
+                            {% if activeButton %}
                                 {% set buttonUrl = activeButton.buttonUrl ?? '#' %}
-                                <div class="card-buttons" style="justify-content: {{ buttonJustify }};">
+                                <div class="card-buttons" style="justify-content: flex-start;">
                                     <div class="card-button-wrapper">
                                         <a
                                             href="{{ buttonUrl }}"
                                             target="{{ activeButton.buttonTarget ?? '_self' }}"
                                             class="card-button"
-                                            data-icon-hover-active="{{ activeButton.buttonIconHoverActive ? 'true' : 'false' }}"
                                             style="
-                                                --button-bg: {{ activeButton.buttonBackgroundColor ?? '#005AE5' }};
                                                 --button-text: {{ activeButton.buttonTextColor ?? '#FFFFFF' }};
-                                                --button-hover-bg: {{ activeButton.buttonHoverBackgroundColor ?? '#00f5ff' }};
                                                 --button-hover-text: {{ activeButton.buttonHoverTextColor ?? '#000000' }};
                                                 --button-border-width: {{ activeButton.buttonBorderWidth ?? 0 }}px;
                                                 --button-border-style: {{ activeButton.buttonBorderStyle ?? 'solid' }};
-                                                --button-border-color: {{ activeButton.buttonBorderColor ?? '#00f5ff' }};
-                                                --button-hover-border-color: {{ activeButton.buttonHoverBorderColor ?? '#f3f4f6' }};
-                                                --button-radius: {{ activeButton.buttonBorderRadius ?? 8 }}px;
-                                                --button-shadow: {{ activeButton.buttonShadowLeft ?? 0 }}px {{ activeButton.buttonShadowTop ?? 0 }}px {{ activeButton.buttonShadowRight ?? 0 }}px {{ activeButton.buttonShadowBottom ?? 0 }}px {{ activeButton.buttonShadowColor ?? '#26262440' }};
-                                                --button-icon-size: {{ buttonIconSizeCss }};
-                                                --button-icon-base-color: {{ activeButton.buttonIconColor ?? '#FFFFFF' }};
-                                                --button-icon-hover-color: {{ activeButton.buttonIconHoverColor ?? '#000000' }};
-                                                font-size: {{ buttonFontSizeCss }};
+                                                --button-border-color: {{ activeButton.buttonBorderColor ?? 'transparent' }};
+                                                --button-hover-border-color: {{ activeButton.buttonHoverBorderColor ?? 'transparent' }};
+                                                --button-radius: {{ activeButton.buttonBorderRadius ?? 6 }}px;
                                             "
                                         >
                                             <span>{{ activeButton.buttonText ?? 'LEARN MORE' }}</span>
-                                            {% if activeButton.buttonShowIcon is not defined or activeButton.buttonShowIcon %}
-                                                {% if buttonIconMedia %}
-                                                    {% if '.svg' in buttonIconMedia.url %}
-                                                        <span class="button-icon button-icon-mask" style="background-color: var(--button-icon-color); -webkit-mask-image: url('{{ buttonIconMedia.url }}'); mask-image: url('{{ buttonIconMedia.url }}');"></span>
-                                                    {% else %}
-                                                        <span class="button-icon button-icon-image" style="background-image: url('{{ buttonIconMedia.url }}');"></span>
-                                                    {% endif %}
-                                                {% else %}
-                                                    <svg class="button-icon button-icon-arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                                        <path d="M5 12h12.17l-5.59-5.59L13 5l8 8-8 8-1.41-1.41L17.17 13H5z"/>
-                                                    </svg>
-                                                {% endif %}
-                                            {% endif %}
                                         </a>
                                     </div>
                                 </div>

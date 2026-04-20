@@ -1,0 +1,19 @@
+{
+    "ict-cms-bundle-element": {
+        "storefront": {
+            "productMatrix": {
+                "noProduct": "No product configured.",
+                "noVariants": "No variants found for this product.",
+                "colArticle": "Article",
+                "colDelivery": "Delivery",
+                "colPrice": "Price",
+                "colBuy": "Buy",
+                "freeShipping": "Free shipping",
+                "addToCart": "Add to shopping cart",
+                "quantity": "Quantity",
+                "decrease": "Decrease quantity",
+                "increase": "Increase quantity"
+            }
+        }
+    }
+}

@@ -17,6 +17,9 @@ import './module/sw-cms/elements/ict-category-image-slider';
 import './module/sw-cms/elements/ict-two-column-three-image';
 import './module/sw-cms/elements/ict-platform-support';
 import './module/sw-cms/elements/ict-overview-cards-6';
+import './module/sw-cms/elements/ict-feature-grid';
+import './module/sw-cms/elements/ict-content-tabs';
+import './module/sw-cms/elements/ict-product-matrix';
 import './module/sw-cms/elements/ict-platform-support';
 import './module/sw-cms/elements/ict-overview-cards-6';
 
@@ -36,6 +39,9 @@ import './module/sw-cms/blocks/ict-category-image-slider';
 import './module/sw-cms/blocks/ict-two-column-three-image';
 import './module/sw-cms/blocks/ict-platform-support';
 import './module/sw-cms/blocks/ict-overview-cards-6';
+import './module/sw-cms/blocks/ict-feature-grid';
+import './module/sw-cms/blocks/ict-content-tabs';
+import './module/sw-cms/blocks/ict-product-matrix';
 import './module/sw-cms/blocks/ict-platform-support';
 import './module/sw-cms/blocks/ict-overview-cards-6';
 

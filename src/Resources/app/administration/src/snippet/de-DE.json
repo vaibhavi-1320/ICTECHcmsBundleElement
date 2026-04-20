@@ -69,6 +69,12 @@
                 },
                 "ictOverviewCards6": {
                     "label": "ICT Übersichtskarten"
+                },
+                "ictFeatureGrid": {
+                    "label": "ICT Feature-Raster"
+                },
+                "ictContentTabs": {
+                    "label": "ICT Inhalts-Tabs"
                 }
             },
             "elements": {
@@ -161,6 +167,38 @@
                 },
                 "ictOverviewCards6": {
                     "label": "ICT Übersichtskarten"
+                },
+                "ictFeatureGrid": {
+                    "label": "ICT Feature-Raster"
+                },
+                "ictContentTabs": {
+                    "label": "ICT Inhalts-Tabs",
+                    "addTabHint": "Klicken Sie, um Tabs in den Element-Einstellungen hinzuzufügen",
+                    "addTab": "+ Neuer Tab",
+                    "tabLabel": "Tab-Bezeichnung",
+                    "tabContent": "Inhalt des Tabs",
+                    "configTab": {
+                        "settings": "Einstellungen",
+                        "elements": "Tab - Elemente"
+                    },
+                    "displayModeLabel": "Anzeigemodus",
+                    "tabStyleLabel": "Stil der Tabs",
+                    "verticalAlignLabel": "Vertikale Ausrichtung",
+                    "displayMode": {
+                        "topbar": "Tab-Liste - Oben",
+                        "sidebar": "Tab-Liste - Seitenleiste"
+                    },
+                    "tabStyle": {
+                        "buttons": "Schaltflächen",
+                        "underline": "Unterstrich",
+                        "pills": "Pillen"
+                    },
+                    "verticalAlign": {
+                        "default": "Vertikale Ausrichtung",
+                        "top": "Oben",
+                        "center": "Mitte",
+                        "bottom": "Unten"
+                    }
                 }
             }
         }
