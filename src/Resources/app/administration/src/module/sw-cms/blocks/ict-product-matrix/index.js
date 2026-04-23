@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-product-matrix', () => import('./c
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-product-matrix',
     label: 'ict-cms-bundle-element.cms.blocks.ictProductMatrix.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-product-matrix',
     previewComponent: 'sw-cms-preview-ict-product-matrix',
     defaultConfig: {

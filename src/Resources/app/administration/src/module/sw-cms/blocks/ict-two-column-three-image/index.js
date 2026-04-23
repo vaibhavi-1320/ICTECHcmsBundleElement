@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-two-column-three-image', () => imp
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-two-column-three-image',
     label: 'sw-cms.blocks.ictTwoColumnThreeImage.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-two-column-three-image',
     previewComponent: 'sw-cms-preview-ict-two-column-three-image',
     defaultConfig: {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -14,12 +16,18 @@ use Shopware\Core\Framework\Struct\ArrayStruct;
 final class IctTwoColumnThreeImageElementDataResolver extends AbstractCmsElementResolver
 {
     private const MEDIA_CONFIGS = [
-        'leftImage'            => ['prefix' => 'leftMedia_',            'dataKey' => 'leftMedia'],
-        'leftButtonIcon'       => ['prefix' => 'leftButtonIcon_',       'dataKey' => 'leftButtonIcon'],
-        'rightTopImage'        => ['prefix' => 'rightTopMedia_',        'dataKey' => 'rightTopMedia'],
-        'rightTopButtonIcon'   => ['prefix' => 'rightTopButtonIcon_',   'dataKey' => 'rightTopButtonIcon'],
-        'rightBottomImage'     => ['prefix' => 'rightBottomMedia_',     'dataKey' => 'rightBottomMedia'],
-        'rightBottomButtonIcon'=> ['prefix' => 'rightBottomButtonIcon_','dataKey' => 'rightBottomButtonIcon'],
+        'leftImage' => ['prefix' => 'leftMedia_', 'dataKey' => 'leftMedia'],
+        'leftButtonIcon' => ['prefix' => 'leftButtonIcon_', 'dataKey' => 'leftButtonIcon'],
+        'rightTopImage' => ['prefix' => 'rightTopMedia_', 'dataKey' => 'rightTopMedia'],
+        'rightTopButtonIcon' => [
+            'prefix' => 'rightTopButtonIcon_',
+            'dataKey' => 'rightTopButtonIcon',
+        ],
+        'rightBottomImage' => ['prefix' => 'rightBottomMedia_', 'dataKey' => 'rightBottomMedia'],
+        'rightBottomButtonIcon' => [
+            'prefix' => 'rightBottomButtonIcon_',
+            'dataKey' => 'rightBottomButtonIcon',
+        ],
     ];
 
     public function __construct(

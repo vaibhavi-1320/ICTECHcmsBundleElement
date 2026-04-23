@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -49,7 +51,7 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
         }
 
         $mediaMap = $this->buildMediaMap($slot, $result);
-        $cards    = $this->extractCards($config);
+        $cards = $this->extractCards($config);
 
         $slot->setData(new ArrayStruct($this->buildData($cards, $mediaMap)));
     }
@@ -58,17 +60,19 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
 
     /**
      * @param array<string, mixed> $config
+     *
      * @return list<string>
      */
     private function collectAllMediaIds(array $config): array
     {
-        $ids   = [];
+        $ids = [];
         $cards = $this->extractCards($config);
 
         foreach ($cards as $card) {
-            if (!is_array($card)) {
+            if (! is_array($card)) {
                 continue;
             }
+
             /** @var array<string, mixed> $card */
             $this->collectCardMediaIds($card, $ids);
         }
@@ -78,7 +82,8 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
 
     /**
      * @param array<string, mixed> $card
-     * @param list<string>         $ids
+     *
+     * @param list<string> $ids
      */
     private function collectCardMediaIds(array $card, array &$ids): void
     {
@@ -94,20 +99,21 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
 
     /**
      * @param array<string, mixed> $card
-     * @param list<string>         $ids
+     *
+     * @param list<string> $ids
      */
     private function collectButtonIconIds(array $card, array &$ids): void
     {
         $buttons = $card['buttons'] ?? null;
-        if (!is_array($buttons)) {
+        if (! is_array($buttons)) {
             return;
         }
 
         foreach ($buttons as $button) {
-            if (!is_array($button)) {
+            if (! is_array($button)) {
                 continue;
             }
-            /** @var array<string, mixed> $button */
+
             $icon = $button['buttonIcon'] ?? null;
             if (is_string($icon) && $icon !== '') {
                 $ids[] = $icon;
@@ -138,24 +144,26 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
     }
 
     /**
-     * @param list<mixed>          $cards
+     * @param list<mixed> $cards
+     *
      * @param array<string, object> $mediaMap
+     *
      * @return array<string, array<int|string, object>>
      */
     private function buildData(array $cards, array $mediaMap): array
     {
-        /** @var array<string, array<int|string, object>> $data */
         $data = [
-            'iconImages'  => [],
-            'cardImages'  => [],
-            'cardVideos'  => [],
+            'iconImages' => [],
+            'cardImages' => [],
+            'cardVideos' => [],
             'buttonIcons' => [],
         ];
 
         foreach ($cards as $index => $card) {
-            if (!is_array($card)) {
+            if (! is_array($card)) {
                 continue;
             }
+
             /** @var array<string, mixed> $card */
             $this->enrichCard($card, $index, $mediaMap, $data);
         }
@@ -164,14 +172,16 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
     }
 
     /**
-     * @param array<string, mixed>                       $card
-     * @param array<string, object>                      $mediaMap
-     * @param array<string, array<int|string, object>>   $data
+     * @param array<string, mixed> $card
+     *
+     * @param array<string, object> $mediaMap
+     *
+     * @param array<string, array<int|string, object>> $data
      */
     private function enrichCard(array $card, int|string $index, array $mediaMap, array &$data): void
     {
         $simpleFields = [
-            'iconImage'          => 'iconImages',
+            'iconImage' => 'iconImages',
             'cardBackgroundImage' => 'cardImages',
             'cardBackgroundVideo' => 'cardVideos',
         ];
@@ -187,31 +197,45 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
     }
 
     /**
-     * @param array<string, mixed>                       $card
-     * @param array<string, object>                      $mediaMap
-     * @param array<string, array<int|string, object>>   $data
+     * @param array<string, mixed> $card
+     *
+     * @param array<string, object> $mediaMap
+     *
+     * @param array<string, array<int|string, object>> $data
      */
     private function enrichButtonIcons(array $card, int|string $cardIndex, array $mediaMap, array &$data): void
     {
         $buttons = $card['buttons'] ?? null;
-        if (!is_array($buttons)) {
+        if (! is_array($buttons)) {
             return;
         }
 
         foreach ($buttons as $buttonIndex => $button) {
-            if (!is_array($button)) {
-                continue;
-            }
-            /** @var array<string, mixed> $button */
-            $icon = $button['buttonIcon'] ?? null;
-            if (!is_string($icon) || $icon === '' || !isset($mediaMap[$icon])) {
+            if (! is_array($button)) {
                 continue;
             }
 
-            $data['buttonIcons'][$cardIndex . '-' . $buttonIndex] = $mediaMap[$icon];
-            if ($buttonIndex === 0) {
-                $data['buttonIcons'][$cardIndex] = $mediaMap[$icon];
-            }
+            $this->assignButtonIconIfExists($button, $cardIndex, $buttonIndex, $mediaMap, $data);
+        }
+    }
+
+    /**
+     * @param array<mixed> $button
+     *
+     * @param array<string, object> $mediaMap
+     *
+     * @param array<string, array<int|string, object>> $data
+     */
+    private function assignButtonIconIfExists(array $button, int|string $cardIndex, int|string $buttonIndex, array $mediaMap, array &$data): void
+    {
+        $icon = $button['buttonIcon'] ?? null;
+        if (! is_string($icon) || $icon === '' || ! isset($mediaMap[$icon])) {
+            return;
+        }
+
+        $data['buttonIcons'][$cardIndex . '-' . $buttonIndex] = $mediaMap[$icon];
+        if ($buttonIndex === 0) {
+            $data['buttonIcons'][$cardIndex] = $mediaMap[$icon];
         }
     }
 
@@ -219,12 +243,13 @@ final class IctFeatureGridCmsElementResolver extends AbstractCmsElementResolver
 
     /**
      * @param array<string, mixed> $config
+     *
      * @return list<mixed>
      */
     private function extractCards(array $config): array
     {
         $entry = $config['cards'] ?? null;
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             return [];
         }
 

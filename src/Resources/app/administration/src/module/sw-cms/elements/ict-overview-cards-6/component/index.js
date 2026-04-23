@@ -9,8 +9,20 @@ export default {
 
     mixins: [Mixin.getByName('cms-element')],
 
+    inject: ['repositoryFactory'],
+
+    computed: {
+        mediaRepository() {
+            return this.repositoryFactory.create('media');
+        }
+    },
+
     created() {
         this.createdComponent();
+    },
+
+    mounted() {
+        this.loadMedia();
     },
 
     methods: {
@@ -159,6 +171,48 @@ export default {
             const id = url.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '').split('&')[0];
             if (!id) return '';
             return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&rel=0`;
+        },
+
+        async loadMedia() {
+            const cards = this.element.config?.cards?.value;
+            if (!Array.isArray(cards)) return;
+
+            if (!this.element.data) this.element.data = {};
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+
+                if (card.iconImage && !this.element.data.iconImages?.[i]) {
+                    try {
+                        const media = await this.mediaRepository.get(card.iconImage);
+                        if (!this.element.data.iconImages) this.element.data.iconImages = {};
+                        this.element.data.iconImages[i] = media;
+                    } catch (_) { /* noop */ }
+                }
+
+                if (card.cardBackgroundImage && !this.element.data.cardImages?.[i]) {
+                    try {
+                        const media = await this.mediaRepository.get(card.cardBackgroundImage);
+                        if (!this.element.data.cardImages) this.element.data.cardImages = {};
+                        this.element.data.cardImages[i] = media;
+                    } catch (_) { /* noop */ }
+                }
+
+                if (card.cardMainBackgroundImage && !this.element.data.cardMainImages?.[i]) {
+                    try {
+                        const media = await this.mediaRepository.get(card.cardMainBackgroundImage);
+                        if (!this.element.data.cardMainImages) this.element.data.cardMainImages = {};
+                        this.element.data.cardMainImages[i] = media;
+                    } catch (_) { /* noop */ }
+                }
+            }
+
+            if (this.element.config.backgroundImage?.value && !this.element.data.backgroundMedia) {
+                try {
+                    const media = await this.mediaRepository.get(this.element.config.backgroundImage.value);
+                    this.element.data.backgroundMedia = media;
+                } catch (_) { /* noop */ }
+            }
         }
     }
 };

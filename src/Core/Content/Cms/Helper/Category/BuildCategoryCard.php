@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category;
 
@@ -13,6 +15,7 @@ final class BuildCategoryCard
 
     /**
      * @param list<mixed> $cards
+     *
      * @return list<array{category: CategoryEntity, title: string}>
      */
     public function buildAll(array $cards, mixed $categoriesResult): array
@@ -20,7 +23,7 @@ final class BuildCategoryCard
         $items = [];
 
         foreach ($cards as $card) {
-            if (!is_array($card)) {
+            if (! is_array($card)) {
                 continue;
             }
 
@@ -39,6 +42,7 @@ final class BuildCategoryCard
      * all keys to strings, which is safe for config arrays from Shopware CMS.
      *
      * @param array<array-key, mixed> $input
+     *
      * @return array<string, mixed>
      */
     private function toStringKeyedArray(array $input): array

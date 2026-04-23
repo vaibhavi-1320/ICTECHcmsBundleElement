@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -129,7 +131,9 @@ final class IctPlatformSupportCmsElementResolver extends AbstractCmsElementResol
 
     /**
      * @param array<mixed> $platform
+     *
      * @param array<int|string, mixed> $platformIcons
+     *
      * @return array{0: array<mixed>, 1: array<int|string, mixed>}
      */
     private function resolvePlatformIcon(array $platform, int|string $index, string $uid, ElementDataCollection $result, array $platformIcons): array

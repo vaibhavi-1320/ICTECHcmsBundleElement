@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-content-tabs', () => import('./com
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-content-tabs',
     label: 'ict-cms-bundle-element.cms.blocks.ictContentTabs.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-content-tabs',
     previewComponent: 'sw-cms-preview-ict-content-tabs',
     defaultConfig: {

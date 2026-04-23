@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -41,7 +43,7 @@ final class IctProductMatrixCmsElementResolver extends AbstractCmsElementResolve
         $collection->add(
             'variants_' . $slot->getUniqueIdentifier(),
             ProductDefinition::class,
-            $criteria
+            $criteria,
         );
 
         return $collection;
@@ -57,11 +59,11 @@ final class IctProductMatrixCmsElementResolver extends AbstractCmsElementResolve
         }
 
         $variantResult = $result->get('variants_' . $slot->getUniqueIdentifier());
-        $variants      = $variantResult !== null ? $variantResult->getEntities() : null;
+        $variants = $variantResult !== null ? $variantResult->getEntities() : null;
 
         $slot->setData(new ArrayStruct([
-            'productId'   => $productId,
-            'variants'    => $variants,
+            'productId' => $productId,
+            'variants' => $variants,
             'displayMode' => $this->extractStringValue($slot->getConfig() ?? [], 'displayMode', 'standard'),
         ]));
     }
@@ -70,13 +72,13 @@ final class IctProductMatrixCmsElementResolver extends AbstractCmsElementResolve
     {
         $config = $slot->getConfig();
 
-        if (!is_array($config)) {
+        if (! is_array($config)) {
             return null;
         }
 
         $entry = $config['product'] ?? null;
 
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             return null;
         }
 
@@ -92,7 +94,7 @@ final class IctProductMatrixCmsElementResolver extends AbstractCmsElementResolve
     {
         $entry = $config[$key] ?? null;
 
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             return $default;
         }
 

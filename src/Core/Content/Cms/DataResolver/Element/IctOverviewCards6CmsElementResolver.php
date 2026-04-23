@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -116,6 +118,7 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $card
+     *
      * @param list<string> $mediaIds
      */
     private function collectButtonIconIds(array $card, array &$mediaIds): void
@@ -123,22 +126,32 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
         $buttons = $card['buttons'] ?? null;
 
         if (is_array($buttons)) {
-            foreach ($buttons as $button) {
-                if (! is_array($button)) {
-                    continue;
-                }
-                /** @var array<string, mixed> $button */
-                $icon = $button['buttonIcon'] ?? null;
-                if (is_string($icon) && $icon !== '') {
-                    $mediaIds[] = $icon;
-                }
-            }
+            $this->collectIconsFromButtons($buttons, $mediaIds);
             return;
         }
 
         $legacyIcon = $card['buttonIcon'] ?? null;
         if (is_string($legacyIcon) && $legacyIcon !== '') {
             $mediaIds[] = $legacyIcon;
+        }
+    }
+
+    /**
+     * @param array<mixed> $buttons
+     *
+     * @param list<string> $mediaIds
+     */
+    private function collectIconsFromButtons(array $buttons, array &$mediaIds): void
+    {
+        foreach ($buttons as $button) {
+            if (! is_array($button)) {
+                continue;
+            }
+
+            $icon = $button['buttonIcon'] ?? null;
+            if (is_string($icon) && $icon !== '') {
+                $mediaIds[] = $icon;
+            }
         }
     }
 
@@ -159,6 +172,7 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<mixed> $points
+     *
      * @param list<string> $mediaIds
      */
     private function collectIconsFromPoints(array $points, array &$mediaIds): void
@@ -167,7 +181,6 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
             if (! is_array($point)) {
                 continue;
             }
-            /** @var array<string, mixed> $point */
             $icon = $point['icon'] ?? null;
             if (is_string($icon) && $icon !== '') {
                 $mediaIds[] = $icon;
@@ -202,7 +215,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $config
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @return array<string, mixed>
      */
     private function enrichBackgroundMedia(array $config, array $mediaEntities): array
@@ -224,7 +239,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param list<mixed> $cards
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @return array<string, array<int|string, object>>
      */
     private function enrichCards(array $cards, array $mediaEntities): array
@@ -254,7 +271,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $card
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichSingleCard(array $card, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -266,7 +285,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $card
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichCardSimpleMedia(array $card, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -289,7 +310,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $card
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichCardButtonIcons(array $card, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -309,7 +332,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<mixed> $buttons
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichButtonsFromList(array $buttons, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -319,22 +344,30 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
                 continue;
             }
 
-            /** @var array<string, mixed> $button */
             $icon = $button['buttonIcon'] ?? null;
-            if (! is_string($icon) || $icon === '' || ! isset($mediaEntities[$icon])) {
-                continue;
-            }
-
-            $data['buttonIcons'][$cardIndex . '-' . $buttonIndex] = $mediaEntities[$icon];
-            if ($buttonIndex === 0) {
-                $data['buttonIcons'][$cardIndex] = $mediaEntities[$icon];
+            if (is_string($icon) && $icon !== '' && isset($mediaEntities[$icon])) {
+                $this->assignButtonIcon($data, $cardIndex, $buttonIndex, $mediaEntities[$icon]);
             }
         }
     }
 
     /**
+     * @param array<string, array<int|string, object>> $data
+     */
+    private function assignButtonIcon(array &$data, int|string $cardIndex, int|string $buttonIndex, object $media): void
+    {
+        $data['buttonIcons'][$cardIndex . '-' . $buttonIndex] = $media;
+
+        if ($buttonIndex === 0) {
+            $data['buttonIcons'][$cardIndex] = $media;
+        }
+    }
+
+    /**
      * @param array<string, mixed> $card
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichCardFeatureIcons(array $card, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -350,7 +383,9 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<mixed> $points
+     *
      * @param array<string, object> $mediaEntities
+     *
      * @param array<string, array<int|string, object>> $data
      */
     private function enrichFeatureIconsFromPoints(array $points, int|string $cardIndex, array $mediaEntities, array &$data): void
@@ -360,11 +395,22 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
                 continue;
             }
 
-            /** @var array<string, mixed> $point */
-            $icon = $point['icon'] ?? null;
-            if (is_string($icon) && $icon !== '' && isset($mediaEntities[$icon])) {
-                $data['featureIcons'][$cardIndex . '-' . $pointIndex] = $mediaEntities[$icon];
-            }
+            $this->assignFeatureIcon($point, $cardIndex, $pointIndex, $mediaEntities, $data);
+        }
+    }
+
+    /**
+     * @param array<mixed> $point
+     *
+     * @param array<string, object> $mediaEntities
+     *
+     * @param array<string, array<int|string, object>> $data
+     */
+    private function assignFeatureIcon(array $point, int|string $cardIndex, int|string $pointIndex, array $mediaEntities, array &$data): void
+    {
+        $icon = $point['icon'] ?? null;
+        if (is_string($icon) && $icon !== '' && isset($mediaEntities[$icon])) {
+            $data['featureIcons'][$cardIndex . '-' . $pointIndex] = $mediaEntities[$icon];
         }
     }
 
@@ -394,6 +440,7 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
      * Safely extract the 'value' array from $config[$key]['value'].
      *
      * @param array<string, mixed> $config
+     *
      * @return list<mixed>
      */
     private function getArrayValue(array $config, string $key): array
@@ -411,6 +458,7 @@ final class IctOverviewCards6CmsElementResolver extends AbstractCmsElementResolv
 
     /**
      * @param array<string, mixed> $config
+     *
      * @param list<string> $mediaIds
      */
     private function addStringValue(array $config, string $key, array &$mediaIds): void

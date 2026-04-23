@@ -119,6 +119,7 @@ export default {
                 buttons: [this.makeButton()],
                 cardBackgroundColor: '#ffffff',
                 cardAccentColor: '#6366f1',
+                mediaType: 'image',
                 mediaDisplayMode: 'crop',
                 mediaHeight: '200',
                 cardBackgroundImage: null,

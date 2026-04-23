@@ -9,12 +9,81 @@ export default {
 
     mixins: [Mixin.getByName('cms-element')],
 
+    inject: ['repositoryFactory'],
+
     created() {
         this.initElementConfig('ict-feature-grid');
         this.ensureCards();
     },
 
+    mounted() {
+        this.loadMedia();
+    },
+
+    watch: {
+        'element.config.cards.value': {
+            deep: true,
+            handler() {
+                this.loadMedia();
+            },
+        },
+    },
+
     methods: {
+        mediaRepository() {
+            return this.repositoryFactory.create('media');
+        },
+
+        setIconData(cardIndex, media) {
+            if (!this.element.data) this.element.data = {};
+            if (!this.element.data.iconImages) this.element.data.iconImages = {};
+            this.element.data.iconImages[cardIndex] = media;
+        },
+
+        setCardImageData(cardIndex, media) {
+            if (!this.element.data) this.element.data = {};
+            if (!this.element.data.cardImages) this.element.data.cardImages = {};
+            this.element.data.cardImages[cardIndex] = media;
+        },
+
+        setCardVideoData(cardIndex, media) {
+            if (!this.element.data) this.element.data = {};
+            if (!this.element.data.cardVideos) this.element.data.cardVideos = {};
+            this.element.data.cardVideos[cardIndex] = media;
+        },
+
+        async loadMedia() {
+            const cards = this.element?.config?.cards?.value;
+            if (!Array.isArray(cards) || !this.repositoryFactory) return;
+
+            const repo = this.mediaRepository();
+
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+
+                if (card.iconImage && !this.element.data?.iconImages?.[i]) {
+                    try {
+                        const media = await repo.get(card.iconImage);
+                        this.setIconData(i, media);
+                    } catch (_) { /* noop */ }
+                }
+
+                if (card.cardBackgroundImage && !this.element.data?.cardImages?.[i]) {
+                    try {
+                        const media = await repo.get(card.cardBackgroundImage);
+                        this.setCardImageData(i, media);
+                    } catch (_) { /* noop */ }
+                }
+
+                if (card.cardBackgroundVideo && !this.element.data?.cardVideos?.[i]) {
+                    try {
+                        const media = await repo.get(card.cardBackgroundVideo);
+                        this.setCardVideoData(i, media);
+                    } catch (_) { /* noop */ }
+                }
+            }
+        },
+
         ensureCards() {
             if (!this.element?.config?.cards) return;
             if (!Array.isArray(this.element.config.cards.value)) {

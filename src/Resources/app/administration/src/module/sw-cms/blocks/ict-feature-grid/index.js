@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-feature-grid', () => import('./com
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-feature-grid',
     label: 'ict-cms-bundle-element.cms.blocks.ictFeatureGrid.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-feature-grid',
     previewComponent: 'sw-cms-preview-ict-feature-grid',
     defaultConfig: {

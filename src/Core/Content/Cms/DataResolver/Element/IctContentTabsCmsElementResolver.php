@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element;
 
@@ -31,37 +33,38 @@ final class IctContentTabsCmsElementResolver extends AbstractCmsElementResolver
         }
 
         $slot->setData(new ArrayStruct([
-            'tabs'         => $this->extractTabs($config),
-            'displayMode'  => $this->extractStringValue($config, 'displayMode', 'topbar'),
-            'tabStyle'     => $this->extractStringValue($config, 'tabStyle', 'buttons'),
+            'tabs' => $this->extractTabs($config),
+            'displayMode' => $this->extractStringValue($config, 'displayMode', 'topbar'),
+            'tabStyle' => $this->extractStringValue($config, 'tabStyle', 'buttons'),
             'verticalAlign' => $this->extractStringValue($config, 'verticalAlign', ''),
         ]));
     }
 
     /**
      * @param array<string, mixed> $config
+     *
      * @return list<array{label: string, content: string}>
      */
     private function extractTabs(array $config): array
     {
         $entry = $config['tabs'] ?? null;
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             return [];
         }
 
         $value = $entry['value'] ?? null;
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return [];
         }
 
         $result = [];
         foreach (array_values($value) as $tab) {
-            if (!is_array($tab)) {
+            if (! is_array($tab)) {
                 continue;
             }
             /** @var array<string, mixed> $tab */
             $result[] = [
-                'label'   => is_string($tab['label'] ?? null) ? $tab['label'] : '',
+                'label' => is_string($tab['label'] ?? null) ? $tab['label'] : '',
                 'content' => is_string($tab['content'] ?? null) ? $tab['content'] : '',
             ];
         }
@@ -75,7 +78,7 @@ final class IctContentTabsCmsElementResolver extends AbstractCmsElementResolver
     private function extractStringValue(array $config, string $key, string $default): string
     {
         $entry = $config[$key] ?? null;
-        if (!is_array($entry)) {
+        if (! is_array($entry)) {
             return $default;
         }
 

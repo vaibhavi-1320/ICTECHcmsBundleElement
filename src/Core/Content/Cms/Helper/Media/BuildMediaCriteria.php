@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\Helper\Media;
 
@@ -27,6 +29,6 @@ final class BuildMediaCriteria
             $collection->add($conf['prefix'] . $uniqueId, MediaDefinition::class, new Criteria([$mediaValue]));
         }
 
-        return $collection->all() ? $collection : null;
+        return $collection->all() !== [] ? $collection : null;
     }
 }

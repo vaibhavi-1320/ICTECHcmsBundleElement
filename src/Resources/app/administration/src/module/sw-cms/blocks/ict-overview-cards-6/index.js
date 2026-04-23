@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-overview-cards-6', () => import('.
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-overview-cards-6',
     label: 'ict-cms-bundle-element.cms.blocks.ictOverviewCards6.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-overview-cards-6',
     previewComponent: 'sw-cms-preview-ict-overview-cards-6',
     defaultConfig: {

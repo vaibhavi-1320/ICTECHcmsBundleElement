@@ -8,125 +8,182 @@ use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
 use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
 use Shopware\Core\Content\Cms\DataResolver\Element\ElementDataCollection;
+use Shopware\Core\Content\Cms\DataResolver\FieldConfigCollection;
 use Shopware\Core\Content\Cms\DataResolver\ResolverContext\ResolverContext;
 use Shopware\Core\Content\Media\MediaDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 
-class IctHeroSectionElementDataResolver extends AbstractCmsElementResolver
+final class IctHeroSectionElementDataResolver extends AbstractCmsElementResolver
 {
-     public function getType(): string
+    private const SCALAR_MEDIA_FIELDS = [
+        'backgroundImage' => 'media',
+        'backgroundVideo' => 'video',
+        'primaryButtonIcon' => 'primaryButtonIcon',
+        'secondaryButtonIcon' => 'secondaryButtonIcon',
+    ];
+
+    public function getType(): string
     {
         return 'ict-hero-section';
     }
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        $criteriaCollection = new CriteriaCollection();
         $config = $slot->getFieldConfig();
-        
+
         if ($config->count() === 0) {
             return null;
         }
 
-        $mediaIds = [];
+        $mediaIds = array_merge(
+            $this->collectScalarMediaIds($config),
+            $this->collectFeatureIconIds($config),
+        );
 
-        // Collect background image
-        $backgroundImage = $config->get('backgroundImage');
-        if ($backgroundImage && $backgroundImage->getValue() && is_string($backgroundImage->getValue())) {
-            $mediaIds[] = $backgroundImage->getValue();
+        if ($mediaIds === []) {
+            return null;
         }
 
-        // Collect background video
-        $backgroundVideo = $config->get('backgroundVideo');
-        if ($backgroundVideo && $backgroundVideo->getValue() && is_string($backgroundVideo->getValue())) {
-            $mediaIds[] = $backgroundVideo->getValue();
-        }
+        $collection = new CriteriaCollection();
+        $collection->add('media_' . $this->getType(), MediaDefinition::class, new Criteria($mediaIds));
 
-        // Collect primary button icon
-        $primaryButtonIcon = $config->get('primaryButtonIcon');
-        if ($primaryButtonIcon && $primaryButtonIcon->getValue() && is_string($primaryButtonIcon->getValue())) {
-            $mediaIds[] = $primaryButtonIcon->getValue();
-        }
-
-        // Collect secondary button icon
-        $secondaryButtonIcon = $config->get('secondaryButtonIcon');
-        if ($secondaryButtonIcon && $secondaryButtonIcon->getValue() && is_string($secondaryButtonIcon->getValue())) {
-            $mediaIds[] = $secondaryButtonIcon->getValue();
-        }
-
-        // Collect feature icons
-        $featureItems = $config->get('featureItems');
-        if ($featureItems && $featureItems->getValue() && is_array($featureItems->getValue())) {
-            foreach ($featureItems->getValue() as $item) {
-                if (is_array($item) && isset($item['icon']) && is_string($item['icon'])) {
-                    $mediaIds[] = $item['icon'];
-                }
-            }
-        }
-
-        if (!empty($mediaIds)) {
-            $criteria = new Criteria($mediaIds);
-            $criteriaCollection->add('media_' . $this->getType(), MediaDefinition::class, $criteria);
-        }
-
-        return $criteriaCollection->all() ? $criteriaCollection : null;
+        return $collection;
     }
 
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
         $config = $slot->getFieldConfig();
+        $mediaCollection = $result->get('media_' . $this->getType());
         $data = new ArrayStruct();
 
-        // Get media collection
-        $mediaCollection = $result->get('media_' . $this->getType());
+        $this->enrichScalarFields($config, $mediaCollection, $data);
+        $this->enrichFeatureIcons($config, $mediaCollection, $data);
 
-        // Enrich background image
-        $backgroundImage = $config->get('backgroundImage');
-        if ($backgroundImage && is_string($backgroundImage->getValue())) {
-            $media = $mediaCollection ? $mediaCollection->get($backgroundImage->getValue()) : null;
-            $data->set('media', $media);
-        }
-
-        // Enrich background video
-        $backgroundVideo = $config->get('backgroundVideo');
-        if ($backgroundVideo && is_string($backgroundVideo->getValue())) {
-            $video = $mediaCollection ? $mediaCollection->get($backgroundVideo->getValue()) : null;
-            $data->set('video', $video);
-        }
-
-        // Enrich primary button icon
-        $primaryButtonIcon = $config->get('primaryButtonIcon');
-        if ($primaryButtonIcon && is_string($primaryButtonIcon->getValue())) {
-            $primaryButtonIconMedia = $mediaCollection ? $mediaCollection->get($primaryButtonIcon->getValue()) : null;
-            $data->set('primaryButtonIcon', $primaryButtonIconMedia);
-        }
-
-        // Enrich secondary button icon
-        $secondaryButtonIcon = $config->get('secondaryButtonIcon');
-        if ($secondaryButtonIcon && is_string($secondaryButtonIcon->getValue())) {
-            $secondaryButtonIconMedia = $mediaCollection ? $mediaCollection->get($secondaryButtonIcon->getValue()) : null;
-            $data->set('secondaryButtonIcon', $secondaryButtonIconMedia);
-        }
-
-        // Enrich feature icons
-        $featureIcons = [];
         $featureItems = $config->get('featureItems');
-        if ($featureItems && $featureItems->getValue() && is_array($featureItems->getValue())) {
-            foreach ($featureItems->getValue() as $index => $item) {
-                if (is_array($item) && isset($item['icon']) && is_string($item['icon'])) {
-                    $featureIcon = $mediaCollection ? $mediaCollection->get($item['icon']) : null;
-                    $featureIcons[$index] = $featureIcon;
-                }
-            }
-        }
-        $data->set('featureIcons', $featureIcons);
-
-        // Set feature items data for fallback
-        if ($featureItems && $featureItems->getValue()) {
+        if ($featureItems !== null && $featureItems->getValue() !== null) {
             $data->set('featureItems', $featureItems->getValue());
         }
 
         $slot->setData($data);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function collectScalarMediaIds(FieldConfigCollection $config): array
+    {
+        $ids = [];
+
+        foreach (array_keys(self::SCALAR_MEDIA_FIELDS) as $field) {
+            $value = $config->get($field)?->getValue();
+
+            if (is_string($value) && $value !== '') {
+                $ids[] = $value;
+            }
+        }
+
+        return $ids;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function collectFeatureIconIds(FieldConfigCollection $config): array
+    {
+        $featureItems = $config->get('featureItems');
+
+        if ($featureItems === null || ! is_array($featureItems->getValue())) {
+            return [];
+        }
+
+        return $this->extractIconIdsFromItems($featureItems->getValue());
+    }
+
+    /**
+     * @param array<mixed> $items
+     *
+     * @return list<string>
+     */
+    private function extractIconIdsFromItems(array $items): array
+    {
+        $ids = [];
+
+        foreach ($items as $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $icon = $item['icon'] ?? null;
+
+            if (is_string($icon) && $icon !== '') {
+                $ids[] = $icon;
+            }
+        }
+
+        return $ids;
+    }
+
+    /**
+     * @param EntitySearchResult<\Shopware\Core\Framework\DataAbstractionLayer\EntityCollection>|null $mediaCollection
+     */
+    private function enrichScalarFields(
+        FieldConfigCollection $config,
+        ?EntitySearchResult $mediaCollection,
+        ArrayStruct $data,
+    ): void {
+        foreach (self::SCALAR_MEDIA_FIELDS as $field => $dataKey) {
+            $value = $config->get($field)?->getValue();
+
+            if (! is_string($value)) {
+                continue;
+            }
+
+            $data->set($dataKey, $mediaCollection?->get($value));
+        }
+    }
+
+    /**
+     * @param EntitySearchResult<\Shopware\Core\Framework\DataAbstractionLayer\EntityCollection>|null $mediaCollection
+     */
+    private function enrichFeatureIcons(
+        FieldConfigCollection $config,
+        ?EntitySearchResult $mediaCollection,
+        ArrayStruct $data,
+    ): void {
+        $featureItems = $config->get('featureItems');
+
+        if ($featureItems === null || ! is_array($featureItems->getValue())) {
+            $data->set('featureIcons', []);
+            return;
+        }
+
+        $data->set('featureIcons', $this->buildFeatureIconMap($featureItems->getValue(), $mediaCollection));
+    }
+
+    /**
+     * @param array<mixed> $items
+     * @param EntitySearchResult<\Shopware\Core\Framework\DataAbstractionLayer\EntityCollection>|null $mediaCollection
+     *
+     * @return array<int|string, mixed>
+     */
+    private function buildFeatureIconMap(array $items, ?EntitySearchResult $mediaCollection): array
+    {
+        $featureIcons = [];
+
+        foreach ($items as $index => $item) {
+            if (! is_array($item)) {
+                continue;
+            }
+
+            $icon = $item['icon'] ?? null;
+
+            if (is_string($icon) && $icon !== '') {
+                $featureIcons[$index] = $mediaCollection?->get($icon);
+            }
+        }
+
+        return $featureIcons;
     }
 }

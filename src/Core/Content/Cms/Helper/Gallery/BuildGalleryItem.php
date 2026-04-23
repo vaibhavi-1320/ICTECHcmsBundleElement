@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\Helper\Gallery;
 
@@ -13,6 +15,7 @@ final class BuildGalleryItem
 
     /**
      * @param list<mixed> $rawItems
+     *
      * @return list<array{media: MediaEntity, mediaId: string, mediaUrl: string, title: string}>
      */
     public function buildAll(array $rawItems, mixed $mediaCollection): array
@@ -20,7 +23,7 @@ final class BuildGalleryItem
         $items = [];
 
         foreach ($rawItems as $item) {
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 continue;
             }
 
@@ -39,6 +42,7 @@ final class BuildGalleryItem
      * all keys to strings, which is safe for config arrays from Shopware CMS.
      *
      * @param array<array-key, mixed> $input
+     *
      * @return array<string, mixed>
      */
     private function toStringKeyedArray(array $input): array

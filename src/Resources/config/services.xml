@@ -38,6 +38,8 @@
         <!-- Category micro-classes -->
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\ExtractCategoryIds"/>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\ResolveCategoryEntity"/>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\CollectNestedCategoryIds"/>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\MapSubcategoryTree"/>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\MapCategoryCard">
             <argument type="service" id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\ResolveCategoryEntity"/>
         </service>
@@ -85,6 +87,10 @@
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctProductMatrixCmsElementResolver">
             <tag name="shopware.cms.data_resolver"/>
         </service>
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctProductComparisonCmsElementResolver">
+            <argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
         <!-- <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctImageGalleryCmsElementResolver"/> -->
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctManufacturerListCmsElementResolver"/>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctManufacturerSliderCmsElementResolver"/>
@@ -96,5 +102,40 @@
         </service>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctHeroSectionElementDataResolver"/>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctSingleTitleButtonSectionCmsElementResolver"/>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctBreadcrumbNavigationCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctSubcategoryNavigationCmsElementResolver">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\CollectNestedCategoryIds"/>
+            <argument type="service" id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\MapSubcategoryTree"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctAlertHintCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctFileDownloadCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctStoryCardCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctVerticalTabCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctHeroBannerCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="ICTECHcmsBundleElement\Core\Content\Cms\DataResolver\Element\IctImageComparisonCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
     </services>
 </container>

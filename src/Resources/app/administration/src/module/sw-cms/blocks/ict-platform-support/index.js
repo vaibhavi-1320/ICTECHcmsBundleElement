@@ -4,7 +4,7 @@ Shopware.Component.register('sw-cms-block-ict-platform-support', () => import('.
 Shopware.Service('cmsService').registerCmsBlock({
     name: 'ict-platform-support',
     label: 'ict-cms-bundle-element.cms.blocks.ictPlatformSupport.label',
-    category: 'ict-cms-gallery',
+    category: 'ict-cms-elements',
     component: 'sw-cms-block-ict-platform-support',
     previewComponent: 'sw-cms-preview-ict-platform-support',
     defaultConfig: {

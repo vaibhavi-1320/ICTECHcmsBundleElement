@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms;
 
@@ -13,4 +15,3 @@ final class IctTitleActionPanelCmsElementResolver extends ImageCmsElementResolve
         return self::TYPE;
     }
 }
-

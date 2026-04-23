@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category;
 
@@ -13,6 +15,7 @@ final class MapCategoryCard
 
     /**
      * @param array<string, mixed> $card
+     *
      * @return array{category: CategoryEntity, title: string}|null
      */
     public function map(array $card, mixed $categoriesResult): ?array
