@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms;
 
@@ -23,82 +25,110 @@ final class IctManufacturerListCmsElementResolver extends AbstractCmsElementReso
         return self::TYPE;
     }
 
-    public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
+    public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): CriteriaCollection
     {
         $criteria = new Criteria();
         $criteria->setLimit(500);
         $criteria->addAssociation('media');
         $criteria->addSorting(new FieldSorting('name', FieldSorting::ASCENDING, true));
 
-        $criteriaCollection = new CriteriaCollection();
-        $criteriaCollection->add(
+        $collection = new CriteriaCollection();
+        $collection->add(
             'manufacturers_' . $slot->getUniqueIdentifier(),
             ProductManufacturerDefinition::class,
             $criteria,
         );
 
-        return $criteriaCollection;
+        return $collection;
     }
 
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
     {
-        $manufacturersResult = $result->get('manufacturers_' . $slot->getUniqueIdentifier());
         $groups = $this->createEmptyGroups();
+        $manufacturersResult = $result->get('manufacturers_' . $slot->getUniqueIdentifier());
 
         if ($manufacturersResult instanceof EntitySearchResult) {
-            foreach ($manufacturersResult->getElements() as $manufacturer) {
-                if (!$manufacturer instanceof ProductManufacturerEntity) {
-                    continue;
-                }
-
-                $name = trim((string) ($manufacturer->getTranslation('name') ?? $manufacturer->getName() ?? ''));
-
-                if ($name === '') {
-                    continue;
-                }
-
-                $groupKey = $this->resolveGroupKey($name);
-                $groups[$groupKey][] = [
-                    'id' => $manufacturer->getId(),
-                    'name' => $name,
-                    'link' => $this->normalizeManufacturerLink($manufacturer->getLink()),
-                    'media' => $manufacturer->getMedia(),
-                ];
-            }
+            $this->populateGroups($manufacturersResult, $groups);
         }
 
-        $groupedManufacturers = [];
-        $alphabet = [];
+        $slot->setData(new ArrayStruct(
+            $this->buildAlphabetData($groups, $slot->getUniqueIdentifier()),
+        ));
+    }
 
-        foreach ($groups as $key => $items) {
-            $anchor = sprintf(
-                'ict-manufacturer-list-%s-%s',
-                $slot->getUniqueIdentifier(),
-                strtolower($key === '#' ? 'numeric' : $key),
-            );
-
-            $alphabet[] = [
-                'key' => $key,
-                'label' => $key,
-                'anchor' => $items !== [] ? $anchor : null,
-            ];
-
-            if ($items === []) {
+    /**
+     * @param EntitySearchResult<\Shopware\Core\Framework\DataAbstractionLayer\EntityCollection> $result
+     *
+     * @param array<string, array<int, array<string, mixed>>> $groups
+     */
+    private function populateGroups(EntitySearchResult $result, array &$groups): void
+    {
+        foreach ($result->getElements() as $manufacturer) {
+            if (! $manufacturer instanceof ProductManufacturerEntity) {
                 continue;
             }
 
-            $groupedManufacturers[] = [
-                'key' => $key,
-                'label' => $key,
-                'anchor' => $anchor,
-                'items' => $items,
+            $name = $this->resolveManufacturerName($manufacturer);
+
+            if ($name === '') {
+                continue;
+            }
+
+            $groups[$this->resolveGroupKey($name)][] = [
+                'id' => $manufacturer->getId(),
+                'name' => $name,
+                'link' => $this->normalizeManufacturerLink($manufacturer->getLink()),
+                'media' => $manufacturer->getMedia(),
             ];
         }
+    }
 
-        $slot->setData(new ArrayStruct([
-            'alphabet' => $alphabet,
-            'groups' => $groupedManufacturers,
-        ]));
+    private function resolveManufacturerName(ProductManufacturerEntity $manufacturer): string
+    {
+        $translatedName = $manufacturer->getTranslation('name');
+
+        return trim(is_string($translatedName) ? $translatedName : (string) $manufacturer->getName());
+    }
+
+    /**
+     * @param array<string, array<int, array<string, mixed>>> $groups
+     *
+     * @return array<string, mixed>
+     */
+    private function buildAlphabetData(array $groups, string $uniqueIdentifier): array
+    {
+        $alphabet = [];
+        $groupedManufacturers = [];
+
+        foreach ($groups as $key => $items) {
+            $anchor = $this->buildAnchor($uniqueIdentifier, $key);
+            $alphabet[] = $this->buildAlphabetEntry($key, $anchor, $items);
+
+            if ($items !== []) {
+                $groupedManufacturers[] = ['key' => $key, 'label' => $key, 'anchor' => $anchor, 'items' => $items];
+            }
+        }
+
+        return ['alphabet' => $alphabet, 'groups' => $groupedManufacturers];
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $items
+     *
+     * @return array<string, mixed>
+     */
+    private function buildAlphabetEntry(string $key, string $anchor, array $items): array
+    {
+        return ['key' => $key, 'label' => $key, 'anchor' => $items !== [] ? $anchor : null];
+    }
+
+    private function buildAnchor(string $uniqueIdentifier, string $key): string
+    {
+        return sprintf(
+            'ict-manufacturer-list-%s-%s',
+            $uniqueIdentifier,
+            strtolower($key === '#' ? 'numeric' : $key),
+        );
     }
 
     /**
@@ -119,11 +149,7 @@ final class IctManufacturerListCmsElementResolver extends AbstractCmsElementReso
     {
         $firstCharacter = mb_strtoupper(mb_substr($name, 0, 1));
 
-        if (preg_match('/[A-Z]/', $firstCharacter) === 1) {
-            return $firstCharacter;
-        }
-
-        return '#';
+        return preg_match('/[A-Z]/', $firstCharacter) === 1 ? $firstCharacter : '#';
     }
 
     private function normalizeManufacturerLink(?string $link): ?string

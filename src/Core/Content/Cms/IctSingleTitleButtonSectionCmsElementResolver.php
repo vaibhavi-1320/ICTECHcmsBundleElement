@@ -1,62 +1,89 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms;
 
 use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
-use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
+use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
 use Shopware\Core\Content\Cms\DataResolver\Element\ElementDataCollection;
 use Shopware\Core\Content\Cms\DataResolver\ResolverContext\ResolverContext;
+use Shopware\Core\Content\Media\MediaDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Struct\ArrayStruct;
 
-class IctSingleTitleButtonSectionCmsElementResolver extends AbstractCmsElementResolver
+final class IctSingleTitleButtonSectionCmsElementResolver extends AbstractCmsElementResolver
 {
+    /**
+     * Maps field-config keys to their result-collection prefix and data key.
+     *
+     * @var array<string, array{prefix: string, dataKey: string}>
+     */
+    private const MEDIA_CONFIGS = [
+        'backgroundImage' => ['prefix' => 'media_', 'dataKey' => 'media'],
+        'backgroundVideo' => ['prefix' => 'video_', 'dataKey' => 'video'],
+        'leftButtonIcon' => [
+            'prefix' => 'leftButtonIcon_',
+            'dataKey' => 'leftButtonIcon',
+        ],
+        'rightButtonIcon' => [
+            'prefix' => 'rightButtonIcon_',
+            'dataKey' => 'rightButtonIcon',
+        ],
+    ];
+
     public function getType(): string
     {
         return 'ict-single-title-button-section';
     }
 
-    public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
-    {
-        $config = $slot->getFieldConfig();
+    public function collect(
+        CmsSlotEntity $slot,
+        ResolverContext $resolverContext,
+    ): ?CriteriaCollection {
         $collection = new CriteriaCollection();
-        $mediaConfigs = [
-            'backgroundImage' => 'media_',
-            'backgroundVideo' => 'video_',
-            'leftButtonIcon' => 'leftButtonIcon_',
-            'rightButtonIcon' => 'rightButtonIcon_'
-        ];
+        $uid = $slot->getUniqueIdentifier();
 
-        foreach ($mediaConfigs as $configKey => $prefix) {
-            $mediaConfig = $config->get($configKey);
-            if ($mediaConfig && $mediaConfig->getValue() && is_string($mediaConfig->getValue())) {
-                $criteria = new \Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria([$mediaConfig->getValue()]);
-                $collection->add($prefix . $slot->getUniqueIdentifier(), \Shopware\Core\Content\Media\MediaDefinition::class, $criteria);
+        foreach (self::MEDIA_CONFIGS as $configKey => $conf) {
+            $value = $slot->getFieldConfig()->get($configKey)?->getValue();
+
+            if (! is_string($value) || $value === '') {
+                continue;
             }
+
+            $collection->add(
+                $conf['prefix'] . $uid,
+                MediaDefinition::class,
+                new Criteria([$value]),
+            );
         }
-        return $collection->all() ? $collection : null;
+
+        return $collection->all() !== [] ? $collection : null;
     }
 
-    public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
-    {
-        $config = $slot->getFieldConfig();
+    public function enrich(
+        CmsSlotEntity $slot,
+        ResolverContext $resolverContext,
+        ElementDataCollection $result,
+    ): void {
         $data = [];
-        $mediaConfigs = [
-            'backgroundImage' => ['prefix' => 'media_', 'dataKey' => 'media'],
-            'backgroundVideo' => ['prefix' => 'video_', 'dataKey' => 'video'],
-            'leftButtonIcon' => ['prefix' => 'leftButtonIcon_', 'dataKey' => 'leftButtonIcon'],
-            'rightButtonIcon' => ['prefix' => 'rightButtonIcon_', 'dataKey' => 'rightButtonIcon']
-        ];
+        $uid = $slot->getUniqueIdentifier();
 
-        foreach ($mediaConfigs as $configKey => $configuration) {
-            $mediaConfig = $config->get($configKey);
-            if ($mediaConfig && $mediaConfig->getValue()) {
-                $media = $result->get($configuration['prefix'] . $slot->getUniqueIdentifier());
-                if ($media) {
-                    $data[$configuration['dataKey']] = $media->first();
-                }
+        foreach (self::MEDIA_CONFIGS as $configKey => $conf) {
+            $value = $slot->getFieldConfig()->get($configKey)?->getValue();
+
+            if (!is_string($value) || $value === '') {
+                continue;
+            }
+
+            $media = $result->get($conf['prefix'] . $uid);
+
+            if ($media !== null) {
+                $data[$conf['dataKey']] = $media->first();
             }
         }
+
         $slot->setData(new ArrayStruct($data));
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace ICTECHcmsBundleElement\Core\Content\Cms;
 
@@ -24,13 +26,9 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
 
     public function collect(CmsSlotEntity $slot, ResolverContext $resolverContext): ?CriteriaCollection
     {
-        $manufacturerIdsConfig = $slot->getFieldConfig()->get('manufacturerIds');
-
-        if ($manufacturerIdsConfig === null) {
-            return null;
-        }
-
-        $manufacturerIds = $this->getManufacturerIds($manufacturerIdsConfig->getArrayValue());
+        $manufacturerIds = $this->getManufacturerIds(
+            $slot->getFieldConfig()->get('manufacturerIds')?->getArrayValue() ?? [],
+        );
 
         if ($manufacturerIds === []) {
             return null;
@@ -39,14 +37,14 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
         $criteria = new Criteria($manufacturerIds);
         $criteria->addAssociation('media');
 
-        $criteriaCollection = new CriteriaCollection();
-        $criteriaCollection->add(
+        $collection = new CriteriaCollection();
+        $collection->add(
             'manufacturers_' . $slot->getUniqueIdentifier(),
             ProductManufacturerDefinition::class,
             $criteria,
         );
 
-        return $criteriaCollection;
+        return $collection;
     }
 
     public function enrich(CmsSlotEntity $slot, ResolverContext $resolverContext, ElementDataCollection $result): void
@@ -56,28 +54,8 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
             $config->get('manufacturerIds')?->getArrayValue() ?? [],
         );
 
-        $manufacturerResult = $result->get('manufacturers_' . $slot->getUniqueIdentifier());
-        $manufacturers = [];
-
-        if ($manufacturerResult instanceof EntitySearchResult) {
-            foreach ($manufacturerIds as $manufacturerId) {
-                $manufacturer = $manufacturerResult->get($manufacturerId);
-
-                if (!$manufacturer instanceof ProductManufacturerEntity) {
-                    continue;
-                }
-
-                $manufacturers[] = [
-                    'id' => $manufacturer->getId(),
-                    'name' => $manufacturer->getTranslation('name') ?? $manufacturer->getName() ?? '',
-                    'link' => $manufacturer->getLink(),
-                    'media' => $manufacturer->getMedia(),
-                ];
-            }
-        }
-
         $slot->setData(new ArrayStruct([
-            'manufacturers' => $manufacturers,
+            'manufacturers' => $this->buildManufacturers($manufacturerIds, $result, $slot),
             'showManufacturerName' => $config->get('showManufacturerName')?->getBoolValue() ?? true,
             'maxWidth' => $this->normalizeDimension($config->get('maxWidth')?->getValue(), 180),
             'maxHeight' => $this->normalizeDimension($config->get('maxHeight')?->getValue(), 100),
@@ -85,6 +63,42 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
             'tabletItems' => $this->normalizeItems($config->get('tabletItems')?->getValue(), 2),
             'mobileItems' => $this->normalizeItems($config->get('mobileItems')?->getValue(), 1),
         ]));
+    }
+
+    /**
+     * @param list<string> $manufacturerIds
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function buildManufacturers(
+        array $manufacturerIds,
+        ElementDataCollection $result,
+        CmsSlotEntity $slot,
+    ): array {
+        $manufacturerResult = $result->get('manufacturers_' . $slot->getUniqueIdentifier());
+
+        if (! $manufacturerResult instanceof EntitySearchResult) {
+            return [];
+        }
+
+        $manufacturers = [];
+
+        foreach ($manufacturerIds as $manufacturerId) {
+            $manufacturer = $manufacturerResult->get($manufacturerId);
+
+            if (! $manufacturer instanceof ProductManufacturerEntity) {
+                continue;
+            }
+
+            $manufacturers[] = [
+                'id' => $manufacturer->getId(),
+                'name' => $manufacturer->getTranslation('name') ?? $manufacturer->getName() ?? '',
+                'link' => $manufacturer->getLink(),
+                'media' => $manufacturer->getMedia(),
+            ];
+        }
+
+        return $manufacturers;
     }
 
     /**
@@ -96,7 +110,7 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
     {
         $ids = array_filter(
             $manufacturerIds,
-            static fn (mixed $manufacturerId): bool => \is_string($manufacturerId) && $manufacturerId !== '',
+            static fn (mixed $id): bool => \is_string($id) && $id !== '',
         );
 
         return array_values(array_unique($ids));
@@ -104,23 +118,15 @@ final class IctManufacturerSliderCmsElementResolver extends AbstractCmsElementRe
 
     private function normalizeDimension(mixed $value, int $defaultValue): int
     {
-        $dimension = (int) $value;
+        $dimension = is_numeric($value) ? (int) $value : 0;
 
-        if ($dimension <= 0) {
-            return $defaultValue;
-        }
-
-        return $dimension;
+        return $dimension > 0 ? $dimension : $defaultValue;
     }
 
     private function normalizeItems(mixed $value, int $defaultValue): int
     {
-        $items = (int) $value;
+        $items = is_numeric($value) ? (int) $value : 0;
 
-        if ($items <= 0) {
-            return $defaultValue;
-        }
-
-        return min($items, 12);
+        return $items > 0 ? min($items, 12) : $defaultValue;
     }
 }
