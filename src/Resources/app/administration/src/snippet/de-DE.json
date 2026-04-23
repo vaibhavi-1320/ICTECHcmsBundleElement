@@ -4,7 +4,8 @@
             "detail": {
                 "label": {
                     "blockCategory": {
-                        "ict-cms-elements": "ICT CMS Elemente"
+                        "ict-cms-elements": "ICT CMS Elemente",
+                        "ict-cms-layouts": "ICT CMS Layouts"
                     }
                 }
             }

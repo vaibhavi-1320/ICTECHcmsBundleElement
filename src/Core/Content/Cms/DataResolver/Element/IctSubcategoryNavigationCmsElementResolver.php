@@ -8,6 +8,7 @@ use ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\CollectNestedCategor
 use ICTECHcmsBundleElement\Core\Content\Cms\Helper\Category\MapSubcategoryTree;
 use Shopware\Core\Content\Category\CategoryDefinition;
 use Shopware\Core\Content\Category\CategoryEntity;
+use Shopware\Core\Content\Product\ProductCollection;
 use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
 use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
@@ -28,6 +29,9 @@ final class IctSubcategoryNavigationCmsElementResolver extends AbstractCmsElemen
 {
     private const RESULT_KEY = 'ict_subcategories_';
 
+    /**
+     * @param EntityRepository<ProductCollection> $productRepository
+     */
     public function __construct(
         private readonly EntityRepository $productRepository,
         private readonly CollectNestedCategoryIds $categoryIdsCollector,
@@ -225,7 +229,7 @@ final class IctSubcategoryNavigationCmsElementResolver extends AbstractCmsElemen
     }
 
     /**
-     * @param EntitySearchResult<\Shopware\Core\Framework\DataAbstractionLayer\EntityCollection>|null $result
+     * @param EntitySearchResult<ProductCollection>|null $result
      *
      * @return array<string, int>
      */

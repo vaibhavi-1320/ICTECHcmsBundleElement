@@ -2,7 +2,6 @@
     {% set items = element.data.items ?? [] %}
     {% set itemCount = items|length %}
     {% set needsSlider = itemCount > 1 %}
-
     {% set baseSliderOptions = {
         slider: {
             controls: needsSlider,
@@ -30,7 +29,6 @@
             }
         }
     } %}
-
     {% if itemCount > 0 %}
         <div class="cms-element-ict-category-image-slider">
             <div
@@ -63,14 +61,12 @@
                                             }
                                         } %}
                                     </div>
-
                                     <div class="ict-category-image-slider__content">
                                         {% if item.title %}
                                             <div class="ict-category-image-slider__title">
                                                 {{ item.title }}
                                             </div>
                                         {% endif %}
-
                                         <div class="ict-category-image-slider__name">
                                             {{ category.translated.name }}
                                         </div>
@@ -79,10 +75,9 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                </div>
-
-                {% if needsSlider %}
-                    <div class="image-slider-controls-container">
+	                </div>
+	                {% if needsSlider %}
+	                    <div class="image-slider-controls-container">
                         <div class="base-slider-controls" data-base-slider-controls="true">
                             <button
                                 class="base-slider-controls-prev image-slider-controls-prev is-nav-prev-outside ict-category-image-slider__control-prev"

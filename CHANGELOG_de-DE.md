@@ -1,5 +1,17 @@
 # Änderungsprotokoll
 
+## 1.0.3 - 2026-04-23
+
+### Geändert
+- `PluginConfigService` für typisierte Plugin-Konfigurationszugriffe (get/set/delete) ergänzt
+- Plugin-Konfiguration bei Deinstallation bereinigt (wenn `keepUserData()` `false` ist)
+- `EntityRepository<ProductCollection>`-Generik im Unterkategorie-Resolver für PHPStan ergänzt
+- Null-Sicherheit bei `first()`-Zugriffen in CMS-Resolvern verbessert
+- Leere `install()`, `activate()` und `deactivate()`-Überschreibungen aus der Plugin-Basisklasse entfernt
+- Composer-Kompatibilität auf Shopware `^6.6 || ^6.7` erweitert
+- Plugin-Logo von `bunddle.png` zu `bundle.png` umbenannt und Pfad in Composer angepasst
+- Reine Review-Entwicklungsabhängigkeiten (`phpstan/phpstan`, `nunomaduro/phpinsights`, `symfony/password-hasher`) aus dem Plugin-Composer entfernt
+
 ## 1.0.2 - 2025-04-21
 
 ### Geändert

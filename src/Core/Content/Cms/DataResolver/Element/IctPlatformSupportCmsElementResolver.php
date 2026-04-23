@@ -144,9 +144,11 @@ final class IctPlatformSupportCmsElementResolver extends AbstractCmsElementResol
         }
 
         $media = $result->get('platform_icon_' . $index . '_' . $uid);
-        if ($media !== null && $media->first() !== null) {
-            $platform['iconMedia'] = $media->first();
-            $platformIcons[$index] = $media->first();
+        $firstMedia = $media?->first();
+
+        if ($firstMedia !== null) {
+            $platform['iconMedia'] = $firstMedia;
+            $platformIcons[$index] = $firstMedia;
         }
 
         return [$platform, $platformIcons];

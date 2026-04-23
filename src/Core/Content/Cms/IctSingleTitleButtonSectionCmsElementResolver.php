@@ -73,14 +73,15 @@ final class IctSingleTitleButtonSectionCmsElementResolver extends AbstractCmsEle
         foreach (self::MEDIA_CONFIGS as $configKey => $conf) {
             $value = $slot->getFieldConfig()->get($configKey)?->getValue();
 
-            if (!is_string($value) || $value === '') {
+            if (! is_string($value) || $value === '') {
                 continue;
             }
 
             $media = $result->get($conf['prefix'] . $uid);
+            $firstMedia = $media?->first();
 
-            if ($media !== null) {
-                $data[$conf['dataKey']] = $media->first();
+            if ($firstMedia !== null) {
+                $data[$conf['dataKey']] = $firstMedia;
             }
         }
 

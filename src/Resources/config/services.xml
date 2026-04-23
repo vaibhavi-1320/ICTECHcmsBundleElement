@@ -50,6 +50,7 @@
         <!-- Media micro-classes -->
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Media\BuildMediaCriteria"/>
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\Helper\Media\ResolveMediaEntry"/>
+        <service id="ICTECHcmsBundleElement\Service\PluginConfigService"/>
 
         <!-- Resolvers -->
         <service id="ICTECHcmsBundleElement\Core\Content\Cms\IctImageGalleryCmsElementResolver">

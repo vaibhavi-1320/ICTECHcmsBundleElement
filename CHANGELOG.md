@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.3 - 2026-04-23
+
+### Changed
+- Added `PluginConfigService` for typed plugin configuration get/set/delete operations
+- Cleared plugin configuration keys on uninstall (when `keepUserData()` is `false`)
+- Added `EntityRepository<ProductCollection>` generic typing for PHPStan compliance in subcategory resolver
+- Improved null-safety around `first()` reads in CMS resolvers
+- Removed no-op `install()`, `activate()`, and `deactivate()` overrides from plugin base class
+- Updated composer compatibility to Shopware `^6.6 || ^6.7`
+- Renamed plugin logo asset from `bunddle.png` to `bundle.png` and updated composer metadata path
+- Removed review-only dev dependencies (`phpstan/phpstan`, `nunomaduro/phpinsights`, `symfony/password-hasher`) from plugin composer manifest
+
 ## 1.0.2 - 2025-04-21
 
 ### Changed

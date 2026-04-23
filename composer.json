@@ -1,16 +1,11 @@
 {
     "name": "ictech/ictech-cms-bundle-element",
-    "description": "Custom CMS layouts and responsive image gallery elements for Shopware 6.6.",
+    "description": "Custom CMS layouts and responsive image gallery elements for Shopware 6.6 and 6.7.",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
     "license": "MIT",
     "require": {
         "shopware/core": "^6.6"
-    },
-    "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "symfony/password-hasher": "^7.4",
-        "nunomaduro/phpinsights": "^2.13"
     },
     "extra": {
         "shopware-plugin-class": "ICTECHcmsBundleElement\\ICTECHcmsBundleElement",
@@ -19,10 +14,10 @@
             "en-GB": "ICTECH CMS Bundle Element"
         },
         "description": {
-            "de-DE": "",
-            "en-GB": ""
+            "de-DE": "ICTECH CMS Bundle Element ist ein umfassendes Shopware 6 Plugin, das alle häufig verwendeten CMS-Elemente in einem leistungsstarken Paket vereint. Anstatt nach mehreren einzelnen Plugins zu suchen und diese zu installieren, erhalten Sie alles, was Sie für die professionelle Content-Erstellung benötigen, in einer einzigen Lösung.",
+            "en-GB": "ICTECH CMS Bundle Element is a comprehensive Shopware 6 plugin that brings together all commonly used CMS elements in one powerful package. Instead of searching for and installing multiple individual plugins, you get everything you need for professional content creation in a single solution."
         },
-        "plugin-icon": "src/Resources/config/bunddle.png",
+        "plugin-icon": "src/Resources/config/bundle.png",
         "copyright": "(c) iCreateive Technologies. All Rights Reserved.",
         "manufacturerLink": {
             "de-DE": "https://www.icreativetechnologies.com/",

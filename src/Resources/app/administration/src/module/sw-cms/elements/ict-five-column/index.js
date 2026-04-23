@@ -5,6 +5,7 @@ Shopware.Component.register('sw-cms-el-ict-five-column', () => import('./compone
 Shopware.Service('cmsService').registerCmsElement({
     name: ELEMENT_NAME,
     label: 'ict-cms-bundle-element.cms.elements.ictFiveColumn.label',
+    hidden: true,
     component: 'sw-cms-el-ict-five-column',
     previewComponent: 'sw-cms-el-preview-ict-five-column',
     defaultData: {

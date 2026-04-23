@@ -5,6 +5,7 @@ Shopware.Component.register('sw-cms-el-ict-two-column', () => import('./componen
 Shopware.Service('cmsService').registerCmsElement({
     name: ELEMENT_NAME,
     label: 'ict-cms-bundle-element.cms.elements.ictTwoColumn.label',
+    hidden: true,
     component: 'sw-cms-el-ict-two-column',
     previewComponent: 'sw-cms-el-preview-ict-two-column',
     defaultData: {
