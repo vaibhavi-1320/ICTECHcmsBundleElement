@@ -9,7 +9,7 @@
         <template #content="{ active }">
             <sw-container v-if="active === 'content'">
                 <mt-select
-                    v-model:value="element.config.backgroundType.value"
+                    v-model="element.config.backgroundType.value"
                     label="Background type"
                     :options="[
                         { value: 'color', label: 'Color' },
@@ -48,12 +48,12 @@
                 </sw-container>
 
                 <mt-text-field
-                    v-model:value="element.config.minHeight.value"
+                    v-model="element.config.minHeight.value"
                     label="Minimum height"
-                    @update:value="onInput"
+                    @update:model-value="onInput"
                 />
 
-                <mt-text-field v-model:value="element.config.title.value" label="Title" @update:value="onInput" />
+                <mt-text-field v-model="element.config.title.value" label="Title" @update:model-value="onInput" />
 
                 <sw-text-editor v-model:value="element.config.description.value" sanitize-input @update:value="onInput" />
 
@@ -76,16 +76,15 @@
                     />
                 </sw-container>
             </sw-container>
-
             <sw-container v-if="active === 'leftButton'">
                 <mt-text-field
-                    v-model:value="element.config.leftSectionButtonText.value"
+                    v-model="element.config.leftSectionButtonText.value"
                     label="Button text"
-                    @update:value="onInput"
+                    @update:model-value="onInput"
                 />
 
                 <mt-select
-                    v-model:value="element.config.leftSectionButtonLinkType.value"
+                    v-model="element.config.leftSectionButtonLinkType.value"
                     label="Link type"
                     :options="[
                         { value: 'internal', label: 'Internal' },
@@ -100,13 +99,13 @@
                 />
                 <mt-text-field
                     v-else
-                    v-model:value="element.config.leftSectionButtonLink.value"
+                    v-model="element.config.leftSectionButtonLink.value"
                     label="Link"
-                    @update:value="onInput"
+                    @update:model-value="onInput"
                 />
 
                 <mt-select
-                    v-model:value="element.config.leftSectionButtonTarget.value"
+                    v-model="element.config.leftSectionButtonTarget.value"
                     label="Target"
                     :options="[
                         { value: '_self', label: 'Same tab' },
@@ -134,16 +133,15 @@
                     />
                 </sw-container>
             </sw-container>
-
             <sw-container v-if="active === 'rightButton'">
                 <mt-text-field
-                    v-model:value="element.config.rightSectionButtonText.value"
+                    v-model="element.config.rightSectionButtonText.value"
                     label="Button text"
-                    @update:value="onInput"
+                    @update:model-value="onInput"
                 />
 
                 <mt-select
-                    v-model:value="element.config.rightSectionButtonLinkType.value"
+                    v-model="element.config.rightSectionButtonLinkType.value"
                     label="Link type"
                     :options="[
                         { value: 'internal', label: 'Internal' },
@@ -158,13 +156,13 @@
                 />
                 <mt-text-field
                     v-else
-                    v-model:value="element.config.rightSectionButtonLink.value"
+                    v-model="element.config.rightSectionButtonLink.value"
                     label="Link"
-                    @update:value="onInput"
+                    @update:model-value="onInput"
                 />
 
                 <mt-select
-                    v-model:value="element.config.rightSectionButtonTarget.value"
+                    v-model="element.config.rightSectionButtonTarget.value"
                     label="Target"
                     :options="[
                         { value: '_self', label: 'Same tab' },
