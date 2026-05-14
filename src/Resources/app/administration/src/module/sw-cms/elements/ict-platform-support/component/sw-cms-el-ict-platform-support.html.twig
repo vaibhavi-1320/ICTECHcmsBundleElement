@@ -55,10 +55,9 @@
                     <div class="platform-icon-wrapper" :style="{
                         width: platform.iconSizePx + 'px',
                         height: platform.iconSizePx + 'px',
-                        backgroundColor: platform.iconBackgroundType === 'solid' ? platform.iconBackgroundColor : 'transparent',
                         background: platform.iconBackgroundType === 'gradient'
                             ? 'linear-gradient(' + platform.iconGradientDirection + ', ' + platform.iconGradientColor1 + ', ' + platform.iconGradientColor2 + ')'
-                            : '',
+                            : platform.iconBackgroundType === 'solid' ? platform.iconBackgroundColor : 'transparent',
                         borderRadius: platform.iconBackgroundShape === 'circle' ? '50%' : platform.iconBackgroundShape === 'rounded' ? '12px' : platform.iconBackgroundShape === 'square' ? '0' : '8px',
                         display: 'flex',
                         alignItems: 'center',

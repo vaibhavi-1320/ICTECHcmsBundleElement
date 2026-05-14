@@ -120,11 +120,11 @@
                                 :z-index="1000"
                                 @update:value="(v) => updatePlatform(index, 'iconColor', v)"
                             />
-                            <mt-select v-model="platform.iconBackgroundShape" label="Shape" :options="iconShapeOptions"></mt-select>
+                            <sw-single-select v-model:value="platform.iconBackgroundShape" label="Shape" :options="iconShapeOptions" @update:value="(v) => updatePlatform(index, 'iconBackgroundShape', v)"></sw-single-select>
                         </div>
 
                         <h6>Icon Background</h6>
-                        <mt-select v-model="platform.iconBackgroundType" label="Background Type" :options="iconBackgroundTypeOptions"></mt-select>
+                        <sw-single-select v-model:value="platform.iconBackgroundType" label="Background Type" :options="iconBackgroundTypeOptions" @update:value="(v) => updatePlatform(index, 'iconBackgroundType', v)"></sw-single-select>
                         <sw-colorpicker
                             v-if="platform.iconBackgroundType === 'solid'"
                             v-model:value="platform.iconBackgroundColor"
@@ -148,14 +148,14 @@
                                 :z-index="1000"
                                 @update:value="(v) => updatePlatform(index, 'iconGradientColor2', v)"
                             />
-                            <mt-select v-model="platform.iconGradientDirection" label="Direction" :options="gradientDirectionOptions"></mt-select>
+                            <sw-single-select v-model:value="platform.iconGradientDirection" label="Direction" :options="gradientDirectionOptions" @update:value="(v) => updatePlatform(index, 'iconGradientDirection', v)"></sw-single-select>
                         </div>
 
                         <h5>Label</h5>
                         <mt-text-field v-model="platform.platformLabel" label="Label Text"></mt-text-field>
                         <div class="label-settings-grid">
                             <mt-text-field v-model="platform.platformLabelSizePx" label="Size (px)" placeholder="e.g. 14"></mt-text-field>
-                            <mt-select v-model="platform.platformLabelWeight" label="Weight" :options="fontWeightOptions"></mt-select>
+                            <sw-single-select v-model:value="platform.platformLabelWeight" label="Weight" :options="fontWeightOptions" @update:value="(v) => updatePlatform(index, 'platformLabelWeight', v)"></sw-single-select>
                             <sw-colorpicker
                                 v-model:value="platform.platformLabelColor"
                                 label="Color"
@@ -173,7 +173,7 @@
                                 :options="linkTypeOptions"
                                 @update:value="(v) => onPlatformLinkTypeChange(index, v)">
                             </mt-select>
-                            <mt-select v-model="platform.platformLinkTarget" label="Target" :options="targetOptions"></mt-select>
+                            <sw-single-select v-model:value="platform.platformLinkTarget" label="Target" :options="targetOptions" @update:value="(v) => updatePlatform(index, 'platformLinkTarget', v)"></sw-single-select>
                         </div>
                         <sw-dynamic-url-field v-if="platform.linkType === 'internal'" v-model:value="platform.platformLinkUrl"></sw-dynamic-url-field>
                         <mt-text-field v-if="platform.linkType === 'external'" v-model="platform.platformLinkUrl" label="URL" @blur="onPlatformExternalUrlChange(index)"></mt-text-field>

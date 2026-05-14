@@ -106,11 +106,20 @@
     }
 
     .ifg-accordion__body {
-        display: none;
-        padding: 16px;
+        // Keep the body renderable so `sw-media-upload-v2` previews can measure sizes correctly.
+        // Using `display:none` can lead to `sizes="0px"` and blank/white thumbnails after reopening.
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 16px;
         border-top: 1px solid var(--ifg-cfg-border);
+        transition: max-height 0.2s ease, padding 0.2s ease;
 
-        &--open { display: block; }
+        &--open {
+            max-height: 5000px;
+            overflow: visible;
+            padding: 16px;
+        }
     }
 
     // ── Field groups ──────────────────────────────────────────────────
@@ -179,11 +188,19 @@
     }
 
     .ifg-btn-item__body {
-        display: none;
-        padding: 14px;
+        // Same approach for nested accordions (buttons) to avoid blank media previews.
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 14px;
         border-top: 1px solid var(--ifg-cfg-border);
+        transition: max-height 0.2s ease, padding 0.2s ease;
 
-        &--open { display: block; }
+        &--open {
+            max-height: 3000px;
+            overflow: visible;
+            padding: 14px;
+        }
     }
 
     // ── Remove card ───────────────────────────────────────────────────

@@ -86,7 +86,9 @@
     font-weight: 600;
     border-radius: 4px;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     text-transform: none;
     letter-spacing: 0.5px;
     transition: background 0.3s ease;
@@ -94,6 +96,22 @@
 
     &:hover {
       background: #0052cc;
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    &__text {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    &__arrow {
+      flex: 0 0 auto;
+      line-height: 1;
     }
   }
 }

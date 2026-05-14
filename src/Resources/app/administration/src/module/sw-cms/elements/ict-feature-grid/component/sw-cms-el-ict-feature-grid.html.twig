@@ -16,7 +16,7 @@
             <div class="ifg-card__accent-bar"></div>
 
             <div class="ifg-card__media" :style="{ height: getMediaHeightCss(card) }">
-                <template v-if="element.data && element.data.cardImages && element.data.cardImages[index]">
+                <template v-if="(!card.mediaType || card.mediaType === 'image') && element.data && element.data.cardImages && element.data.cardImages[index]">
                     <img
                         class="ifg-card__media-img"
                         :src="element.data.cardImages[index].url"

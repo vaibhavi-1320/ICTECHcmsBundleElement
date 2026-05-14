@@ -111,12 +111,20 @@
     }
 
     .ict-accordion-content {
-        display: none;
-        padding: 16px;
+        // Don't use `display: none` here: `sw-media-upload-v2` / `sw-media-preview-v2` calculates thumbnail
+        // sizing based on the rendered container width. When toggled from `display:none`, it often ends up
+        // with `sizes="0px"` and the preview looks blank/white until a hard layout change.
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 16px;
         border-top: 1px solid var(--ict-oc-border);
+        transition: max-height 0.2s ease, padding 0.2s ease;
 
         &.open {
-            display: block;
+            max-height: 5000px;
+            overflow: visible;
+            padding: 16px;
         }
     }
 
@@ -184,15 +192,18 @@
     }
 
     .ict-sub-accordion-content {
-        display: none;
+        // Same reasoning as `.ict-accordion-content` (keep it renderable for correct media previews).
+        display: block;
+        max-height: 0;
+        overflow: hidden;
         padding: 0 16px;
         border-top: 1px solid var(--ict-oc-border);
+        transition: max-height 0.2s ease, padding 0.2s ease;
 
         &.open {
-            display: block;
-            padding: 16px;
             max-height: 70vh;
             overflow-y: auto;
+            padding: 16px;
         }
     }
 

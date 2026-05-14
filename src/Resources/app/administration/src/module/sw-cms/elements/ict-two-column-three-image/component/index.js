@@ -24,6 +24,27 @@ export default {
             const media = this.element.data?.rightBottomMedia || this.element.data?.rightBottomImage;
             return media?.url ?? this.assetFilter('/administration/static/img/cms/preview_camera_large.jpg');
         },
+
+        leftButtonIconUrl() {
+            const media = this.element.data?.leftButtonIcon || null;
+            return media?.url || null;
+        },
+
+        leftButtonIconSize() {
+            const size = Number.parseInt(`${this.element?.config?.leftButtonIconSize?.value || ''}`, 10);
+            return Number.isFinite(size) && size > 0 ? size : 20;
+        },
+
+        leftButtonStyle() {
+            const cfg = this.element?.config || {};
+            return {
+                backgroundColor: cfg.leftButtonBackgroundColor?.value || '#0066ff',
+                borderColor: cfg.leftButtonBorderColor?.value || 'transparent',
+                color: cfg.leftButtonTextColor?.value || '#ffffff',
+                borderStyle: 'solid',
+                borderWidth: '1px',
+            };
+        },
     },
 
     created() {

@@ -134,13 +134,20 @@
     }
 
     .ict-accordion-content {
-        display: none;
-        padding: 16px;
+        // Keep content renderable so `sw-media-upload-v2` previews can measure width correctly.
+        // `display:none` often results in `sizes="0px"` and blank/white thumbnails after reopening.
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 16px;
         background: #fff;
         border-top: 1px solid var(--ict-ps-border);
+        transition: max-height 0.2s ease, padding 0.2s ease;
 
         &.open {
-            display: block;
+            max-height: 5000px;
+            overflow: visible;
+            padding: 16px;
         }
     }
 

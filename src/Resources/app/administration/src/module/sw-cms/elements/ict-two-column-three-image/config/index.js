@@ -27,8 +27,26 @@ export default {
                 if (this.element) {
                     this.$emit('element-update', this.element);
                 }
+            },
+        },
+        'element.config.leftButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.leftButtonLink.value = null;
+                this.$emit('element-update', this.element);
             }
-        }
+        },
+        'element.config.rightTopButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.rightTopButtonLink.value = null;
+                this.$emit('element-update', this.element);
+            }
+        },
+        'element.config.rightBottomButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.rightBottomButtonLink.value = null;
+                this.$emit('element-update', this.element);
+            }
+        },
     },
 
     props: {
@@ -115,26 +133,6 @@ export default {
             rightBottomImageMediaModalIsOpen: false,
             rightBottomButtonIconMediaModalIsOpen: false,
         }
-    },
-    watch: {
-        'element.config.leftButtonLinkType.value'(newVal, oldVal) {
-            if (newVal !== oldVal) {
-                this.element.config.leftButtonLink.value = null;
-                this.$emit('element-update', this.element);
-            }
-        },
-        'element.config.rightTopButtonLinkType.value'(newVal, oldVal) {
-            if (newVal !== oldVal) {
-                this.element.config.rightTopButtonLink.value = null;
-                this.$emit('element-update', this.element);
-            }
-        },
-        'element.config.rightBottomButtonLinkType.value'(newVal, oldVal) {
-            if (newVal !== oldVal) {
-                this.element.config.rightBottomButtonLink.value = null;
-                this.$emit('element-update', this.element);
-            }
-        },
     },
 
     methods: {

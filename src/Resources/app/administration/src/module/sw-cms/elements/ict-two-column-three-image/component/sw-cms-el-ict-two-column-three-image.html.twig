@@ -8,7 +8,18 @@
                 <div class="content">
                     <p class="title" v-if="element.config.leftImageDescription?.value" v-html="element.config.leftImageDescription.value"></p>
 
-                    <a href="#" class="btn-learn" v-if="element.config.leftButtonTitle?.value">{{ element.config.leftButtonTitle.value }} →</a>
+                    <a href="#"
+                       class="btn-learn"
+                       v-if="element.config.leftButtonTitle?.value"
+                       :style="leftButtonStyle">
+                        <img v-if="leftButtonIconUrl"
+                             class="btn-learn__icon"
+                             :src="leftButtonIconUrl"
+                             alt=""
+                             :style="{ width: `${leftButtonIconSize}px`, height: `${leftButtonIconSize}px` }">
+                        <span class="btn-learn__text">{{ element.config.leftButtonTitle.value }}</span>
+                        <span class="btn-learn__arrow">→</span>
+                    </a>
                 </div>
             </div>
         </div>

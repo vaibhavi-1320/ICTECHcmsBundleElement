@@ -23,6 +23,11 @@
             padding: 2px 0;
             min-width: 0;
             text-align: center;
+
+            .ict-manufacturer-slider__card {
+                max-width: var(--ict-manufacturer-slider-max-width);
+                margin: 0 auto;
+            }
         }
 
         &__card {
@@ -30,9 +35,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            // Let CMS config (maxHeight) actually affect the visible card size.
-            // Previously this fixed value prevented small heights (e.g. 20px) from showing any change.
             min-height: calc(var(--ict-manufacturer-slider-max-height) + 24px);
+            max-height: calc(var(--ict-manufacturer-slider-max-height) + 24px);
             padding: .875rem 1.125rem;
             background: #fff;
             border: 1px solid $border-color;
@@ -197,7 +201,7 @@
             }
 
             &__card {
-                min-height: 84px;
+                min-height: calc(var(--ict-manufacturer-slider-max-height) + 24px);
                 padding: .75rem .875rem;
             }
 
@@ -227,7 +231,7 @@
             }
 
             &__card {
-                min-height: 76px;
+                min-height: calc(var(--ict-manufacturer-slider-max-height) + 24px);
             }
 
             &__name {

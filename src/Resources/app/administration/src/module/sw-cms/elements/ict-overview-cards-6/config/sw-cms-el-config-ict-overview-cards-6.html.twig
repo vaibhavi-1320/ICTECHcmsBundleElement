@@ -178,7 +178,6 @@
                             </sw-upload-listener>
 
                             <sw-media-upload-v2
-                                v-if="!card.iconImage || getIconImageMediaItem(cardIndex)"
                                 variant="regular"
                                 :upload-tag="getIconImageUploadTag(cardIndex)"
                                 :source="getIconImageMediaItem(cardIndex)"
@@ -442,12 +441,12 @@
                                     @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.detailRowsTitleFontWeight"
+                                <sw-single-select
+                                    v-model:value="card.detailRowsTitleFontWeight"
                                     label="Title font weight"
                                     :options="fontWeightOptions"
                                     @update:value="onElementUpdate">
-                                </mt-select>
+                                </sw-single-select>
                             </div>
 
                             <div class="inline-fields">
@@ -463,12 +462,12 @@
                                     @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.detailRowsValueFontWeight"
+                                <sw-single-select
+                                    v-model:value="card.detailRowsValueFontWeight"
                                     label="Value font weight"
                                     :options="fontWeightOptions"
                                     @update:value="onElementUpdate">
-                                </mt-select>
+                                </sw-single-select>
                             </div>
 
                             <div class="inline-fields">

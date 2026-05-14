@@ -722,6 +722,10 @@ export default {
                 // When rendered inside an accordion (display: none -> block), they can get stuck with 0px sizes.
                 // Trigger a layout recalculation so previews render correctly after reopening.
                 window.dispatchEvent(new Event('resize'));
+                // Some Shopware admin builds still end up with `sizes="0px"` on the `<img>` after the first resize.
+                // A second resize on the next frame (and a short timeout) makes the preview stable.
+                requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+                setTimeout(() => window.dispatchEvent(new Event('resize')), 60);
             });
         },
 

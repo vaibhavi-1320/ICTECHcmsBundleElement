@@ -1,6 +1,6 @@
 {% block element_ict_feature_grid_media %}
     <div class="ifg-card__media" style="height: {{ mediaHeightCss }};">
-        {% if cardImageMedia %}
+        {% if (card.mediaType is not defined or card.mediaType == 'image') and cardImageMedia %}
             <img class="ifg-card__media-img"
                  src="{{ cardImageMedia.url }}"
                  alt="{{ card.headline ?? 'Media' }}"
