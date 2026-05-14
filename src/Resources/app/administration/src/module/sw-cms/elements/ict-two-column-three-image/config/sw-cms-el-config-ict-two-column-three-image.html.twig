@@ -108,9 +108,9 @@
                                 @update:value="onLeftButtonIconSizeChange">
                         </mt-select>
                         <mt-switch
-                                v-model:value="element.config.leftButtonIconHoverActive.value"
+                                :checked="element.config.leftButtonIconHoverActive.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftButtonIconHoverActive')"
-                                @update:value="onLeftButtonIconHoverActiveChange">
+                                @change="onLeftButtonIconHoverActiveChange">
                         </mt-switch>
                         <sw-colorpicker
                                 v-if="element.config.leftButtonIconHoverActive.value"
@@ -293,9 +293,9 @@
                                 @update:value="onRightTopButtonIconSizeChange">
                         </mt-select>
                                 <mt-switch
-                                        v-model:value="element.config.rightTopButtonIconHoverActive.value"
+                                        :checked="element.config.rightTopButtonIconHoverActive.value"
                                         :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightTopButtonIconHoverActive')"
-                                        @update:value="onRightTopButtonIconHoverActiveChange">
+                                        @change="onRightTopButtonIconHoverActiveChange">
                                 </mt-switch>
                         <sw-colorpicker
                                 v-if="element.config.rightTopButtonIconHoverActive.value"
@@ -476,9 +476,9 @@
                                 @update:value="onRightBottomButtonIconSizeChange">
                         </mt-select>
                                 <mt-switch
-                                        v-model:value="element.config.rightBottomButtonIconHoverActive.value"
+                                        :checked="element.config.rightBottomButtonIconHoverActive.value"
                                         :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightBottomButtonIconHoverActive')"
-                                        @update:value="onRightBottomButtonIconHoverActiveChange">
+                                        @change="onRightBottomButtonIconHoverActiveChange">
                                 </mt-switch>
                         <sw-colorpicker
                                 v-if="element.config.rightBottomButtonIconHoverActive.value"
