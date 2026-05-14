@@ -19,7 +19,13 @@
             <div class="title-settings-grid">
                 <mt-text-field v-model="element.config.platformTitleSize.value" label="Title Size (px)" placeholder="e.g. 28"></mt-text-field>
                 <mt-text-field v-model="element.config.platformTitleLineHeight.value" label="Line Height (px)" placeholder="e.g. 34"></mt-text-field>
-                <mt-colorpicker v-model="element.config.platformTitleColor.value" label="Title Color"></mt-colorpicker>
+                <sw-colorpicker
+                    v-model:value="element.config.platformTitleColor.value"
+                    label="Title Color"
+                    color-output="hex"
+                    :z-index="1000"
+                    @update:value="(v) => onElementUpdate('platformTitleColor', v)"
+                />
                 <mt-select v-model="element.config.platformTitleAlignment.value" label="Title Alignment" :options="alignmentOptions"></mt-select>
             </div>
 
@@ -27,7 +33,14 @@
             <mt-select v-model="element.config.backgroundType.value" label="Background Type" :options="backgroundTypeOptions"></mt-select>
             <mt-number-field v-model="element.config.platformBlockBorderRadius.value" label="Border Radius (px)" number-type="int" :min="0"></mt-number-field>
 
-            <mt-colorpicker v-if="element.config.backgroundType.value === 'color'" v-model="element.config.platformBlockBackground.value" label="Background Color"></mt-colorpicker>
+            <sw-colorpicker
+                v-if="element.config.backgroundType.value === 'color'"
+                v-model:value="element.config.platformBlockBackground.value"
+                label="Background Color"
+                color-output="hex"
+                :z-index="1000"
+                @update:value="(v) => onElementUpdate('platformBlockBackground', v)"
+            />
 
             <div v-if="element.config.backgroundType.value === 'image'">
                 <sw-upload-listener :upload-tag="getBackgroundImageUploadTag()" @media-upload-finish="onBackgroundImageUpload" auto-upload></sw-upload-listener>
@@ -47,8 +60,20 @@
             </div>
 
             <div v-if="element.config.backgroundType.value === 'gradient'" class="gradient-settings">
-                <mt-colorpicker v-model="element.config.gradientColor1.value" label="Gradient Color 1"></mt-colorpicker>
-                <mt-colorpicker v-model="element.config.gradientColor2.value" label="Gradient Color 2"></mt-colorpicker>
+                <sw-colorpicker
+                    v-model:value="element.config.gradientColor1.value"
+                    label="Gradient Color 1"
+                    color-output="hex"
+                    :z-index="1000"
+                    @update:value="(v) => onElementUpdate('gradientColor1', v)"
+                />
+                <sw-colorpicker
+                    v-model:value="element.config.gradientColor2.value"
+                    label="Gradient Color 2"
+                    color-output="hex"
+                    :z-index="1000"
+                    @update:value="(v) => onElementUpdate('gradientColor2', v)"
+                />
                 <mt-select v-model="element.config.gradientDirection.value" label="Direction" :options="gradientDirectionOptions"></mt-select>
             </div>
 
@@ -83,21 +108,46 @@
 
                         <h5>Icon Image</h5>
                         <sw-upload-listener :upload-tag="getPlatformIconUploadTag(index)" @media-upload-finish="onPlatformIconUpload(index, $event)" auto-upload></sw-upload-listener>
-                        <sw-media-upload-v2 variant="regular" :upload-tag="getPlatformIconUploadTag(index)" :source="getPlatformIconMediaItem(index)" :allow-multi-select="false" label="Icon Image" :default-folder="'cms_page'" file-accept="image/*" @selection-change="onPlatformIconSelectionChanges(index, $event)" @media-upload-remove-image="onPlatformIconRemove(index)" @media-upload-sidebar-open="onOpenPlatformIconModal(index)"></sw-media-upload-v2>
+                        <sw-media-upload-v2 variant="regular" :upload-tag="getPlatformIconUploadTag(index)" :source="getPlatformIconMediaItem(index, platform)" :allow-multi-select="false" label="Icon Image" :default-folder="'cms_page'" file-accept="image/*" @selection-change="onPlatformIconSelectionChanges(index, $event)" @media-upload-remove-image="onPlatformIconRemove(index)" @media-upload-sidebar-open="onOpenPlatformIconModal(index)"></sw-media-upload-v2>
                         <sw-media-modal-v2 v-if="platformIconModals[index]" :initial-folder-id="null" :entity-context="'cms_page'" @media-modal-selection-change="onPlatformIconSelectionChanges(index, $event)" @modal-close="onClosePlatformIconModal(index)"></sw-media-modal-v2>
 
                         <div class="icon-settings-grid">
                             <mt-text-field v-model="platform.iconSizePx" label="Icon Size (px)" placeholder="e.g. 48"></mt-text-field>
-                            <mt-colorpicker v-model="platform.iconColor" label="Icon Color"></mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="platform.iconColor"
+                                label="Icon Color"
+                                color-output="hex"
+                                :z-index="1000"
+                                @update:value="(v) => updatePlatform(index, 'iconColor', v)"
+                            />
                             <mt-select v-model="platform.iconBackgroundShape" label="Shape" :options="iconShapeOptions"></mt-select>
                         </div>
 
                         <h6>Icon Background</h6>
                         <mt-select v-model="platform.iconBackgroundType" label="Background Type" :options="iconBackgroundTypeOptions"></mt-select>
-                        <mt-colorpicker v-if="platform.iconBackgroundType === 'solid'" v-model="platform.iconBackgroundColor" label="Background Color"></mt-colorpicker>
+                        <sw-colorpicker
+                            v-if="platform.iconBackgroundType === 'solid'"
+                            v-model:value="platform.iconBackgroundColor"
+                            label="Background Color"
+                            color-output="hex"
+                            :z-index="1000"
+                            @update:value="(v) => updatePlatform(index, 'iconBackgroundColor', v)"
+                        />
                         <div v-if="platform.iconBackgroundType === 'gradient'">
-                            <mt-colorpicker v-model="platform.iconGradientColor1" label="Gradient Color 1"></mt-colorpicker>
-                            <mt-colorpicker v-model="platform.iconGradientColor2" label="Gradient Color 2"></mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="platform.iconGradientColor1"
+                                label="Gradient Color 1"
+                                color-output="hex"
+                                :z-index="1000"
+                                @update:value="(v) => updatePlatform(index, 'iconGradientColor1', v)"
+                            />
+                            <sw-colorpicker
+                                v-model:value="platform.iconGradientColor2"
+                                label="Gradient Color 2"
+                                color-output="hex"
+                                :z-index="1000"
+                                @update:value="(v) => updatePlatform(index, 'iconGradientColor2', v)"
+                            />
                             <mt-select v-model="platform.iconGradientDirection" label="Direction" :options="gradientDirectionOptions"></mt-select>
                         </div>
 
@@ -106,16 +156,27 @@
                         <div class="label-settings-grid">
                             <mt-text-field v-model="platform.platformLabelSizePx" label="Size (px)" placeholder="e.g. 14"></mt-text-field>
                             <mt-select v-model="platform.platformLabelWeight" label="Weight" :options="fontWeightOptions"></mt-select>
-                            <mt-colorpicker v-model="platform.platformLabelColor" label="Color"></mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="platform.platformLabelColor"
+                                label="Color"
+                                color-output="hex"
+                                :z-index="1000"
+                                @update:value="(v) => updatePlatform(index, 'platformLabelColor', v)"
+                            />
                         </div>
 
                         <h5>Link</h5>
                         <div class="link-settings-grid">
-                            <mt-select v-model="platform.linkType" label="Link Type" :options="linkTypeOptions"></mt-select>
+                            <mt-select
+                                v-model="platform.linkType"
+                                label="Link Type"
+                                :options="linkTypeOptions"
+                                @update:value="(v) => onPlatformLinkTypeChange(index, v)">
+                            </mt-select>
                             <mt-select v-model="platform.platformLinkTarget" label="Target" :options="targetOptions"></mt-select>
                         </div>
                         <sw-dynamic-url-field v-if="platform.linkType === 'internal'" v-model:value="platform.platformLinkUrl"></sw-dynamic-url-field>
-                        <mt-text-field v-if="platform.linkType === 'external'" v-model="platform.platformLinkUrl" label="URL"></mt-text-field>
+                        <mt-text-field v-if="platform.linkType === 'external'" v-model="platform.platformLinkUrl" label="URL" @blur="onPlatformExternalUrlChange(index)"></mt-text-field>
 
                         <div v-if="element.config.platformItems.value.length > 1" class="remove-platform-section">
                             <sw-button @click="removePlatform(index)" size="small" variant="danger">

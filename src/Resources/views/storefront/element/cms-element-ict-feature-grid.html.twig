@@ -3,10 +3,12 @@
     {% set slotData = element.data %}
     {% set cards    = config.cards.value ?? [] %}
     {% set columns  = config.numberOfColumns.value ?? 3 %}
+    {% set effectiveColumns = min([columns, (cards|length)]) %}
+    {% set effectiveColumns = max([effectiveColumns, 1]) %}
     {% set spacing  = config.cardSpacing.value ?? 20 %}
 
     <div class="cms-element-ict-feature-grid">
-        <div class="ifg-grid" style="grid-template-columns: repeat({{ columns }}, minmax(0, 1fr)); gap: {{ spacing }}px;">
+        <div class="ifg-grid" style="grid-template-columns: repeat({{ effectiveColumns }}, minmax(0, 1fr)); gap: {{ spacing }}px;">
             {% for card in cards %}
                 {% set cardIndex      = loop.index0 %}
                 {% set iconMedia      = slotData.iconImages[cardIndex] ?? null %}

@@ -14,6 +14,12 @@ export default {
     computed: {
         mediaRepository() {
             return this.repositoryFactory.create('media');
+        },
+
+        effectiveColumns() {
+            const configured = Number(this.element?.config?.numberOfColumns?.value || 1);
+            const cardCount = Array.isArray(this.element?.config?.cards?.value) ? this.element.config.cards.value.length : 0;
+            return Math.max(1, Math.min(configured || 1, cardCount || 1));
         }
     },
 
@@ -60,6 +66,7 @@ export default {
 
         createdComponent() {
             this.initElementConfig('ict-overview-cards-6');
+            this.initElementData('ict-overview-cards-6');
             this.ensureCardsInitialized();
         },
 
@@ -177,7 +184,7 @@ export default {
             const cards = this.element.config?.cards?.value;
             if (!Array.isArray(cards)) return;
 
-            if (!this.element.data) this.element.data = {};
+            if (!this.element.data) this.$set(this.element, 'data', {});
 
             for (let i = 0; i < cards.length; i++) {
                 const card = cards[i];
@@ -185,24 +192,24 @@ export default {
                 if (card.iconImage && !this.element.data.iconImages?.[i]) {
                     try {
                         const media = await this.mediaRepository.get(card.iconImage);
-                        if (!this.element.data.iconImages) this.element.data.iconImages = {};
-                        this.element.data.iconImages[i] = media;
+                        if (!this.element.data.iconImages) this.$set(this.element.data, 'iconImages', {});
+                        this.$set(this.element.data.iconImages, i, media);
                     } catch (_) { /* noop */ }
                 }
 
                 if (card.cardBackgroundImage && !this.element.data.cardImages?.[i]) {
                     try {
                         const media = await this.mediaRepository.get(card.cardBackgroundImage);
-                        if (!this.element.data.cardImages) this.element.data.cardImages = {};
-                        this.element.data.cardImages[i] = media;
+                        if (!this.element.data.cardImages) this.$set(this.element.data, 'cardImages', {});
+                        this.$set(this.element.data.cardImages, i, media);
                     } catch (_) { /* noop */ }
                 }
 
                 if (card.cardMainBackgroundImage && !this.element.data.cardMainImages?.[i]) {
                     try {
                         const media = await this.mediaRepository.get(card.cardMainBackgroundImage);
-                        if (!this.element.data.cardMainImages) this.element.data.cardMainImages = {};
-                        this.element.data.cardMainImages[i] = media;
+                        if (!this.element.data.cardMainImages) this.$set(this.element.data, 'cardMainImages', {});
+                        this.$set(this.element.data.cardMainImages, i, media);
                     } catch (_) { /* noop */ }
                 }
             }
@@ -210,7 +217,7 @@ export default {
             if (this.element.config.backgroundImage?.value && !this.element.data.backgroundMedia) {
                 try {
                     const media = await this.mediaRepository.get(this.element.config.backgroundImage.value);
-                    this.element.data.backgroundMedia = media;
+                    this.$set(this.element.data, 'backgroundMedia', media);
                 } catch (_) { /* noop */ }
             }
         }

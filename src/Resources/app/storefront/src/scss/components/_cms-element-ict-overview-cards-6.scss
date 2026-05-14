@@ -1,5 +1,6 @@
 .cms-element-ict-overview-cards-6 {
-    padding: 25px 0;
+    padding-block: 25px;
+    padding-inline: clamp(16px, 3vw, 32px);
     position: relative;
 
     .element-background-image,
@@ -91,7 +92,7 @@
         align-items: center;
         justify-content: center;
         background: #f8fafc;
-        border-radius: 10px 10px 0 0;
+        // border-radius: 10px 10px 0 0;
     }
 
     .card-media-tile,
@@ -112,6 +113,7 @@
     .card-media-image,
     .card-media-video {
         display: block;
+        object-position: center;
     }
 
     .card-media-iframe {
@@ -220,7 +222,7 @@
         padding: 8px 0;
     }
     .card-info-text {
-        padding-bottom: 25px;
+        padding-bottom: 8px;
     }
     .card-detail-row {
         display: grid;
@@ -238,11 +240,10 @@
     }
 
     .card-buttons {
-        margin-top: auto;
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        padding-top: 25px;
+        padding-top: 8px;
     }
 
     .card-button-wrapper {

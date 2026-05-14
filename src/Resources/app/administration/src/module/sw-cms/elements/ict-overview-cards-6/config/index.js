@@ -30,7 +30,8 @@ export default {
             iconImageModals: {},
             featureIconModals: {},
             backgroundMediaModalIsOpen: false,
-            backgroundVideoModalIsOpen: false
+            backgroundVideoModalIsOpen: false,
+            _prevButtonLinkTypes: {},
         };
     },
 
@@ -223,8 +224,11 @@ export default {
         this.createdComponent();
     },
 
-    mounted() {
-        this.loadMedia();
+    async mounted() {
+        await this.loadMedia();
+        this.$nextTick(() => {
+            window.dispatchEvent(new Event('resize'));
+        });
     },
 
     watch: {
@@ -235,14 +239,39 @@ export default {
                     this.$emit('element-update', this.element);
                 }
             }
-        }
+        },
+        'element.config.cards.value': {
+            deep: true,
+            handler(cards) {
+                (cards || []).forEach((card, ci) => {
+                    (card.buttons || []).forEach((btn, bi) => {
+                        const key = `${ci}-${bi}`;
+                        if (this._prevButtonLinkTypes[key] !== undefined && btn.buttonLinkType !== this._prevButtonLinkTypes[key]) {
+                            btn.buttonUrl = null;
+                        }
+                        this._prevButtonLinkTypes[key] = btn.buttonLinkType;
+                    });
+                });
+            },
+        },
     },
 
     methods: {
         createdComponent() {
             this.initElementConfig('ict-overview-cards-6');
+            this.initElementData('ict-overview-cards-6');
             this.ensureCardsInitialized();
             this.ensureCardDefaults();
+
+            if (!this.element.data) this.element.data = {};
+            if (!this.element.data.iconImages) this.element.data.iconImages = {};
+
+            this._prevButtonLinkTypes = {};
+            (this.element.config.cards?.value || []).forEach((card, ci) => {
+                (card.buttons || []).forEach((btn, bi) => {
+                    this._prevButtonLinkTypes[`${ci}-${bi}`] = btn.buttonLinkType;
+                });
+            });
         },
 
         createButton(overrides = {}) {
@@ -688,6 +717,12 @@ export default {
 
         toggleAccordion(index) {
             this.openIndex = this.openIndex === index ? null : index;
+            this.$nextTick(() => {
+                // sw-media-upload-v2/sw-media-preview-v2 compute thumbnail sizes based on container width.
+                // When rendered inside an accordion (display: none -> block), they can get stuck with 0px sizes.
+                // Trigger a layout recalculation so previews render correctly after reopening.
+                window.dispatchEvent(new Event('resize'));
+            });
         },
 
         toggleButtonSettingsAccordion(cardIndex) {
@@ -695,6 +730,9 @@ export default {
                 ...this.openButtonSettingsIndexes,
                 [cardIndex]: !this.openButtonSettingsIndexes[cardIndex]
             };
+            this.$nextTick(() => {
+                window.dispatchEvent(new Event('resize'));
+            });
         },
 
         isButtonSettingsAccordionOpen(cardIndex) {
@@ -708,6 +746,9 @@ export default {
                 ...this.openButtonItemIndexes,
                 [key]: !isOpen
             };
+            this.$nextTick(() => {
+                window.dispatchEvent(new Event('resize'));
+            });
         },
 
         isButtonAccordionOpen(cardIndex, buttonIndex) {
@@ -789,6 +830,18 @@ export default {
         },
 
         onElementUpdate() {
+            this.$emit('element-update', this.element);
+        },
+
+        onButtonLinkTypeChange(button) {
+            button.buttonUrl = '';
+            this.$emit('element-update', this.element);
+        },
+
+        onButtonExternalUrlChange(button) {
+            if (button.buttonUrl && !/^https?:\/\//i.test(button.buttonUrl)) {
+                button.buttonUrl = `https://${button.buttonUrl}`;
+            }
             this.$emit('element-update', this.element);
         },
 
@@ -901,7 +954,11 @@ export default {
             if (!this.element.data.cardImages) {
                 this.element.data.cardImages = {};
             }
-            this.element.data.cardImages[cardIndex] = media;
+            // Replace object to keep Vue2 reactivity when adding new keys
+            this.element.data.cardImages = {
+                ...this.element.data.cardImages,
+                [cardIndex]: media
+            };
         },
         onCardImageRemove(cardIndex) {
             this.updateCard(cardIndex, 'cardBackgroundImage', null);
@@ -947,7 +1004,11 @@ export default {
             if (!this.element.data.cardMainImages) {
                 this.element.data.cardMainImages = {};
             }
-            this.element.data.cardMainImages[cardIndex] = media;
+            // Replace object to keep Vue2 reactivity when adding new keys
+            this.element.data.cardMainImages = {
+                ...this.element.data.cardMainImages,
+                [cardIndex]: media
+            };
         },
         onCardMainImageRemove(cardIndex) {
             this.updateCard(cardIndex, 'cardMainBackgroundImage', null);
@@ -993,7 +1054,11 @@ export default {
             if (!this.element.data.cardVideos) {
                 this.element.data.cardVideos = {};
             }
-            this.element.data.cardVideos[cardIndex] = media;
+            // Replace object to keep Vue2 reactivity when adding new keys
+            this.element.data.cardVideos = {
+                ...this.element.data.cardVideos,
+                [cardIndex]: media
+            };
         },
         onCardVideoRemove(cardIndex) {
             this.updateCard(cardIndex, 'cardBackgroundVideo', null);
@@ -1039,7 +1104,11 @@ export default {
             if (!this.element.data.cardMainVideos) {
                 this.element.data.cardMainVideos = {};
             }
-            this.element.data.cardMainVideos[cardIndex] = media;
+            // Replace object to keep Vue2 reactivity when adding new keys
+            this.element.data.cardMainVideos = {
+                ...this.element.data.cardMainVideos,
+                [cardIndex]: media
+            };
         },
         onCardMainVideoRemove(cardIndex) {
             this.updateCard(cardIndex, 'cardMainBackgroundVideo', null);
@@ -1072,6 +1141,9 @@ export default {
         },
         onCloseIconImageModal(cardIndex) {
             this.iconImageModals = {...this.iconImageModals, [cardIndex]: false};
+            this.$nextTick(() => {
+                window.dispatchEvent(new Event('resize'));
+            });
         },
         onIconImageUpload(cardIndex, {targetId}) {
             this.mediaRepository.get(targetId).then((mediaEntity) => {
@@ -1083,10 +1155,10 @@ export default {
             if (!this.element.data) {
                 this.element.data = {};
             }
-            if (!this.element.data.iconImages) {
-                this.element.data.iconImages = {};
-            }
-            this.element.data.iconImages[cardIndex] = media;
+            this.element.data.iconImages = {
+                ...this.element.data.iconImages,
+                [cardIndex]: media
+            };
         },
         onIconImageRemove(cardIndex) {
             this.updateCard(cardIndex, 'iconImage', null);

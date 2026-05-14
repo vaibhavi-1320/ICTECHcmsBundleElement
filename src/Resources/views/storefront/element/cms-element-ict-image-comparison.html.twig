@@ -1,10 +1,11 @@
 {% block element_ict_image_comparison %}
     {% set layout      = element.data.layout ?? element.config.layout.value ?? 'horizontal' %}
+    {% set mediaFitMode = element.data.mediaFitMode ?? element.config.mediaFitMode.value ?? 'crop' %}
     {% set beforeMedia = element.data.beforeMedia ?? null %}
     {% set afterMedia  = element.data.afterMedia ?? null %}
 
     <div
-        class="cms-element-ict-image-comparison ict-img-compare ict-img-compare--{{ layout }}"
+        class="cms-element-ict-image-comparison ict-img-compare ict-img-compare--{{ layout }} ict-img-compare--fit-{{ mediaFitMode }}"
         data-ict-image-comparison="true"
         data-layout="{{ layout }}"
         aria-label="{{ 'ict-cms-bundle-element.storefront.imageComparison.ariaLabel'|trans }}"

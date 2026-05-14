@@ -1,6 +1,8 @@
 import deDE from './snippet/de-DE.json';
 import enGB from './snippet/en-GB.json';
 
+import './scss/overrides.scss';
+
 import './module/sw-cms/elements/ict-two-column';
 import './module/sw-cms/elements/ict-three-column';
 import './module/sw-cms/elements/ict-four-column';

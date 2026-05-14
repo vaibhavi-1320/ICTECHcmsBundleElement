@@ -1,7 +1,7 @@
 {% block sw_cms_el_config_ict_image_comparison %}
 <div class="ict-image-comparison-config">
     <sw-tabs
-        v-model:active-tab="activeTab"
+        default-item="general"
         position-identifier="ict-image-comparison-config"
     >
         <template #default="{ active }">
@@ -25,6 +25,13 @@
                     v-model:value="element.config.layout.value"
                     :label="$tc('ict-cms-bundle-element.cms.elements.ictImageComparison.config.layout')"
                     :options="layoutOptions"
+                    @update:value="onUpdate"
+                />
+
+                <sw-single-select
+                    v-model:value="element.config.mediaFitMode.value"
+                    :label="$tc('ict-cms-bundle-element.cms.elements.ictImageComparison.config.mediaFitMode')"
+                    :options="mediaFitModeOptions"
                     @update:value="onUpdate"
                 />
             </div>

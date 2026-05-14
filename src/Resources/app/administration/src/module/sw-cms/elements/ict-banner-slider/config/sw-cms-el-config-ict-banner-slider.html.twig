@@ -63,8 +63,9 @@
                                 />
                                 <sw-colorpicker
                                     v-model:value="item.mainTitleColor"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.mainTitleColor')"
-                                    :default-value="'#ffffff'"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>
@@ -78,8 +79,9 @@
                                 />
                                 <sw-colorpicker
                                     v-model:value="item.subTitleColor"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.subTitleColor')"
-                                    :default-value="'#ffffff'"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>
@@ -93,8 +95,9 @@
                                 />
                                 <sw-colorpicker
                                     v-model:value="item.descriptionColor"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.descriptionColor')"
-                                    :default-value="'#ffffff'"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>
@@ -110,6 +113,7 @@
                                     v-model:value="item.callButtonNumber"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.phoneNumber')"
                                     placeholder="06074 - 21 50 70"
+                                    :error="getPhoneError(index)"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>
@@ -125,6 +129,7 @@
                                     v-model:value="item.emailButtonAddress"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.emailAddress')"
                                     placeholder="info@example.com"
+                                    :error="getEmailError(index)"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>
@@ -132,14 +137,16 @@
                             <div class="sw-cms-el-config-ict-banner-slider__item-row">
                                 <sw-colorpicker
                                     v-model:value="item.buttonColor"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.buttonColor')"
-                                    :default-value="'#f15a24'"
                                     @update:value="emitElementUpdate"
                                 />
                                 <sw-colorpicker
                                     v-model:value="item.buttonTextColor"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$t('ict-cms-bundle-element.cms.elements.ictBannerSlider.config.buttonTextColor')"
-                                    :default-value="'#ffffff'"
                                     @update:value="emitElementUpdate"
                                 />
                             </div>

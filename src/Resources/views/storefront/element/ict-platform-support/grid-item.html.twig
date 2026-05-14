@@ -2,7 +2,11 @@
     {% set platformElement = platform %}
 
     {% if platformElement.platformLinkUrl %}
-        <a href="{{ platformElement.platformLinkUrl }}" target="{{ platformElement.platformLinkTarget }}" class="platform-item-link">
+        {% set platformHref = platformElement.platformLinkUrl %}
+        {% if platformElement.linkType == 'external' and platformHref and not (platformHref starts with 'http://') and not (platformHref starts with 'https://') %}
+            {% set platformHref = 'https://' ~ platformHref %}
+        {% endif %}
+        <a href="{{ platformHref }}" target="{{ platformElement.platformLinkTarget }}" class="platform-item-link">
     {% endif %}
 
     <div class="platform-item" style="

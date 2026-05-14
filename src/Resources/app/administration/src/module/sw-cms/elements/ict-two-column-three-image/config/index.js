@@ -20,6 +20,17 @@ export default {
         this.loadMedia();
     },
 
+    watch: {
+        'element.config': {
+            deep: true,
+            handler() {
+                if (this.element) {
+                    this.$emit('element-update', this.element);
+                }
+            }
+        }
+    },
+
     props: {
         fileAccept: {
             type: String,
@@ -105,10 +116,44 @@ export default {
             rightBottomButtonIconMediaModalIsOpen: false,
         }
     },
+    watch: {
+        'element.config.leftButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.leftButtonLink.value = null;
+                this.$emit('element-update', this.element);
+            }
+        },
+        'element.config.rightTopButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.rightTopButtonLink.value = null;
+                this.$emit('element-update', this.element);
+            }
+        },
+        'element.config.rightBottomButtonLinkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.rightBottomButtonLink.value = null;
+                this.$emit('element-update', this.element);
+            }
+        },
+    },
+
     methods: {
 
         createdComponent() {
             this.initElementConfig('ict-two-column-three-image');
+        },
+
+        onLinkTypeChange(configKey, linkKey) {
+            this.element.config[linkKey].value = '';
+            this.$emit('element-update', this.element);
+        },
+
+        onExternalUrlChange(linkKey) {
+            const url = this.element.config[linkKey]?.value || '';
+            if (url && !/^https?:\/\//i.test(url)) {
+                this.element.config[linkKey].value = `https://${url}`;
+            }
+            this.$emit('element-update', this.element);
         },
 
         async loadMedia() {
@@ -217,6 +262,7 @@ export default {
         },
         onLeftButtonLinkType(value) {
             this.element.config.leftButtonLinkType.value = value;
+            this.element.config.leftButtonLink.value = null;
             this.$emit('element-update', this.element);
         },
         onLeftButtonLink(value) {
@@ -419,6 +465,7 @@ export default {
 
         onRightTopButtonLinkType(value) {
             this.element.config.rightTopButtonLinkType.value = value;
+            this.element.config.rightTopButtonLink.value = null;
             this.$emit('element-update', this.element);
         },
 
@@ -599,6 +646,7 @@ export default {
 
         onRightBottomButtonLinkType(value) {
             this.element.config.rightBottomButtonLinkType.value = value;
+            this.element.config.rightBottomButtonLink.value = null;
             this.$emit('element-update', this.element);
         },
 

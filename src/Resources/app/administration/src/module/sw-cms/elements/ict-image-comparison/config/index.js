@@ -16,7 +16,6 @@ export default {
 
     data() {
         return {
-            activeTab: 'general',
             beforeModalOpen: false,
             afterModalOpen: false,
         };
@@ -52,6 +51,19 @@ export default {
                 {
                     value: 'vertical',
                     label: this.$tc('ict-cms-bundle-element.cms.elements.ictImageComparison.config.layoutVertical'),
+                },
+            ];
+        },
+
+        mediaFitModeOptions() {
+            return [
+                {
+                    value: 'crop',
+                    label: this.$tc('ict-cms-bundle-element.cms.elements.ictImageComparison.config.mediaFitModeCrop'),
+                },
+                {
+                    value: 'full',
+                    label: this.$tc('ict-cms-bundle-element.cms.elements.ictImageComparison.config.mediaFitModeFull'),
                 },
             ];
         },

@@ -91,19 +91,30 @@
             }
         }
 
+        .sw-cms-el-config-ict-hero-section__feature-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .feature-remove {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 2px;
+
+            .sw-button {
+                height: 32px;
+                min-height: 32px;
+                padding-inline: 12px;
+                border-radius: 6px;
+            }
+        }
+
         .remove-feature-section {
             margin-top: 1rem;
         }
-    }
-}
-
-.sw-cms-slot-config__settings-modal {
-    .sw-modal__body {
-        overflow: visible;
-    }
-
-    .sw-colorpicker__dropdown,
-    .sw-colorpicker__colorpicker {
-        z-index: 1200;
     }
 }

@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             mediaModalIsOpen: false,
+            validationErrors: {},
         };
     },
 
@@ -49,7 +50,44 @@ export default {
             this.initElementConfig(ELEMENT_NAME);
         },
 
+        getEmailError(index) {
+            const error = this.validationErrors?.[index]?.email;
+            return error ? { detail: error } : null;
+        },
+
+        getPhoneError(index) {
+            const error = this.validationErrors?.[index]?.phone;
+            return error ? { detail: error } : null;
+        },
+
+        validateSliderItems() {
+            const errors = {};
+
+            this.sliderItems.forEach((item, index) => {
+                const email = (item?.emailButtonAddress ?? '').toString().trim();
+                const phone = (item?.callButtonNumber ?? '').toString().trim();
+
+                if (email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    errors[index] = errors[index] ?? {};
+                    errors[index].email = 'Please enter a valid email address.';
+                }
+
+                if (phone.length > 0) {
+                    const normalizedPhone = phone.replace(/[\s().-]/g, '');
+                    const validPhone = /^[+]?[\d]{7,15}$/.test(normalizedPhone);
+
+                    if (!validPhone) {
+                        errors[index] = errors[index] ?? {};
+                        errors[index].phone = 'Please enter a valid phone number.';
+                    }
+                }
+            });
+
+            this.validationErrors = errors;
+        },
+
         emitElementUpdate() {
+            this.validateSliderItems();
             this.$emit('element-update', this.element);
         },
 

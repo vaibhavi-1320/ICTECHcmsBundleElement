@@ -74,6 +74,8 @@
 
         <sw-colorpicker
             v-model:value="element.config.backgroundColor.value"
+            color-output="hex"
+            :z-index="1000"
             :label="$tc('ict-cms-bundle-element.cms.elements.ictHeroBanner.config.backgroundColor')"
             @update:value="onUpdate"
         />

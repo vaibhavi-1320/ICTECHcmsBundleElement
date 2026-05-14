@@ -53,7 +53,7 @@
                 v-model:value="tab.linkType"
                 :label="$tc('ict-cms-bundle-element.cms.elements.ictVerticalTab.config.linkType')"
                 :options="linkTypeOptions"
-                @update:value="onUpdate"
+                @update:value="onTabLinkTypeChange(tab)"
             />
 
             <sw-dynamic-url-field
@@ -67,6 +67,7 @@
                     :label="$tc('ict-cms-bundle-element.cms.elements.ictVerticalTab.config.linkTo')"
                     :placeholder="$tc('ict-cms-bundle-element.cms.elements.ictVerticalTab.config.linkPlaceholder')"
                     @update:value="onUpdate"
+                    @blur="onTabExternalUrlChange(tab)"
                 />
                 <div class="ict-vertical-tab-config__link-actions">
                     <sw-button

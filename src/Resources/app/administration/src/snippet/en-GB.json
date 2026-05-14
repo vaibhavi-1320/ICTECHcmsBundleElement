@@ -540,8 +540,11 @@
                             "media": "Media / Upload"
                         },
                         "layout": "Set General Layout",
+                        "mediaFitMode": "Image display mode",
                         "layoutHorizontal": "Landscape / Horizontal",
                         "layoutVertical": "Portrait / Vertical",
+                        "mediaFitModeCrop": "Crop to fill",
+                        "mediaFitModeFull": "Show full image",
                         "beforeImage": "Before Image",
                         "afterImage": "After Image",
                         "sizeHint": "For optimal results, both images should have the same size."

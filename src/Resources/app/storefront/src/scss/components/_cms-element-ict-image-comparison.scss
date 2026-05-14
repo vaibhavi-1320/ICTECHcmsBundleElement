@@ -33,7 +33,10 @@
         position: absolute;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        object-position: center;
         display: block;
         -webkit-user-drag: none;
         pointer-events: none;
@@ -135,6 +138,26 @@
         height: var(--ict-compare-h, 100%);
         top: auto;
         bottom: 0;
+    }
+
+    // ── Fit Mode: Full image (no crop) ───────────────────────────────
+    &--fit-full {
+        .ict-img-compare__before img,
+        .ict-img-compare__after img {
+            object-fit: contain;
+        }
+
+        &.ict-img-compare--horizontal .ict-img-compare__after img,
+        &.ict-img-compare--horizontal .ict-img-compare__after .ict-img-compare__placeholder {
+            left: 0;
+            right: auto;
+        }
+
+        &.ict-img-compare--vertical .ict-img-compare__after img,
+        &.ict-img-compare--vertical .ict-img-compare__after .ict-img-compare__placeholder {
+            top: 0;
+            bottom: auto;
+        }
     }
 
     &--vertical .ict-img-compare__handle {

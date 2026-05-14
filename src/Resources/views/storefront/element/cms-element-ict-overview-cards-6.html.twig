@@ -3,6 +3,8 @@
     {% set slotData = element.data %}
     {% set cards = slotData.cards ?? config.cards.value ?? [] %}
     {% set columns = config.numberOfColumns.value ?? 3 %}
+    {% set effectiveColumns = min([columns, (cards|length)]) %}
+    {% set effectiveColumns = max([effectiveColumns, 1]) %}
     {% set cardSpacing = config.cardSpacing.value ?? 25 %}
     {% set verticalAlignmentRaw = config.verticalAlignment.value ?? 'stretch' %}
     {% set verticalAlignment = verticalAlignmentRaw == 'start'
@@ -33,7 +35,7 @@
             {% endif %}
         {% endif %}
 
-        <div class="ict-overview-cards-grid" style="grid-template-columns: repeat({{ columns }}, minmax(0, 1fr)); gap: {{ cardSpacing }}px; align-items: {{ verticalAlignment }}; position: relative; z-index: 1;">
+        <div class="ict-overview-cards-grid" style="grid-template-columns: repeat({{ effectiveColumns }}, minmax(0, 1fr)); gap: {{ cardSpacing }}px; align-items: {{ verticalAlignment }}; position: relative; z-index: 1;">
             {% for card in cards %}
                 {% set cardIndex = loop.index0 %}
                 {% set cardImageMedia = slotData.cardImages[cardIndex] ?? null %}
@@ -52,7 +54,13 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                {% set mediaDisplayMode = card.mediaDisplayMode ?? 'fill' %}
+                {% set mediaDisplayMode = card.mediaDisplayMode is defined
+                    ? (card.mediaDisplayMode.value is defined ? card.mediaDisplayMode.value : card.mediaDisplayMode)
+                    : 'fill' %}
+                {% set mediaDisplayMode = mediaDisplayMode is not null ? (mediaDisplayMode ~ '')|trim|lower : 'fill' %}
+                {% if mediaDisplayMode not in ['fill', 'fit', 'crop', 'tile'] %}
+                    {% set mediaDisplayMode = 'fill' %}
+                {% endif %}
                 {% set mediaObjectFit = mediaDisplayMode == 'crop' ? 'cover' : (mediaDisplayMode == 'fill' ? 'fill' : 'contain') %}
                 {% set mediaHeightRaw = card.mediaHeight is defined and card.mediaHeight is not null ? (card.mediaHeight ~ '')|trim : '' %}
                 {% set mediaHeightCss = mediaHeightRaw ? (mediaHeightRaw matches '/^[0-9]+(\.[0-9]+)?$/' ? mediaHeightRaw ~ 'px' : mediaHeightRaw) : '345px' %}
@@ -194,12 +202,27 @@
                             {% endif %}
 
                             {% if activeButton %}
-                                {% set buttonUrl = activeButton.buttonUrl ?? '#' %}
+                                {% set rawButtonUrl = (activeButton.buttonUrl ?? '#')|trim %}
+                                {% set buttonUrl = rawButtonUrl %}
+                                {% set buttonLinkType = activeButton.buttonLinkType ?? 'internal' %}
+                                {% if buttonLinkType == 'external' and rawButtonUrl and rawButtonUrl != '#' %}
+                                    {# Treat scheme-less domains like "www.google.com" as external links. #}
+                                    {% if not (
+                                        rawButtonUrl starts with '/'
+                                        or rawButtonUrl starts with '#'
+                                        or rawButtonUrl starts with '//'
+                                        or rawButtonUrl matches '/^[a-z][a-z0-9+.-]*:/'
+                                    ) %}
+                                        {% set buttonUrl = 'https://' ~ rawButtonUrl %}
+                                    {% endif %}
+                                {% endif %}
+                                {% set buttonTarget = activeButton.buttonTarget ?? '_self' %}
                                 <div class="card-buttons" style="justify-content: flex-start;">
                                     <div class="card-button-wrapper">
                                         <a
                                             href="{{ buttonUrl }}"
-                                            target="{{ activeButton.buttonTarget ?? '_self' }}"
+                                            target="{{ buttonTarget }}"
+                                            {% if buttonTarget == '_blank' %}rel="noopener noreferrer"{% endif %}
                                             class="card-button"
                                             style="
                                                 --button-text: {{ activeButton.buttonTextColor ?? '#FFFFFF' }};

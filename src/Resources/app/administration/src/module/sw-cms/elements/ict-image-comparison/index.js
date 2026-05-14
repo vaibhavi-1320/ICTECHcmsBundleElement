@@ -15,6 +15,10 @@ Shopware.Service('cmsService').registerCmsElement({
             source: 'static',
             value: 'horizontal',
         },
+        mediaFitMode: {
+            source: 'static',
+            value: 'crop',
+        },
         beforeMediaId: {
             source: 'static',
             value: null,

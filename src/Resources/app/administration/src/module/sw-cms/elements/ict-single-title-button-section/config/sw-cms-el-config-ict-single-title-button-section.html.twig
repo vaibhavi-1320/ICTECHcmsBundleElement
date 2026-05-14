@@ -9,13 +9,13 @@
         <template #content="{ active }">
             <sw-container v-if="active === 'content'">
                 <mt-select
-                    v-model="element.config.backgroundType.value"
+                    v-model:value="element.config.backgroundType.value"
                     label="Background type"
                     :options="[
                         { value: 'color', label: 'Color' },
                         { value: 'gbColor', label: 'Gradient' }
                     ]"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <sw-colorpicker
@@ -23,7 +23,9 @@
                     v-model:value="element.config.backgroundColor.value"
                     label="Background color"
                     color-output="hex"
+                    :z-index="1000"
                     @update:value="onInput"
+                    @change="onInput"
                 />
 
                 <sw-container v-if="element.config.backgroundType.value === 'gbColor'" columns="1fr 1fr" gap="16px">
@@ -31,23 +33,27 @@
                         v-model:value="element.config.backgroundGradientColor1.value"
                         label="Gradient color 1"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                     <sw-colorpicker
                         v-model:value="element.config.backgroundGradientColor2.value"
                         label="Gradient color 2"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                 </sw-container>
 
                 <mt-text-field
-                    v-model="element.config.minHeight.value"
+                    v-model:value="element.config.minHeight.value"
                     label="Minimum height"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
-                <mt-text-field v-model="element.config.title.value" label="Title" @update:model-value="onInput" />
+                <mt-text-field v-model:value="element.config.title.value" label="Title" @update:value="onInput" />
 
                 <sw-text-editor v-model:value="element.config.description.value" sanitize-input @update:value="onInput" />
 
@@ -56,32 +62,36 @@
                         v-model:value="element.config.titleColor.value"
                         label="Title color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                     <sw-colorpicker
                         v-model:value="element.config.descriptionColor.value"
                         label="Description color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                 </sw-container>
             </sw-container>
 
             <sw-container v-if="active === 'leftButton'">
                 <mt-text-field
-                    v-model="element.config.leftSectionButtonText.value"
+                    v-model:value="element.config.leftSectionButtonText.value"
                     label="Button text"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <mt-select
-                    v-model="element.config.leftSectionButtonLinkType.value"
+                    v-model:value="element.config.leftSectionButtonLinkType.value"
                     label="Link type"
                     :options="[
                         { value: 'internal', label: 'Internal' },
                         { value: 'external', label: 'External' }
                     ]"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <sw-dynamic-url-field
@@ -90,19 +100,19 @@
                 />
                 <mt-text-field
                     v-else
-                    v-model="element.config.leftSectionButtonLink.value"
+                    v-model:value="element.config.leftSectionButtonLink.value"
                     label="Link"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <mt-select
-                    v-model="element.config.leftSectionButtonTarget.value"
+                    v-model:value="element.config.leftSectionButtonTarget.value"
                     label="Target"
                     :options="[
                         { value: '_self', label: 'Same tab' },
                         { value: '_blank', label: 'New tab' }
                     ]"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <sw-container columns="1fr 1fr" gap="16px">
@@ -110,32 +120,36 @@
                         v-model:value="element.config.leftSectionButtonBackgroundColor.value"
                         label="Background color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                     <sw-colorpicker
                         v-model:value="element.config.leftSectionButtonTextColor.value"
                         label="Text color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                 </sw-container>
             </sw-container>
 
             <sw-container v-if="active === 'rightButton'">
                 <mt-text-field
-                    v-model="element.config.rightSectionButtonText.value"
+                    v-model:value="element.config.rightSectionButtonText.value"
                     label="Button text"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <mt-select
-                    v-model="element.config.rightSectionButtonLinkType.value"
+                    v-model:value="element.config.rightSectionButtonLinkType.value"
                     label="Link type"
                     :options="[
                         { value: 'internal', label: 'Internal' },
                         { value: 'external', label: 'External' }
                     ]"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <sw-dynamic-url-field
@@ -144,19 +158,19 @@
                 />
                 <mt-text-field
                     v-else
-                    v-model="element.config.rightSectionButtonLink.value"
+                    v-model:value="element.config.rightSectionButtonLink.value"
                     label="Link"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <mt-select
-                    v-model="element.config.rightSectionButtonTarget.value"
+                    v-model:value="element.config.rightSectionButtonTarget.value"
                     label="Target"
                     :options="[
                         { value: '_self', label: 'Same tab' },
                         { value: '_blank', label: 'New tab' }
                     ]"
-                    @update:model-value="onInput"
+                    @update:value="onInput"
                 />
 
                 <sw-container columns="1fr 1fr" gap="16px">
@@ -164,13 +178,17 @@
                         v-model:value="element.config.rightSectionButtonBackgroundColor.value"
                         label="Background color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                     <sw-colorpicker
                         v-model:value="element.config.rightSectionButtonTextColor.value"
                         label="Text color"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
+                        @change="onInput"
                     />
                 </sw-container>
             </sw-container>

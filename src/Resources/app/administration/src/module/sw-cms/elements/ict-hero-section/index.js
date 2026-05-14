@@ -115,13 +115,7 @@ Shopware.Service('cmsService').registerCmsElement({
         },
         featureItems: {
             source: 'static',
-            value: [
-                { title: 'Lorem feature one', description: 'Lorem short text.' },
-                { title: 'Lorem feature two', description: 'Lorem short text.' },
-                { title: 'Lorem feature three', description: 'Lorem short text.' },
-                { title: 'Lorem feature four', description: 'Lorem short text.' },
-            ],
+            value: [],
         },
     },
 });
-

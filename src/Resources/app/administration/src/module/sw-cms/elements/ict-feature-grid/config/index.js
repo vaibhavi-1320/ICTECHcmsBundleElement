@@ -75,6 +75,30 @@ export default {
     created() {
         this.initElementConfig('ict-feature-grid');
         this.ensureCards();
+        this._prevButtonLinkTypes = {};
+        (this.element.config.cards?.value || []).forEach((card, ci) => {
+            (card.buttons || []).forEach((btn, bi) => {
+                this._prevButtonLinkTypes[`${ci}-${bi}`] = btn.buttonLinkType;
+            });
+        });
+    },
+
+    watch: {
+        'element.config.cards.value': {
+            deep: true,
+            handler(cards) {
+                (cards || []).forEach((card, ci) => {
+                    (card.buttons || []).forEach((btn, bi) => {
+                        const key = `${ci}-${bi}`;
+                        if (this._prevButtonLinkTypes[key] !== undefined && btn.buttonLinkType !== this._prevButtonLinkTypes[key]) {
+                            btn.buttonUrl = null;
+                            this.$emit('element-update', this.element);
+                        }
+                        this._prevButtonLinkTypes[key] = btn.buttonLinkType;
+                    });
+                });
+            },
+        },
     },
 
     mounted() {
@@ -189,6 +213,18 @@ export default {
         },
 
         onElementUpdate() {
+            this.$emit('element-update', this.element);
+        },
+
+        onButtonLinkTypeChange(button) {
+            button.buttonUrl = '';
+            this.$emit('element-update', this.element);
+        },
+
+        onButtonExternalUrlChange(button) {
+            if (button.buttonUrl && !/^https?:\/\//i.test(button.buttonUrl)) {
+                button.buttonUrl = `https://${button.buttonUrl}`;
+            }
             this.$emit('element-update', this.element);
         },
 

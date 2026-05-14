@@ -39,30 +39,42 @@
                     <div class="sw-cms-el-config-ict-accordion__entry-actions">
                         <sw-button
                             size="small"
-                            icon="regular-copy"
+                            square
+                            :aria-label="$tc('global.default.duplicate')"
                             @click="duplicateEntry(index)"
-                        ></sw-button>
+                        >
+                            <sw-icon name="regular-copy" small />
+                        </sw-button>
 
                         <sw-button
                             size="small"
-                            icon="regular-chevron-up-xs"
+                            square
+                            :aria-label="$tc('global.default.moveUp')"
                             :disabled="index === 0"
                             @click="moveEntry(index, -1)"
-                        ></sw-button>
+                        >
+                            <sw-icon name="regular-chevron-up-xs" small />
+                        </sw-button>
 
                         <sw-button
                             size="small"
-                            icon="regular-chevron-down-xs"
+                            square
+                            :aria-label="$tc('global.default.moveDown')"
                             :disabled="index === entries.length - 1"
                             @click="moveEntry(index, 1)"
-                        ></sw-button>
+                        >
+                            <sw-icon name="regular-chevron-down-xs" small />
+                        </sw-button>
 
                         <sw-button
                             size="small"
                             variant="danger"
-                            icon="regular-trash"
+                            square
+                            :aria-label="$tc('global.default.delete')"
                             @click="removeEntry(index)"
-                        ></sw-button>
+                        >
+                            <sw-icon name="regular-trash" small />
+                        </sw-button>
                     </div>
                 </header>
 

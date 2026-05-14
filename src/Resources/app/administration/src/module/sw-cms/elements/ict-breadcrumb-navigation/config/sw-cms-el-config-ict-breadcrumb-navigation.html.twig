@@ -26,10 +26,11 @@
         </sw-select-field>
 
         <sw-colorpicker
-            v-model="element.config.textColor.value"
+            v-model:value="element.config.textColor.value"
             :label="$tc('ict-cms-bundle-element.cms.elements.ictBreadcrumbNavigation.config.textColor')"
-            :colorOutput="'hex'"
-            @input="onUpdate"
+            color-output="hex"
+            :z-index="1000"
+            @update:value="onUpdate"
         />
     </div>
 

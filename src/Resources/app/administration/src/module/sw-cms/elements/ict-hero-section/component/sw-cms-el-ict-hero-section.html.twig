@@ -1,28 +1,58 @@
 {% block sw_cms_element_ict_hero_section %}
-    <div class="sw-cms-el-ict-hero-section">
+    <div
+        class="sw-cms-el-ict-hero-section"
+        :style="{
+            minHeight: element.config.minHeight.value,
+            backgroundColor: element.config.backgroundType.value === 'color' ? element.config.backgroundColor.value : '',
+            background: element.config.backgroundType.value === 'gbColor'
+                ? `linear-gradient(135deg, ${element.config.backgroundGradientColor1.value}, ${element.config.backgroundGradientColor2.value})`
+                : ''
+        }"
+    >
         <div class="sw-cms-el-ict-hero-section__left">
             <span
                 v-if="element.config.labelText.value"
                 class="sw-cms-el-ict-hero-section__label"
+                :style="{
+                    backgroundColor: element.config.labelBackgroundColor.value,
+                    borderColor: element.config.labelBorderColor.value,
+                    color: element.config.labelTextColor.value
+                }"
             >
                 {{ element.config.labelText.value }}
             </span>
 
-            <h2 class="sw-cms-el-ict-hero-section__headline">
+            <h2
+                class="sw-cms-el-ict-hero-section__headline"
+                :style="{ color: element.config.headlineColor.value }"
+            >
                 {{ element.config.headlineText.value }}
             </h2>
 
-            <p class="sw-cms-el-ict-hero-section__description">
-                {{ element.config.descriptionText.value }}
-            </p>
+            <div
+                class="sw-cms-el-ict-hero-section__description"
+                :style="{ color: element.config.descriptionColor.value }"
+                v-html="element.config.descriptionText.value"
+            >
+            </div>
 
             <div class="sw-cms-el-ict-hero-section__actions">
-                <button class="sw-cms-el-ict-hero-section__button sw-cms-el-ict-hero-section__button--primary">
+                <button
+                    class="sw-cms-el-ict-hero-section__button sw-cms-el-ict-hero-section__button--primary"
+                    :style="{
+                        backgroundColor: element.config.primaryButtonBackgroundColor.value,
+                        color: element.config.primaryButtonTextColor.value
+                    }"
+                >
                     {{ element.config.primaryButtonText.value }}
                 </button>
                 <button
                     v-if="element.config.showSecondaryButton.value"
                     class="sw-cms-el-ict-hero-section__button sw-cms-el-ict-hero-section__button--secondary"
+                    :style="{
+                        backgroundColor: element.config.secondaryButtonBackgroundColor.value,
+                        color: element.config.secondaryButtonTextColor.value
+                    }"
                 >
                     {{ element.config.secondaryButtonText.value }}
                 </button>

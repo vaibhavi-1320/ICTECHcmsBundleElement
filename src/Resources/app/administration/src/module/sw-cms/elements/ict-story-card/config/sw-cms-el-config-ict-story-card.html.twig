@@ -62,7 +62,7 @@
             v-model:value="element.config.linkType.value"
             :label="$tc('ict-cms-bundle-element.cms.elements.ictStoryCard.config.linkType')"
             :options="linkTypeOptions"
-            @update:value="onUpdate"
+            @update:value="onLinkTypeChange"
         />
 
         <sw-dynamic-url-field
@@ -76,6 +76,7 @@
                 :label="$tc('ict-cms-bundle-element.cms.elements.ictStoryCard.config.linkUrl')"
                 :placeholder="$tc('ict-cms-bundle-element.cms.elements.ictStoryCard.config.linkUrlPlaceholder')"
                 @update:value="onUpdate"
+                @blur="onExternalUrlChange"
             />
             <div class="ict-story-card-config__link-actions">
                 <sw-button

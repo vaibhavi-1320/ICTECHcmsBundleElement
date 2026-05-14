@@ -540,8 +540,11 @@
                             "media": "Medien / Upload"
                         },
                         "layout": "Allgemeines Layout festlegen",
+                        "mediaFitMode": "Bildanzeige",
                         "layoutHorizontal": "Querformat / Horizontal",
                         "layoutVertical": "Hochformat / Vertikal",
+                        "mediaFitModeCrop": "Zuschneiden (füllend)",
+                        "mediaFitModeFull": "Ganzes Bild anzeigen",
                         "beforeImage": "Vorher-Bild",
                         "afterImage": "Nachher-Bild",
                         "sizeHint": "Für optimale Ergebnisse sollten beide Bilder die gleiche Größe haben."

@@ -8,25 +8,34 @@
                 v-model="element.config.backgroundType.value"
                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundType')"
                 :options="backgroundTypeOptions"
-                @update:model-value="onBackgroundType">
+                @update:value="onBackgroundType">
             </mt-select>
 
             <div v-if="element.config.backgroundType.value === 'color'" class="color-background-config">
-                <mt-colorpicker
-                    v-model="element.config.backgroundColor.value"
-                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundColor')">
-                </mt-colorpicker>
+                <sw-colorpicker
+                    v-model:value="element.config.backgroundColor.value"
+                    color-output="hex"
+                    :z-index="1000"
+                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundColor')"
+                    @update:value="onElementUpdate">
+                </sw-colorpicker>
             </div>
 
             <div v-if="element.config.backgroundType.value === 'gradient'" class="gradient-background-config">
-                <mt-colorpicker
-                    v-model="element.config.backgroundGradientColor1.value"
-                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundGradientColor1')">
-                </mt-colorpicker>
-                <mt-colorpicker
-                    v-model="element.config.backgroundGradientColor2.value"
-                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundGradientColor2')">
-                </mt-colorpicker>
+                <sw-colorpicker
+                    v-model:value="element.config.backgroundGradientColor1.value"
+                    color-output="hex"
+                    :z-index="1000"
+                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundGradientColor1')"
+                    @update:value="onElementUpdate">
+                </sw-colorpicker>
+                <sw-colorpicker
+                    v-model:value="element.config.backgroundGradientColor2.value"
+                    color-output="hex"
+                    :z-index="1000"
+                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundGradientColor2')"
+                    @update:value="onElementUpdate">
+                </sw-colorpicker>
                 <mt-select
                     v-model="element.config.backgroundGradientDirection.value"
                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundGradientDirection')"
@@ -68,13 +77,13 @@
                     v-model="element.config.backgroundVideoUploadType.value"
                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundVideoUploadType')"
                     :options="videoUploadOptions"
-                    @update:model-value="onElementUpdate">
+                    @update:value="onElementUpdate">
                 </mt-select>
 
                 <mt-text-field v-if="element.config.backgroundVideoUploadType.value === 'url'"
                     v-model="element.config.backgroundVideoUploadUrl.value"
                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.backgroundVideoUploadUrl')"
-                    @update:model-value="onBackgroundVideoUploadUrl">
+                    @update:value="onBackgroundVideoUploadUrl">
                 </mt-text-field>
 
                 <div v-if="element.config.backgroundVideoUploadType.value === 'file'" class="video-file-config">
@@ -114,20 +123,20 @@
                 v-model="element.config.numberOfColumns.value"
                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.numberOfColumns')"
                 :options="columnOptions"
-                @update:model-value="onElementUpdate">
+                @update:value="onElementUpdate">
             </mt-select>
 
             <mt-text-field
                 v-model="element.config.cardSpacing.value"
                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.cardSpacing')"
-                @update:model-value="onElementUpdate">
+                @update:value="onElementUpdate">
             </mt-text-field>
 
             <mt-select
                 v-model="element.config.verticalAlignment.value"
                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.verticalAlignment')"
                 :options="verticalAlignmentOptions"
-                @update:model-value="onElementUpdate">
+                @update:value="onElementUpdate">
             </mt-select>
         </div>
 
@@ -169,6 +178,7 @@
                             </sw-upload-listener>
 
                             <sw-media-upload-v2
+                                v-if="!card.iconImage || getIconImageMediaItem(cardIndex)"
                                 variant="regular"
                                 :upload-tag="getIconImageUploadTag(cardIndex)"
                                 :source="getIconImageMediaItem(cardIndex)"
@@ -193,45 +203,54 @@
                                 class="ict-icon-shape-field"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconShape')"
                                 :options="iconShapeOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
 
                             <mt-select
                                 v-model="card.iconSize"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconSize')"
                                 :options="iconSizeOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
 
                             <mt-select
                                 v-model="card.iconAlignment"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconAlignment')"
                                 :options="alignmentOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
 
                             <div class="color-row">
-                                <mt-colorpicker
-                                    v-model="card.iconColor"
-                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconColor')">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.iconColor"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconColor')"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
 
-                                <mt-colorpicker
-                                    v-model="card.iconBackgroundColor"
-                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconBackgroundColor')">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.iconBackgroundColor"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconBackgroundColor')"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
                             </div>
 
                             <div class="color-row">
-                                <mt-colorpicker
-                                    v-model="card.iconOutlineColor"
-                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconOutlineColor')">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.iconOutlineColor"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconOutlineColor')"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
 
                                 <mt-text-field
                                     v-model="card.iconOutlineThickness"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconOutlineThickness')"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
                             </div>
 
@@ -239,20 +258,20 @@
                                 v-model="card.iconOutlinePosition"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconOutlinePosition')"
                                 :options="outlinePositionOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
 
                             <mt-text-field
                                 v-model="card.iconBorderRadius"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconBorderRadius')"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-text-field>
 
                             <mt-select
                                 v-model="card.iconHoverEffect"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.iconHoverEffect')"
                                 :options="iconHoverEffectOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
                         </div>
                     </div>
@@ -264,34 +283,37 @@
                             <mt-text-field
                                 v-model="card.headline"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.headline')"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-text-field>
 
                             <div class="inline-fields">
                                 <mt-text-field
                                     v-model="card.headlineSize"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.headlineSize')"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.headlineLineHeight"
                                     label="Headline line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.headlineAlignment"
+                                <sw-single-select
+                                    v-model:value="card.headlineAlignment"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.headlineAlignment')"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
-                                </mt-select>
+                                    @update:value="onElementUpdate">
+                                </sw-single-select>
                             </div>
 
-                            <mt-colorpicker
-                                v-model="card.headlineColor"
-                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.headlineColor')">
-                            </mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="card.headlineColor"
+                                color-output="hex"
+                                :z-index="1000"
+                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.headlineColor')"
+                                @update:value="onElementUpdate">
+                            </sw-colorpicker>
                         </div>
                     </div>
 
@@ -302,43 +324,46 @@
                             <mt-text-field
                                 v-model="card.subheadline"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.subheadline')"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-text-field>
 
                             <div class="inline-fields">
                                 <mt-text-field
                                     v-model="card.subheadlineSize"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.subheadlineSize')"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.subheadlineLineHeight"
                                     label="Subheadline line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.subheadlineAlignment"
+                                <sw-single-select
+                                    v-model:value="card.subheadlineAlignment"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.subheadlineAlignment')"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
-                                </mt-select>
+                                    @update:value="onElementUpdate">
+                                </sw-single-select>
                             </div>
 
-                            <mt-colorpicker
-                                v-model="card.subheadlineColor"
-                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.subheadlineColor')">
-                            </mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="card.subheadlineColor"
+                                color-output="hex"
+                                :z-index="1000"
+                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.subheadlineColor')"
+                                @update:value="onElementUpdate">
+                            </sw-colorpicker>
                         </div>
                     </div>
 
                     <div class="field-group">
                         <h5 class="field-group-title">{{ $tc('sw-cms.elements.ictOverviewCards.config.section.bodyTextSettings') }}</h5>
                         <mt-switch
-                            v-model="card.showBodyText"
+                            :checked="card.showBodyText"
                             :label="$tc('sw-cms.elements.ictOverviewCards.config.label.showBodyText')"
-                            @update:model-value="onElementUpdate">
+                            @change="card.showBodyText = $event; onElementUpdate()">
                         </mt-switch>
 
                         <div v-if="card.showBodyText" class="field-subgroup">
@@ -352,36 +377,39 @@
                                 <mt-text-field
                                     v-model="card.bodyTextSize"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.bodyTextSize')"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.bodyTextLineHeight"
                                     label="Body text line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.bodyTextAlignment"
+                                <sw-single-select
+                                    v-model:value="card.bodyTextAlignment"
                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.bodyTextAlignment')"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
-                                </mt-select>
+                                    @update:value="onElementUpdate">
+                                </sw-single-select>
                             </div>
 
-                            <mt-colorpicker
-                                v-model="card.bodyTextColor"
-                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.bodyTextColor')">
-                            </mt-colorpicker>
+                            <sw-colorpicker
+                                v-model:value="card.bodyTextColor"
+                                color-output="hex"
+                                :z-index="1000"
+                                :label="$tc('sw-cms.elements.ictOverviewCards.config.label.bodyTextColor')"
+                                @update:value="onElementUpdate">
+                            </sw-colorpicker>
                         </div>
                     </div>
 
                     <div class="field-group">
                         <h5 class="field-group-title">Detail Rows</h5>
                         <mt-switch
-                            v-model="card.showDetailRows"
+                            :checked="card.showDetailRows"
                             label="Show detail rows"
-                            @update:model-value="onElementUpdate">
+                            @change="card.showDetailRows = $event; onElementUpdate()">
                         </mt-switch>
 
                         <div v-if="card.showDetailRows" class="field-subgroup">
@@ -390,14 +418,14 @@
                                     v-model="card.detailRowsTitleAlignment"
                                     label="Title alignment"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
 
                                 <mt-select
                                     v-model="card.detailRowsValueAlignment"
                                     label="Value alignment"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
                             </div>
 
@@ -405,20 +433,20 @@
                                 <mt-text-field
                                     v-model="card.detailRowsTitleSize"
                                     label="Title size"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.detailRowsTitleLineHeight"
                                     label="Title line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-select
                                     v-model="card.detailRowsTitleFontWeight"
                                     label="Title font weight"
                                     :options="fontWeightOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
                             </div>
 
@@ -426,33 +454,36 @@
                                 <mt-text-field
                                     v-model="card.detailRowsValueSize"
                                     label="Value size"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.detailRowsValueLineHeight"
                                     label="Value line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-select
                                     v-model="card.detailRowsValueFontWeight"
                                     label="Value font weight"
                                     :options="fontWeightOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
                             </div>
 
                             <div class="inline-fields">
-                                <mt-colorpicker
-                                    v-model="card.detailRowsOutlineColor"
-                                    label="Outline color">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.detailRowsOutlineColor"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    label="Outline color"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
 
                                 <mt-text-field
                                     v-model="card.detailRowsOutlineThickness"
                                     label="Outline thickness"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
                             </div>
 
@@ -472,26 +503,32 @@
                                     <mt-text-field
                                         v-model="row.title"
                                         label="Title"
-                                        @update:model-value="onElementUpdate">
+                                        @update:value="onElementUpdate">
                                     </mt-text-field>
 
                                     <mt-text-field
                                         v-model="row.value"
                                         label="Value"
-                                        @update:model-value="onElementUpdate">
+                                        @update:value="onElementUpdate">
                                     </mt-text-field>
                                 </div>
 
                                 <div class="inline-fields">
-                                    <mt-colorpicker
-                                        v-model="row.titleColor"
-                                        label="Title color">
-                                    </mt-colorpicker>
+                                    <sw-colorpicker
+                                        v-model:value="row.titleColor"
+                                        color-output="hex"
+                                        :z-index="1000"
+                                        label="Title color"
+                                        @update:value="onElementUpdate">
+                                    </sw-colorpicker>
 
-                                    <mt-colorpicker
-                                        v-model="row.valueColor"
-                                        label="Value color">
-                                    </mt-colorpicker>
+                                    <sw-colorpicker
+                                        v-model:value="row.valueColor"
+                                        color-output="hex"
+                                        :z-index="1000"
+                                        label="Value color"
+                                        @update:value="onElementUpdate">
+                                    </sw-colorpicker>
                                 </div>
                             </div>
                         </div>
@@ -504,41 +541,44 @@
                             <mt-text-field
                                 v-model="card.infoText"
                                 label="Info text"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-text-field>
 
                             <div class="inline-fields">
                                 <mt-text-field
                                     v-model="card.infoTextSize"
                                     label="Info text size"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
                                 <mt-text-field
                                     v-model="card.infoTextLineHeight"
                                     label="Info text line height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
 
-                                <mt-select
-                                    v-model="card.infoTextAlignment"
+                                <sw-single-select
+                                    v-model:value="card.infoTextAlignment"
                                     label="Info text alignment"
                                     :options="alignmentOptions"
-                                    @update:model-value="onElementUpdate">
-                                </mt-select>
+                                    @update:value="onElementUpdate">
+                                </sw-single-select>
                             </div>
 
                             <div class="inline-fields">
-                                <mt-colorpicker
-                                    v-model="card.infoTextColor"
-                                    label="Info text color">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.infoTextColor"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    label="Info text color"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
 
                                 <mt-select
                                     v-model="card.infoTextFontWeight"
                                     label="Info text font weight"
                                     :options="fontWeightOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
                             </div>
                         </div>
@@ -590,14 +630,14 @@
                                                 <mt-text-field
                                                     v-model="button.buttonText"
                                                     :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonText')"
-                                                    @update:model-value="onElementUpdate">
+                                                    @update:value="onElementUpdate">
                                                 </mt-text-field>
 
                                                 <mt-select
                                                     v-model="button.buttonLinkType"
                                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLinkType')"
                                                     :options="linkTypeOptions"
-                                                    @update:model-value="onElementUpdate">
+                                                    @update:value="onButtonLinkTypeChange(button)">
                                                 </mt-select>
 
                                                 <sw-dynamic-url-field
@@ -609,7 +649,8 @@
                                                     v-if="button.buttonLinkType === 'external'"
                                                     v-model="button.buttonUrl"
                                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLink')"
-                                                    @update:model-value="onElementUpdate">
+                                                    @update:value="onElementUpdate"
+                                                    @blur="onButtonExternalUrlChange(button)">
                                                 </mt-text-field>
 
                                                 <div class="inline-fields">
@@ -617,32 +658,44 @@
                                                         v-model="button.buttonTarget"
                                                         :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonTarget')"
                                                         :options="targetOptions"
-                                                        @update:model-value="onElementUpdate">
+                                                        @update:value="onElementUpdate">
                                                     </mt-select>
                                                 </div>
 
                                                 <div class="inline-fields">
-                                                    <mt-colorpicker
-                                                        v-model="button.buttonTextColor"
-                                                        :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonTextColor')">
-                                                    </mt-colorpicker>
+                                                    <sw-colorpicker
+                                                        v-model:value="button.buttonTextColor"
+                                                        color-output="hex"
+                                                        :z-index="1000"
+                                                        :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonTextColor')"
+                                                        @update:value="onElementUpdate">
+                                                    </sw-colorpicker>
 
-                                                    <mt-colorpicker
-                                                        v-model="button.buttonHoverTextColor"
-                                                        :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonHoverTextColor')">
-                                                    </mt-colorpicker>
+                                                    <sw-colorpicker
+                                                        v-model:value="button.buttonHoverTextColor"
+                                                        color-output="hex"
+                                                        :z-index="1000"
+                                                        :label="$tc('sw-cms.elements.ictOverviewCards.config.label.buttonHoverTextColor')"
+                                                        @update:value="onElementUpdate">
+                                                    </sw-colorpicker>
                                                 </div>
 
                                                 <div class="inline-fields">
-                                                    <mt-colorpicker
-                                                        v-model="button.buttonBorderColor"
-                                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderColor')">
-                                                    </mt-colorpicker>
+                                                    <sw-colorpicker
+                                                        v-model:value="button.buttonBorderColor"
+                                                        color-output="hex"
+                                                        :z-index="1000"
+                                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderColor')"
+                                                        @update:value="onElementUpdate">
+                                                    </sw-colorpicker>
 
-                                                    <mt-colorpicker
-                                                        v-model="button.buttonHoverBorderColor"
-                                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverBorderColor')">
-                                                    </mt-colorpicker>
+                                                    <sw-colorpicker
+                                                        v-model:value="button.buttonHoverBorderColor"
+                                                        color-output="hex"
+                                                        :z-index="1000"
+                                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverBorderColor')"
+                                                        @update:value="onElementUpdate">
+                                                    </sw-colorpicker>
                                                 </div>
 
                                                 <div class="inline-fields">
@@ -650,7 +703,9 @@
                                                         v-model="button.buttonBorderStyle"
                                                         :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderStyle')"
                                                         :options="borderStyleOptions"
-                                                        @update:model-value="onElementUpdate">
+                                                        :searchable="false"
+                                                        :allow-empty="false"
+                                                        @update:value="onElementUpdate">
                                                     </mt-select>
 
                                                     <mt-number-field
@@ -659,7 +714,7 @@
                                                         type="int"
                                                         :min="0"
                                                         :step="1"
-                                                        @update:model-value="onElementUpdate">
+                                                        @update:value="onElementUpdate">
                                                     </mt-number-field>
                                                 </div>
 
@@ -670,7 +725,7 @@
                                                         type="int"
                                                         :min="0"
                                                         :step="1"
-                                                        @update:model-value="onElementUpdate">
+                                                        @update:value="onElementUpdate">
                                                     </mt-number-field>
                                                 </div>
                                             </div>
@@ -693,30 +748,39 @@
                                 v-model="card.cardMainBackgroundType"
                                 label="Main card background type"
                                 :options="backgroundTypeOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
 
-                            <mt-colorpicker v-if="card.cardMainBackgroundType === 'color'"
-                                v-model="card.cardMainBackgroundColor"
-                                label="Main background color">
-                            </mt-colorpicker>
+                            <sw-colorpicker v-if="card.cardMainBackgroundType === 'color'"
+                                v-model:value="card.cardMainBackgroundColor"
+                                color-output="hex"
+                                :z-index="1000"
+                                label="Main background color"
+                                @update:value="onElementUpdate">
+                            </sw-colorpicker>
 
                             <div v-if="card.cardMainBackgroundType === 'gradient'" class="gradient-fields">
                                 <div class="inline-fields">
-                                    <mt-colorpicker
-                                        v-model="card.cardMainBackgroundGradientColor1"
-                                        label="Gradient color 1">
-                                    </mt-colorpicker>
-                                    <mt-colorpicker
-                                        v-model="card.cardMainBackgroundGradientColor2"
-                                        label="Gradient color 2">
-                                    </mt-colorpicker>
+                                    <sw-colorpicker
+                                        v-model:value="card.cardMainBackgroundGradientColor1"
+                                        color-output="hex"
+                                        :z-index="1000"
+                                        label="Gradient color 1"
+                                        @update:value="onElementUpdate">
+                                    </sw-colorpicker>
+                                    <sw-colorpicker
+                                        v-model:value="card.cardMainBackgroundGradientColor2"
+                                        color-output="hex"
+                                        :z-index="1000"
+                                        label="Gradient color 2"
+                                        @update:value="onElementUpdate">
+                                    </sw-colorpicker>
                                 </div>
                                 <mt-select
                                     v-model="card.cardMainBackgroundGradientDirection"
                                     label="Gradient direction"
                                     :options="gradientDirectionOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
                             </div>
 
@@ -753,13 +817,13 @@
                                     v-model="card.cardMainBackgroundVideoUploadType"
                                     label="Main background video type"
                                     :options="videoUploadOptions"
-                                    @update:model-value="updateCard(cardIndex, 'cardMainBackgroundVideoUploadType', $event)">
+                                    @update:value="updateCard(cardIndex, 'cardMainBackgroundVideoUploadType', $event)">
                                 </mt-select>
 
                                 <mt-text-field v-if="card.cardMainBackgroundVideoUploadType === 'url'"
                                     v-model="card.cardMainBackgroundVideoUploadUrl"
                                     label="Main background video URL"
-                                    @update:model-value="updateCard(cardIndex, 'cardMainBackgroundVideoUploadUrl', $event)">
+                                    @update:value="updateCard(cardIndex, 'cardMainBackgroundVideoUploadUrl', $event)">
                                 </mt-text-field>
 
                                 <div v-if="card.cardMainBackgroundVideoUploadType === 'file'">
@@ -799,13 +863,13 @@
                                     v-model="card.mediaDisplayMode"
                                     label="Media display mode"
                                     :options="mediaDisplayModeOptions"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-select>
 
                                 <mt-text-field
                                     v-model="card.mediaHeight"
                                     label="Media height"
-                                    @update:model-value="onElementUpdate">
+                                    @update:value="onElementUpdate">
                                 </mt-text-field>
                             </div>
                         </div>
@@ -814,30 +878,39 @@
                             v-model="card.cardBackgroundType"
                             :label="$tc('sw-cms.elements.ictOverviewCards.config.label.cardBackgroundType')"
                             :options="backgroundTypeOptions"
-                            @update:model-value="onElementUpdate">
+                            @update:value="onElementUpdate">
                         </mt-select>
 
-                        <mt-colorpicker v-if="card.cardBackgroundType === 'color'"
-                            v-model="card.cardBackgroundColor"
-                            :label="$tc('sw-cms.elements.ictOverviewCards.config.label.cardBackgroundColor')">
-                        </mt-colorpicker>
+                        <sw-colorpicker v-if="card.cardBackgroundType === 'color'"
+                            v-model:value="card.cardBackgroundColor"
+                            color-output="hex"
+                            :z-index="1000"
+                            :label="$tc('sw-cms.elements.ictOverviewCards.config.label.cardBackgroundColor')"
+                            @update:value="onElementUpdate">
+                        </sw-colorpicker>
 
                         <div v-if="card.cardBackgroundType === 'gradient'" class="gradient-fields">
                             <div class="inline-fields">
-                                <mt-colorpicker
-                                    v-model="card.cardBackgroundGradientColor1"
-                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.gradientColor1')">
-                                </mt-colorpicker>
-                                <mt-colorpicker
-                                    v-model="card.cardBackgroundGradientColor2"
-                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.gradientColor2')">
-                                </mt-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.cardBackgroundGradientColor1"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.gradientColor1')"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
+                                <sw-colorpicker
+                                    v-model:value="card.cardBackgroundGradientColor2"
+                                    color-output="hex"
+                                    :z-index="1000"
+                                    :label="$tc('sw-cms.elements.ictOverviewCards.config.label.gradientColor2')"
+                                    @update:value="onElementUpdate">
+                                </sw-colorpicker>
                             </div>
                             <mt-select
                                 v-model="card.cardBackgroundGradientDirection"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.gradientDirection')"
                                 :options="gradientDirectionOptions"
-                                @update:model-value="onElementUpdate">
+                                @update:value="onElementUpdate">
                             </mt-select>
                         </div>
 
@@ -874,13 +947,13 @@
                                 v-model="card.cardBackgroundVideoUploadType"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.videoUploadType')"
                                 :options="videoUploadOptions"
-                                @update:model-value="updateCard(cardIndex, 'cardBackgroundVideoUploadType', $event)">
+                                @update:value="updateCard(cardIndex, 'cardBackgroundVideoUploadType', $event)">
                             </mt-select>
 
                             <mt-text-field v-if="card.cardBackgroundVideoUploadType === 'url'"
                                 v-model="card.cardBackgroundVideoUploadUrl"
                                 :label="$tc('sw-cms.elements.ictOverviewCards.config.label.videoUrl')"
-                                @update:model-value="updateCard(cardIndex, 'cardBackgroundVideoUploadUrl', $event)">
+                                @update:value="updateCard(cardIndex, 'cardBackgroundVideoUploadUrl', $event)">
                             </mt-text-field>
 
                             <div v-if="card.cardBackgroundVideoUploadType === 'file'">

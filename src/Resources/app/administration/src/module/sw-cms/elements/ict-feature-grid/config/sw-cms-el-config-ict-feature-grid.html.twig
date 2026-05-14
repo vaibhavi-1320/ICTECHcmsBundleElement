@@ -7,7 +7,7 @@
             v-model="element.config.numberOfColumns.value"
             label="Columns"
             :options="columnOptions"
-            @update:model-value="onElementUpdate">
+            @update:value="onElementUpdate">
         </mt-select>
         <mt-number-field
             v-model="element.config.cardSpacing.value"
@@ -15,7 +15,7 @@
             type="int"
             :min="0"
             :step="4"
-            @update:model-value="onElementUpdate">
+            @update:value="onElementUpdate">
         </mt-number-field>
     </div>
 
@@ -66,10 +66,13 @@
                         @media-modal-selection-change="onIconSelectionChange(cardIndex, $event)"
                         @modal-close="onCloseIconModal(cardIndex)">
                     </sw-media-modal-v2>
-                    <mt-colorpicker
-                        v-model="card.iconColor"
-                        label="Icon color">
-                    </mt-colorpicker>
+                    <sw-colorpicker
+                        v-model:value="card.iconColor"
+                        color-output="hex"
+                        :z-index="1000"
+                        label="Icon color"
+                        @update:value="onElementUpdate">
+                    </sw-colorpicker>
                 </div>
 
                 <!-- Content -->
@@ -78,28 +81,28 @@
                     <mt-text-field
                         v-model="card.headline"
                         label="Headline"
-                        @update:model-value="onElementUpdate">
+                        @update:value="onElementUpdate">
                     </mt-text-field>
-                    <mt-colorpicker v-model="card.headlineColor" label="Headline color"></mt-colorpicker>
+                    <sw-colorpicker v-model:value="card.headlineColor" label="Headline color" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
                     <mt-text-field
                         v-model="card.subheadline"
                         label="Subheadline (optional)"
-                        @update:model-value="onElementUpdate">
+                        @update:value="onElementUpdate">
                     </mt-text-field>
-                    <mt-colorpicker v-model="card.subheadlineColor" label="Subheadline color"></mt-colorpicker>
+                    <sw-colorpicker v-model:value="card.subheadlineColor" label="Subheadline color" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
                     <sw-text-editor
                         :value="card.bodyText"
                         sanitize-input
                         @update:value="(v) => { card.bodyText = v; onElementUpdate(); }">
                     </sw-text-editor>
-                    <mt-colorpicker v-model="card.bodyTextColor" label="Body text color"></mt-colorpicker>
+                    <sw-colorpicker v-model:value="card.bodyTextColor" label="Body text color" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
                 </div>
 
                 <!-- Card design -->
                 <div class="ifg-field-group">
                     <h5 class="ifg-field-group__title">Card Design</h5>
-                    <mt-colorpicker v-model="card.cardBackgroundColor" label="Card background"></mt-colorpicker>
-                    <mt-colorpicker v-model="card.cardAccentColor" label="Accent color"></mt-colorpicker>
+                    <sw-colorpicker v-model:value="card.cardBackgroundColor" label="Card background" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
+                    <sw-colorpicker v-model:value="card.cardAccentColor" label="Accent color" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
                 </div>
 
                 <!-- Media -->
@@ -110,7 +113,7 @@
                             v-model="card.mediaDisplayMode"
                             label="Display mode"
                             :options="mediaDisplayModeOptions"
-                            @update:model-value="onElementUpdate">
+                            @update:value="onElementUpdate">
                         </mt-select>
                         <mt-number-field
                             v-model="card.mediaHeight"
@@ -118,7 +121,7 @@
                             type="int"
                             :min="0"
                             :step="10"
-                            @update:model-value="onElementUpdate">
+                            @update:value="onElementUpdate">
                         </mt-number-field>
                     </div>
 
@@ -126,7 +129,7 @@
                         v-model="card.mediaType"
                         label="Media type"
                         :options="[{value:'image',label:'Card image'},{value:'video',label:'Video'}]"
-                        @update:model-value="onElementUpdate">
+                        @update:value="onElementUpdate">
                     </mt-select>
 
                     <template v-if="!card.mediaType || card.mediaType === 'image'">
@@ -161,13 +164,13 @@
                             v-model="card.cardBackgroundVideoUploadType"
                             label="Video source"
                             :options="[{value:'file',label:'Upload file'},{value:'url',label:'YouTube URL'}]"
-                            @update:model-value="onElementUpdate">
+                            @update:value="onElementUpdate">
                         </mt-select>
                         <mt-text-field
                             v-if="card.cardBackgroundVideoUploadType === 'url'"
                             v-model="card.cardBackgroundVideoUploadUrl"
                             label="YouTube URL"
-                            @update:model-value="onElementUpdate">
+                            @update:value="onElementUpdate">
                         </mt-text-field>
                         <div v-if="!card.cardBackgroundVideoUploadType || card.cardBackgroundVideoUploadType === 'file'">
                             <sw-upload-listener
@@ -221,12 +224,12 @@
                         </div>
 
                         <div class="ifg-btn-item__body" :class="{ 'ifg-btn-item__body--open': isButtonOpen(cardIndex, buttonIndex) }">
-                            <mt-text-field v-model="button.buttonText" label="Button text" @update:model-value="onElementUpdate"></mt-text-field>
-                            <mt-select v-model="button.buttonLinkType" label="Link type" :options="linkTypeOptions" @update:model-value="onElementUpdate"></mt-select>
+                            <mt-text-field v-model="button.buttonText" label="Button text" @update:value="onElementUpdate"></mt-text-field>
+                            <mt-select v-model="button.buttonLinkType" label="Link type" :options="linkTypeOptions" @update:value="onButtonLinkTypeChange(button)"></mt-select>
                             <sw-dynamic-url-field v-if="button.buttonLinkType === 'internal'" v-model:value="button.buttonUrl"></sw-dynamic-url-field>
-                            <mt-text-field v-if="button.buttonLinkType === 'external'" v-model="button.buttonUrl" label="URL" @update:model-value="onElementUpdate"></mt-text-field>
-                            <mt-select v-model="button.buttonTarget" label="Target" :options="targetOptions" @update:model-value="onElementUpdate"></mt-select>
-                            <mt-colorpicker v-model="button.buttonTextColor" label="Text color"></mt-colorpicker>
+                            <mt-text-field v-if="button.buttonLinkType === 'external'" v-model="button.buttonUrl" label="URL" @update:value="onElementUpdate" @blur="onButtonExternalUrlChange(button)"></mt-text-field>
+                            <mt-select v-model="button.buttonTarget" label="Target" :options="targetOptions" @update:value="onElementUpdate"></mt-select>
+                            <sw-colorpicker v-model:value="button.buttonTextColor" label="Text color" color-output="hex" :z-index="1000" @update:value="onElementUpdate"></sw-colorpicker>
                         </div>
                     </div>
                 </div>

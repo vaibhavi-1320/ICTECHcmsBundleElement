@@ -4,8 +4,10 @@
     gap: 20px;
     padding: 24px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #0b5c8a 0%, #1559d6 100%);
-    color: #fff;
+    background: #f8f9fa;
+    color: #212529;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
 
     &__left {
         display: flex;
@@ -18,7 +20,8 @@
         width: fit-content;
         padding: 6px 12px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: #fff;
         font-size: 12px;
         font-weight: 600;
     }
@@ -27,12 +30,27 @@
         margin: 0;
         font-size: 28px;
         line-height: 1.2;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
     }
 
     &__description {
         margin: 0;
-        color: rgba(255, 255, 255, 0.88);
         line-height: 1.5;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+
+        p {
+            margin: 0;
+        }
     }
 
     &__actions {
@@ -55,8 +73,7 @@
         }
 
         &--secondary {
-            background: transparent;
-            border-color: rgba(255, 255, 255, 0.4);
+            background: #6c757d;
             color: #fff;
         }
     }
@@ -68,9 +85,9 @@
     }
 
     &__feature {
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 10px;
-        background: rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.7);
         padding: 12px;
     }
 
@@ -83,6 +100,6 @@
     &__feature-text {
         margin: 0;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.84);
+        color: rgba(33, 37, 41, 0.78);
     }
 }

@@ -47,8 +47,13 @@ export default {
 
     watch: {
         'element.config.linkUrl.value'() {
-            // `sw-dynamic-url-field` does not provide an explicit update hook in all 6.6.x versions.
             this.onUpdate();
+        },
+        'element.config.linkType.value'(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                this.element.config.linkUrl.value = null;
+                this.onUpdate();
+            }
         },
     },
 
@@ -116,6 +121,19 @@ export default {
 
         onRemoveLink() {
             this.element.config.linkUrl.value = '';
+            this.onUpdate();
+        },
+
+        onLinkTypeChange() {
+            this.element.config.linkUrl.value = '';
+            this.onUpdate();
+        },
+
+        onExternalUrlChange() {
+            const url = this.element.config.linkUrl.value;
+            if (url && !/^https?:\/\//i.test(url)) {
+                this.element.config.linkUrl.value = `https://${url}`;
+            }
             this.onUpdate();
         },
 

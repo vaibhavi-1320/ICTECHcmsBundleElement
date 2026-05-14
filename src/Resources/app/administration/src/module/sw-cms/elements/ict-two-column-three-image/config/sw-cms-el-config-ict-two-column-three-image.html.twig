@@ -49,14 +49,14 @@
                             v-model="element.config.leftImageObjectFit.value"
                             :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftImageObjectFit')"
                             :options="objectFitOptions"
-                            @update:model-value="onLeftImageObjectFit">
+                            @update:value="onLeftImageObjectFit">
                     </mt-select>
 
                      <mt-text-field
                                v-if="element.config.leftImageObjectFit.value === 'cover' "
                                 v-model="element.config.leftImageHeight.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftImageHeight')"
-                                @update:model-value="onLeftImageHeight">
+                                @update:value="onLeftImageHeight">
                      </mt-text-field>
 
                 </div>
@@ -105,30 +105,32 @@
                                 v-model="element.config.leftButtonIconSize.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftButtonIconSize')"
                                 :options="buttonIconSizeOptions"
-                                @update:model-value="onLeftButtonIconSizeChange">
+                                @update:value="onLeftButtonIconSizeChange">
                         </mt-select>
                         <mt-switch
-                                v-model="element.config.leftButtonIconHoverActive.value"
+                                v-model:value="element.config.leftButtonIconHoverActive.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftButtonIconHoverActive')"
-                                @update:model-value="onLeftButtonIconHoverActiveChange">
+                                @update:value="onLeftButtonIconHoverActiveChange">
                         </mt-switch>
-                        <mt-colorpicker
+                        <sw-colorpicker
                                 v-if="element.config.leftButtonIconHoverActive.value"
-                                v-model="element.config.leftButtonIconHoverColor.value"
+                                v-model:value="element.config.leftButtonIconHoverColor.value"
+                                color-output="hex"
+                                :z-index="1000"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftButtonIconHoverColor')"
-                                @update:model-value="onLeftButtonIconHoverColorChange">
-                        </mt-colorpicker>
+                                @update:value="onLeftButtonIconHoverColorChange">
+                        </sw-colorpicker>
                         <mt-text-field
                                 v-model="element.config.leftButtonTitle.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.leftButtonText')"
-                                @update:model-value="onLeftButtonTitleInput">
+                                @update:value="onLeftButtonTitleInput">
                         </mt-text-field>
 
                         <mt-select
                                 v-model="element.config.leftButtonLinkType.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLinkType')"
                                 :options="linkTypeOptions"
-                                @update:model-value="onLeftButtonLinkType">
+                                @update:value="onLeftButtonLinkType">
                         </mt-select>
                     </div>
                     <div class="sw-cms-el-config-ict-three-column-image-box-url-field">
@@ -141,43 +143,54 @@
                                 v-if="element.config.leftButtonLinkType.value === 'external'"
                                 v-model="element.config.leftButtonLink.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLink')"
-                                @update:model-value="onLeftButtonLink">
+                                @update:value="onLeftButtonLink"
+                                @blur="onExternalUrlChange('leftButtonLink')">
                         </mt-text-field>
                     </div>
 
                     <div class="sw-cms-el-config-ict-three-column-image-box_button_styling">
                         <div class="button-color-config">
-                            <mt-colorpicker
-                                    v-model="element.config.leftButtonBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.leftButtonBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBackgroundColor')"
-                                    @update:model-value="onLeftButtonBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onLeftButtonBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.leftButtonHoverBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.leftButtonHoverBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverBackgroundColor')"
-                                    @update:model-value="onLeftButtonHoverBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onLeftButtonHoverBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.leftButtonTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.leftButtonTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonTextColor')"
-                                    @update:model-value="onLeftButtonTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onLeftButtonTextColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.leftButtonHoverTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.leftButtonHoverTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverTextColor')"
-                                    @update:model-value="onLeftButtonHoverTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onLeftButtonHoverTextColorChange">
+                            </sw-colorpicker>
                         </div>
 
                         <div class="button-border-config">
-                            <mt-colorpicker
-                                    v-model="element.config.leftButtonBorderColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.leftButtonBorderColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderColor')"
-                                    @update:model-value="onLeftButtonBorderColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onLeftButtonBorderColorChange">
+                            </sw-colorpicker>
                         </div>
                     </div>
                 </div>
@@ -220,7 +233,7 @@
                             v-model="element.config.rightTopImageObjectFit.value"
                             :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightImageObjectFit')"
                             :options="objectFitOptions"
-                            @update:model-value="onRightTopImageObjectFit">
+                            @update:value="onRightTopImageObjectFit">
                     </mt-select>
 
                 
@@ -228,7 +241,7 @@
                          v-if="element.config.rightTopImageObjectFit.value === 'cover' "
                          v-model="element.config.rightTopImageHeight.value"
                          :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightImageHeight')"
-                         @update:model-value="onRightTopImageHeight">
+                         @update:value="onRightTopImageHeight">
                      </mt-text-field>
                 </div>
 
@@ -277,30 +290,32 @@
                                 v-model="element.config.rightTopButtonIconSize.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightTopButtonIconSize')"
                                 :options="buttonIconSizeOptions"
-                                @update:model-value="onRightTopButtonIconSizeChange">
+                                @update:value="onRightTopButtonIconSizeChange">
                         </mt-select>
-                        <mt-switch
-                                v-model="element.config.rightTopButtonIconHoverActive.value"
-                                :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightTopButtonIconHoverActive')"
-                                @update:model-value="onRightTopButtonIconHoverActiveChange">
-                        </mt-switch>
-                        <mt-colorpicker
+                                <mt-switch
+                                        v-model:value="element.config.rightTopButtonIconHoverActive.value"
+                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightTopButtonIconHoverActive')"
+                                        @update:value="onRightTopButtonIconHoverActiveChange">
+                                </mt-switch>
+                        <sw-colorpicker
                                 v-if="element.config.rightTopButtonIconHoverActive.value"
-                                v-model="element.config.rightTopButtonIconHoverColor.value"
+                                v-model:value="element.config.rightTopButtonIconHoverColor.value"
+                                color-output="hex"
+                                :z-index="1000"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightTopButtonIconHoverColor')"
-                                @update:model-value="onRightTopButtonIconHoverColorChange">
-                        </mt-colorpicker>
+                                @update:value="onRightTopButtonIconHoverColorChange">
+                        </sw-colorpicker>
                         <mt-text-field
                                 v-model="element.config.rightTopButtonTitle.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightButtonText')"
-                                @update:model-value="onRightTopButtonTitleInput">
+                                @update:value="onRightTopButtonTitleInput">
                         </mt-text-field>
 
                         <mt-select
                                 v-model="element.config.rightTopButtonLinkType.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLinkType')"
                                 :options="linkTypeOptions"
-                                        @update:model-value="onRightTopButtonLinkType">
+                                @update:value="onRightTopButtonLinkType">
                         </mt-select>
                     </div>
                     <div class="sw-cms-el-config-ict-three-column-image-box-url-field">
@@ -313,43 +328,54 @@
                                 v-if="element.config.rightTopButtonLinkType.value === 'external'"
                                 v-model="element.config.rightTopButtonLink.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLink')"
-                                @update:model-value="onRightTopButtonLink">
+                                @update:value="onRightTopButtonLink"
+                                @blur="onExternalUrlChange('rightTopButtonLink')">
                         </mt-text-field>
                     </div>
 
                     <div class="sw-cms-el-config-ict-three-column-image-box_button_styling">
                         <div class="button-color-config">
-                            <mt-colorpicker
-                                    v-model="element.config.rightTopButtonBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightTopButtonBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBackgroundColor')"
-                                    @update:model-value="onRightTopButtonBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightTopButtonBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightTopButtonHoverBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightTopButtonHoverBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverBackgroundColor')"
-                                    @update:model-value="onRightTopButtonHoverBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightTopButtonHoverBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightTopButtonTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightTopButtonTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonTextColor')"
-                                    @update:model-value="onRightTopButtonTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightTopButtonTextColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightTopButtonHoverTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightTopButtonHoverTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverTextColor')"
-                                    @update:model-value="onRightTopButtonHoverTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightTopButtonHoverTextColorChange">
+                            </sw-colorpicker>
                         </div>
 
                         <div class="button-border-config">
-                            <mt-colorpicker
-                                    v-model="element.config.rightTopButtonBorderColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightTopButtonBorderColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderColor')"
-                                    @update:model-value="onRightTopButtonBorderColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightTopButtonBorderColorChange">
+                            </sw-colorpicker>
                         </div>
                     </div>
                 </div>
@@ -392,14 +418,14 @@
                             v-model="element.config.rightBottomImageObjectFit.value"
                             :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightImageObjectFit')"
                             :options="objectFitOptions"
-                            @update:model-value="onRightBottomObjectFit">
+                            @update:value="onRightBottomObjectFit">
                     </mt-select>
 
                    <mt-text-field
                           v-if="element.config.rightBottomImageObjectFit.value === 'cover' "
                             v-model="element.config.rightBottomImageHeight.value"
                             :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightImageHeight')"
-                         @update:model-value="onRightBottomHeight">
+                         @update:value="onRightBottomHeight">
                      </mt-text-field>
                 </div>
 
@@ -447,30 +473,32 @@
                                 v-model="element.config.rightBottomButtonIconSize.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightBottomButtonIconSize')"
                                 :options="buttonIconSizeOptions"
-                                @update:model-value="onRightBottomButtonIconSizeChange">
+                                @update:value="onRightBottomButtonIconSizeChange">
                         </mt-select>
-                        <mt-switch
-                                v-model="element.config.rightBottomButtonIconHoverActive.value"
-                                :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightBottomButtonIconHoverActive')"
-                                @update:model-value="onRightBottomButtonIconHoverActiveChange">
-                        </mt-switch>
-                        <mt-colorpicker
+                                <mt-switch
+                                        v-model:value="element.config.rightBottomButtonIconHoverActive.value"
+                                        :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightBottomButtonIconHoverActive')"
+                                        @update:value="onRightBottomButtonIconHoverActiveChange">
+                                </mt-switch>
+                        <sw-colorpicker
                                 v-if="element.config.rightBottomButtonIconHoverActive.value"
-                                v-model="element.config.rightBottomButtonIconHoverColor.value"
+                                v-model:value="element.config.rightBottomButtonIconHoverColor.value"
+                                color-output="hex"
+                                :z-index="1000"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightBottomButtonIconHoverColor')"
-                                @update:model-value="onRightBottomButtonIconHoverColorChange">
-                        </mt-colorpicker>
+                                @update:value="onRightBottomButtonIconHoverColorChange">
+                        </sw-colorpicker>
                         <mt-text-field
                                 v-model="element.config.rightBottomButtonTitle.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.rightButtonText')"
-                                @update:model-value="onRightBottomButtonTitleInput">
+                                @update:value="onRightBottomButtonTitleInput">
                         </mt-text-field>
 
                         <mt-select
                                 v-model="element.config.rightBottomButtonLinkType.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLinkType')"
                                 :options="linkTypeOptions"
-                                        @update:model-value="onRightBottomButtonLinkType">
+                                @update:value="onRightBottomButtonLinkType">
                         </mt-select>
                     </div>
                     <div class="sw-cms-el-config-ict-three-column-image-box-url-field">
@@ -483,43 +511,54 @@
                                 v-if="element.config.rightBottomButtonLinkType.value === 'external'"
                                 v-model="element.config.rightBottomButtonLink.value"
                                 :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonLink')"
-                                @update:model-value="onRightBottomButtonLink">
+                                @update:value="onRightBottomButtonLink"
+                                @blur="onExternalUrlChange('rightBottomButtonLink')">
                         </mt-text-field>
                     </div>
 
                     <div class="sw-cms-el-config-ict-three-column-image-box_button_styling">
                         <div class="button-color-config">
-                            <mt-colorpicker
-                                    v-model="element.config.rightBottomButtonBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightBottomButtonBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBackgroundColor')"
-                                    @update:model-value="onRightBottomButtonBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightBottomButtonBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightBottomButtonHoverBackgroundColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightBottomButtonHoverBackgroundColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverBackgroundColor')"
-                                    @update:model-value="onRightBottomButtonHoverBackgroundColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightBottomButtonHoverBackgroundColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightBottomButtonTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightBottomButtonTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonTextColor')"
-                                    @update:model-value="onRightBottomButtonTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightBottomButtonTextColorChange">
+                            </sw-colorpicker>
 
-                            <mt-colorpicker
-                                    v-model="element.config.rightBottomButtonHoverTextColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightBottomButtonHoverTextColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonHoverTextColor')"
-                                    @update:model-value="onRightBottomButtonHoverTextColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightBottomButtonHoverTextColorChange">
+                            </sw-colorpicker>
                         </div>
 
                         <div class="button-border-config">
-                            <mt-colorpicker
-                                    v-model="element.config.rightBottomButtonBorderColor.value"
+                            <sw-colorpicker
+                                    v-model:value="element.config.rightBottomButtonBorderColor.value"
+                                    color-output="hex"
+                                    :z-index="1000"
                                     :label="$tc('sw-cms.elements.ictTwoColumnThreeImage.config.label.buttonBorderColor')"
-                                    @update:model-value="onRightBottomButtonBorderColorChange">
-                            </mt-colorpicker>
+                                    @update:value="onRightBottomButtonBorderColorChange">
+                            </sw-colorpicker>
                         </div>
                     </div>
                 </div>

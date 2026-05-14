@@ -1,13 +1,14 @@
 .sw-cms-el-ict-single-title-button-section {
     padding: 32px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #0b5c8a 0%, #1559d6 100%);
     color: #fff;
 
     .ict-single-title-content-wrapper {
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
+        padding: 32px;
+        border-radius: 12px;
     }
     
     .ict-single-title-main {
@@ -43,13 +44,5 @@
         font-weight: 600;
         font-size: 13px;
         color: #fff;
-
-        &.left-button {
-            background-color: #0064ff;
-        }
-
-        &.right-button {
-            background-color: #6c757d;
-        }
     }
 }

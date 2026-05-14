@@ -12,7 +12,7 @@ export default {
 
     created() {
         this.initElementConfig('ict-hero-section');
-        this.normalizeFeatureItems();
+        // Do not auto-normalize here: it can overwrite saved values in some cases.
     },
 
     methods: {
@@ -22,35 +22,61 @@ export default {
         },
 
         normalizeFeatureItems() {
-            const items = this.element.config.featureItems.value;
-            if (!Array.isArray(items) || items.length === 0) {
-                this.element.config.featureItems.value = [
-                    { title: 'Lorem feature one', description: 'Lorem short text.' },
-                    { title: 'Lorem feature two', description: 'Lorem short text.' },
-                    { title: 'Lorem feature three', description: 'Lorem short text.' },
-                    { title: 'Lorem feature four', description: 'Lorem short text.' },
-                ];
+            const items = this.element?.config?.featureItems?.value;
+
+            // Do not inject defaults here. Defaults belong to the cms element definition.
+            // Injecting here can override persisted user changes on re-open.
+            if (items === null || items === undefined) {
+                this.element.config.featureItems.value = [];
                 return;
             }
 
-            this.element.config.featureItems.value = items.map((item) => ({
-                title: `${item?.title || ''}`.trim() || 'Lorem feature',
-                description: `${item?.description || ''}`.trim() || 'Lorem short text.',
-            }));
+            // Shopware may hydrate the config value as JSON string in edge cases.
+            if (typeof items === 'string') {
+                try {
+                    const parsed = JSON.parse(items);
+                    this.element.config.featureItems.value = Array.isArray(parsed) ? parsed : [];
+                } catch (_) {
+                    this.element.config.featureItems.value = [];
+                }
+                return;
+            }
+
+            // Respect intentional removal (allow empty list).
+            if (!Array.isArray(items)) {
+                return;
+            }
+
+            this.element.config.featureItems.value = items
+                .filter(item => item && typeof item === 'object')
+                .map((item) => ({
+                    title: `${item?.title || ''}`.trim() || 'Lorem feature',
+                    description: `${item?.description || ''}`.trim() || 'Lorem short text.',
+                }));
         },
 
         addFeatureItem() {
-            this.element.config.featureItems.value.push({
-                title: 'Lorem feature',
-                description: 'Lorem short text.',
-            });
+            const currentItems = Array.isArray(this.element.config.featureItems.value)
+                ? this.element.config.featureItems.value
+                : [];
+
+            this.element.config.featureItems.value = [
+                ...currentItems,
+                {
+                    title: 'Lorem feature',
+                    description: 'Lorem short text.',
+                },
+            ];
             this.onInput();
         },
 
         removeFeatureItem(index) {
-            this.element.config.featureItems.value.splice(index, 1);
+            const currentItems = Array.isArray(this.element.config.featureItems.value)
+                ? this.element.config.featureItems.value
+                : [];
+
+            this.element.config.featureItems.value = currentItems.filter((_, i) => i !== index);
             this.onInput();
         },
     },
 };
-

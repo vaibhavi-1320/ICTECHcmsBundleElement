@@ -51,24 +51,20 @@ Shopware.Service('cmsService').registerCmsBlock({
                         source: 'static',
                         value: [
                             {
-                                title: 'Modular Design',
-                                description: 'Scalable configurations',
-                                iconColor: '#ff6b6b'
+                                title: 'Lorem feature one',
+                                description: 'Lorem short text.',
                             },
                             {
-                                title: 'Ultra-Thin Bezels',
-                                description: 'Seamless viewing',
-                                iconColor: '#ff6b6b'
+                                title: 'Lorem feature two',
+                                description: 'Lorem short text.',
                             },
                             {
-                                title: 'Any Size',
-                                description: 'Custom dimensions',
-                                iconColor: '#ff6b6b'
+                                title: 'Lorem feature three',
+                                description: 'Lorem short text.',
                             },
                             {
-                                title: '24/7 Operation',
-                                description: 'Commercial grade',
-                                iconColor: '#ff6b6b'
+                                title: 'Lorem feature four',
+                                description: 'Lorem short text.',
                             }
                         ]
                     }

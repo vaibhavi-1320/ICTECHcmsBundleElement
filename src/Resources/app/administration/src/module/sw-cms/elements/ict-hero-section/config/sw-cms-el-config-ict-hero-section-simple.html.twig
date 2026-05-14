@@ -20,6 +20,7 @@
                     v-model:value="element.config.backgroundColor.value"
                     label="Background Color"
                     color-output="hex"
+                    :z-index="1000"
                     @update:value="onInput"
                 />
 
@@ -28,12 +29,14 @@
                         v-model:value="element.config.backgroundGradientColor1.value"
                         label="Gradient Color 1"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
                     />
                     <sw-colorpicker
                          v-model:value="element.config.backgroundGradientColor2.value"
                         label="Gradient Color 2"
                         color-output="hex"
+                        :z-index="1000"
                         @update:value="onInput"
                     />
                 </div>
@@ -49,16 +52,16 @@
                 <mt-text-field v-model="element.config.labelText.value" label="Label Text" @update:model-value="onInput" />
 
                 <div class="config-row-3">
-                    <sw-colorpicker v-model:value="element.config.labelBackgroundColor.value" label="Label Background" color-output="hex" @update:value="onInput" />
-                    <sw-colorpicker v-model:value="element.config.labelTextColor.value" label="Label Text Color" color-output="hex" @update:value="onInput" />
-                    <sw-colorpicker v-model:value="element.config.labelBorderColor.value" label="Label Border" color-output="hex" @update:value="onInput" />
+                    <sw-colorpicker v-model:value="element.config.labelBackgroundColor.value" label="Label Background" color-output="hex" :z-index="1000" @update:value="onInput" />
+                    <sw-colorpicker v-model:value="element.config.labelTextColor.value" label="Label Text Color" color-output="hex" :z-index="1000" @update:value="onInput" />
+                    <sw-colorpicker v-model:value="element.config.labelBorderColor.value" label="Label Border" color-output="hex" :z-index="1000" @update:value="onInput" />
                 </div>
 
                 <mt-text-field v-model="element.config.headlineText.value" label="Headline" @update:model-value="onInput" />
-                <sw-colorpicker v-model:value="element.config.headlineColor.value" label="Headline Color" color-output="hex" @update:value="onInput" />
+                <sw-colorpicker v-model:value="element.config.headlineColor.value" label="Headline Color" color-output="hex" :z-index="1000" @update:value="onInput" />
 
                 <sw-text-editor v-model:value="element.config.descriptionText.value" sanitize-input @update:value="onInput" />
-                <sw-colorpicker v-model:value="element.config.descriptionColor.value" label="Description Color" color-output="hex" @update:value="onInput" />
+                <sw-colorpicker v-model:value="element.config.descriptionColor.value" label="Description Color" color-output="hex" :z-index="1000" @update:value="onInput" />
 
                 <div class="config-section-title">Primary Button</div>
                 <mt-text-field v-model="element.config.primaryButtonText.value" label="Button Text" @update:model-value="onInput" />
@@ -85,8 +88,8 @@
                     @update:model-value="onInput"
                 />
                 <div class="config-row-2">
-                    <sw-colorpicker v-model:value="element.config.primaryButtonBackgroundColor.value" label="Background Color" color-output="hex" @update:value="onInput" />
-                    <sw-colorpicker v-model:value="element.config.primaryButtonTextColor.value" label="Text Color" color-output="hex" @update:value="onInput" />
+                    <sw-colorpicker v-model:value="element.config.primaryButtonBackgroundColor.value" label="Background Color" color-output="hex" :z-index="1000" @update:value="onInput" />
+                    <sw-colorpicker v-model:value="element.config.primaryButtonTextColor.value" label="Text Color" color-output="hex" :z-index="1000" @update:value="onInput" />
                 </div>
 
                 <sw-switch-field v-model:value="element.config.showSecondaryButton.value" label="Show Secondary Button" @update:value="onInput" />
@@ -116,8 +119,8 @@
                         @update:model-value="onInput"
                     />
                     <div class="config-row-2">
-                        <sw-colorpicker v-model:value="element.config.secondaryButtonBackgroundColor.value" label="Background Color" color-output="hex" @update:value="onInput" />
-                        <sw-colorpicker v-model:value="element.config.secondaryButtonTextColor.value" label="Text Color" color-output="hex" @update:value="onInput" />
+                        <sw-colorpicker v-model:value="element.config.secondaryButtonBackgroundColor.value" label="Background Color" color-output="hex" :z-index="1000" @update:value="onInput" />
+                        <sw-colorpicker v-model:value="element.config.secondaryButtonTextColor.value" label="Text Color" color-output="hex" :z-index="1000" @update:value="onInput" />
                     </div>
                 </div>
             </sw-container>
@@ -127,7 +130,9 @@
                 <div v-for="(item, index) in element.config.featureItems.value" :key="index" class="sw-cms-el-config-ict-hero-section__feature-item">
                     <sw-container columns="1fr auto" gap="16px">
                         <mt-text-field v-model="item.title" label="Title" @update:model-value="onInput" />
-                        <sw-button size="small" variant="danger" @click="removeFeatureItem(index)">Remove</sw-button>
+                        <div class="feature-remove">
+                            <sw-button size="small" variant="danger" @click="removeFeatureItem(index)">Remove</sw-button>
+                        </div>
                     </sw-container>
                     <mt-text-field v-model="item.description" label="Description" @update:model-value="onInput" />
                 </div>

@@ -11,6 +11,14 @@ export default {
 
     inject: ['repositoryFactory'],
 
+    computed: {
+        effectiveColumns() {
+            const configured = Number(this.element?.config?.numberOfColumns?.value || 1);
+            const cardCount = Array.isArray(this.element?.config?.cards?.value) ? this.element.config.cards.value.length : 0;
+            return Math.max(1, Math.min(configured || 1, cardCount || 1));
+        },
+    },
+
     created() {
         this.initElementConfig('ict-feature-grid');
         this.ensureCards();

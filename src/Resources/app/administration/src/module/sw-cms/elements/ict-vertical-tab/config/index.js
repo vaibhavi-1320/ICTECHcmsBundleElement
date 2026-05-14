@@ -15,6 +15,7 @@ export default {
     data() {
         return {
             expandedIndex: 0,
+            _prevLinkTypes: [],
         };
     },
 
@@ -33,6 +34,22 @@ export default {
 
     created() {
         this.initElementConfig('ict-vertical-tab');
+        this._prevLinkTypes = (this.tabs || []).map(t => t.linkType);
+    },
+
+    watch: {
+        tabs: {
+            deep: true,
+            handler(tabs) {
+                tabs.forEach((tab, i) => {
+                    if (this._prevLinkTypes[i] !== undefined && tab.linkType !== this._prevLinkTypes[i]) {
+                        tab.linkUrl = null;
+                        this.onUpdate();
+                    }
+                    this._prevLinkTypes[i] = tab.linkType;
+                });
+            },
+        },
     },
 
     methods: {
@@ -63,6 +80,18 @@ export default {
             this.tabs.splice(index, 1);
             if (this.expandedIndex >= this.tabs.length) {
                 this.expandedIndex = this.tabs.length - 1;
+            }
+            this.onUpdate();
+        },
+
+        onTabLinkTypeChange(tab) {
+            tab.linkUrl = '';
+            this.onUpdate();
+        },
+
+        onTabExternalUrlChange(tab) {
+            if (tab.linkUrl && !/^https?:\/\//i.test(tab.linkUrl)) {
+                tab.linkUrl = `https://${tab.linkUrl}`;
             }
             this.onUpdate();
         },

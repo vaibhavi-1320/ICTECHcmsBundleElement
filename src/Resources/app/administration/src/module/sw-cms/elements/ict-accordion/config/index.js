@@ -176,7 +176,13 @@ export default {
         },
 
         onEntryExpandedChange(index, value) {
-            this.entries[index].expanded = value;
+            if (this.element.config.displayMode?.value === 'single' && value) {
+                this.entries.forEach((entry, entryIndex) => {
+                    entry.expanded = entryIndex === index;
+                });
+            } else {
+                this.entries[index].expanded = value;
+            }
             this.emitElementUpdate();
         },
 

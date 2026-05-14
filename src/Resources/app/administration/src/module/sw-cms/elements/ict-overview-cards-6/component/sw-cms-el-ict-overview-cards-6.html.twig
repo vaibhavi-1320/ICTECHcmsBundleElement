@@ -2,10 +2,11 @@
     <div
         class="sw-cms-el-ict-overview-cards-6"
         :style="{
-            backgroundColor: element.config.backgroundType.value === 'color' ? element.config.backgroundColor.value : '',
-            background: element.config.backgroundType.value === 'gradient'
-                ? `linear-gradient(to ${element.config.backgroundGradientDirection.value}, ${element.config.backgroundGradientColor1.value}, ${element.config.backgroundGradientColor2.value})`
-                : ''
+            background: element.config.backgroundType.value === 'color'
+                ? element.config.backgroundColor.value
+                : element.config.backgroundType.value === 'gradient'
+                    ? `linear-gradient(to ${element.config.backgroundGradientDirection.value}, ${element.config.backgroundGradientColor1.value}, ${element.config.backgroundGradientColor2.value})`
+                    : ''
         }"
     >
         <div
@@ -35,7 +36,7 @@
         <div
             class="ict-overview-cards-grid"
             :style="{
-                gridTemplateColumns: `repeat(${element.config.numberOfColumns.value}, minmax(0, 1fr))`,
+                gridTemplateColumns: `repeat(${effectiveColumns}, minmax(0, 1fr))`,
                 gap: `${element.config.cardSpacing.value}px`,
                 alignItems: element.config.verticalAlignment.value
             }"
@@ -45,10 +46,11 @@
                 :key="index"
                 class="ict-overview-card"
                 :style="{
-                    backgroundColor: card.cardMainBackgroundType === 'color' ? card.cardMainBackgroundColor : '#FFFFFF',
-                    background: card.cardMainBackgroundType === 'gradient'
-                        ? `linear-gradient(to ${card.cardMainBackgroundGradientDirection}, ${card.cardMainBackgroundGradientColor1}, ${card.cardMainBackgroundGradientColor2})`
-                        : ''
+                    background: card.cardMainBackgroundType === 'color'
+                        ? (card.cardMainBackgroundColor || '#FFFFFF')
+                        : card.cardMainBackgroundType === 'gradient'
+                            ? `linear-gradient(to ${card.cardMainBackgroundGradientDirection}, ${card.cardMainBackgroundGradientColor1}, ${card.cardMainBackgroundGradientColor2})`
+                            : '#FFFFFF'
                 }"
             >
                 <div

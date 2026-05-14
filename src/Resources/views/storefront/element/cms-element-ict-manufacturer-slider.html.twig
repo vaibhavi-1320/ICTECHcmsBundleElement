@@ -3,9 +3,10 @@
     {% set showManufacturerName = element.data.showManufacturerName ?? element.config.showManufacturerName.value ?? true %}
     {% set maxWidth = element.data.maxWidth ?? element.config.maxWidth.value ?? 180 %}
     {% set maxHeight = element.data.maxHeight ?? element.config.maxHeight.value ?? 100 %}
-    {% set desktopItems = element.data.desktopItems ?? element.config.desktopItems.value ?? 4 %}
-    {% set tabletItems = element.data.tabletItems ?? element.config.tabletItems.value ?? 2 %}
-    {% set mobileItems = element.data.mobileItems ?? element.config.mobileItems.value ?? 1 %}
+    {# Force numeric types for slider JSON options (tiny-slider expects numbers, not strings). #}
+    {% set desktopItems = (element.data.desktopItems ?? element.config.desktopItems.value ?? 4) + 0 %}
+    {% set tabletItems = (element.data.tabletItems ?? element.config.tabletItems.value ?? 2) + 0 %}
+    {% set mobileItems = (element.data.mobileItems ?? element.config.mobileItems.value ?? 1) + 0 %}
     {% set hasSliderControls = manufacturers|length > 1 %}
     {% set sliderOptions = {
         slider: {
@@ -15,26 +16,16 @@
             autoplay: false,
             autoplayButtonOutput: false,
             gutter: 16,
-            items: mobileItems,
+            items: desktopItems,
             loop: manufacturers|length > desktopItems,
             rewind: manufacturers|length <= desktopItems,
             speed: 400,
             responsive: {
-                xs: {
-                    items: mobileItems
-                },
-                sm: {
-                    items: tabletItems
-                },
-                md: {
-                    items: tabletItems
-                },
-                lg: {
-                    items: desktopItems
-                },
-                xl: {
-                    items: desktopItems
-                }
+                xs: { items: mobileItems },
+                sm: { items: tabletItems },
+                md: { items: tabletItems },
+                lg: { items: desktopItems },
+                xl: { items: desktopItems }
             }
         }
     } %}

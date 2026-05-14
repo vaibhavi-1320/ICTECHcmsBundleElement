@@ -1,0 +1,9 @@
+// Ensure the Shopware color picker popover is visible inside CMS element settings modals.
+// The default z-index (99) is sometimes lower than modal sidebars/overlays.
+.sw-cms-el-config {
+    .sw-field--compact-colorpicker {
+        .picker_wrapper {
+            z-index: 1000;
+        }
+    }
+}

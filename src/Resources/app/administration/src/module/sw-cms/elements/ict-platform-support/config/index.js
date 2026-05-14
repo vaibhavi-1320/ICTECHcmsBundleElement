@@ -1,7 +1,7 @@
 import template from './sw-cms-el-config-ict-platform-support.html.twig';
 import './sw-cms-el-config-ict-platform-support.scss';
 
-const { Mixin } = Shopware;
+const { Mixin, Context } = Shopware;
 
 export default {
     template,
@@ -111,6 +111,21 @@ export default {
 
     created() {
         this.createdComponent();
+        this._prevPlatformLinkTypes = (this.element.config.platformItems?.value || []).map(p => p.linkType);
+    },
+
+    watch: {
+        'element.config.platformItems.value': {
+            deep: true,
+            handler(platforms) {
+                (platforms || []).forEach((platform, i) => {
+                    if (this._prevPlatformLinkTypes[i] !== undefined && platform.linkType !== this._prevPlatformLinkTypes[i]) {
+                        this.updatePlatform(i, 'platformLinkUrl', null);
+                    }
+                    this._prevPlatformLinkTypes[i] = platform.linkType;
+                });
+            },
+        },
     },
 
     mounted() {
@@ -123,8 +138,17 @@ export default {
             this.$emit('element-update', this.element);
         },
 
+        onPlatformLinkTypeChange(index, value) {
+            this.updatePlatform(index, 'linkType', value);
+            // Clear URL when switching link type to avoid stale/invalid values
+            this.updatePlatform(index, 'platformLinkUrl', '');
+        },
+
         createdComponent() {
             this.initElementConfig('ict-platform-support');
+            // Ensure `element.data` exists and is reactive so async media loads
+            // (e.g. platform icons) update the UI correctly after reopening the config.
+            this.initElementData('ict-platform-support');
         },
 
         addPlatform() {
@@ -176,7 +200,7 @@ export default {
         },
 
         onPlatformIconUpload(platformIndex, { targetId }) {
-            this.mediaRepository.get(targetId).then((mediaEntity) => {
+            this.mediaRepository.get(targetId, Context.api).then((mediaEntity) => {
                 this.updatePlatform(platformIndex, 'platformIcon', targetId);
                 this.updatePlatformIconData(platformIndex, mediaEntity);
             });
@@ -208,8 +232,17 @@ export default {
             return `cms-platform-icon-${this.element.id}-${platformIndex}`;
         },
 
-        getPlatformIconMediaItem(platformIndex) {
-            return this.element.data?.platformIcons?.[platformIndex] || null;
+        getPlatformIconMediaItem(platformIndex, platform = null) {
+            const media = this.element.data?.platformIcons?.[platformIndex] || null;
+            if (media) return media;
+            // Fallback: when `element.data` isn't hydrated yet, still return the id so
+            // `sw-media-upload-v2` can resolve and render the preview.
+            const rawIcon = platform?.platformIcon ?? null;
+            if (!rawIcon) return null;
+            if (typeof rawIcon === 'string') return rawIcon;
+            if (rawIcon?.url) return rawIcon;
+            if (rawIcon?.id) return rawIcon.id;
+            return null;
         },
 
         async loadMedia() {
@@ -217,9 +250,27 @@ export default {
             if (this.element.config.platformItems?.value) {
                 for (let index = 0; index < this.element.config.platformItems.value.length; index++) {
                     const platform = this.element.config.platformItems.value[index];
-                    if (platform.platformIcon && !this.element.data?.platformIcons?.[index]) {
-                        const mediaEntity = await this.mediaRepository.get(platform.platformIcon);
-                        this.updatePlatformIconData(index, mediaEntity);
+                    // Normalize persisted values: in some cases the config may contain an object
+                    // (e.g. `{ id, fileName, ... }`) instead of a plain media id string.
+                    const rawIcon = platform?.platformIcon ?? null;
+                    const iconId = typeof rawIcon === 'string' ? rawIcon : rawIcon?.id;
+
+                    if (rawIcon && typeof rawIcon === 'object' && iconId) {
+                        this.updatePlatform(index, 'platformIcon', iconId);
+                        // If we already have a usable media object, keep it for preview.
+                        if (rawIcon.url) {
+                            this.updatePlatformIconData(index, rawIcon);
+                            continue;
+                        }
+                    }
+
+                    if (iconId && !this.element.data?.platformIcons?.[index]) {
+                        try {
+                            const mediaEntity = await this.mediaRepository.get(iconId, Context.api);
+                            this.updatePlatformIconData(index, mediaEntity);
+                        } catch (_) {
+                            // ignore missing media
+                        }
                     }
                 }
             }
@@ -233,7 +284,7 @@ export default {
         onCloseBackgroundImageModal() { this.backgroundImageModal = false; },
 
         onBackgroundImageUpload({ targetId }) {
-            this.mediaRepository.get(targetId).then((mediaEntity) => {
+            this.mediaRepository.get(targetId, Context.api).then((mediaEntity) => {
                 this.element.config.backgroundImage.value = targetId;
                 this.updateBackgroundImageData(mediaEntity);
             });
@@ -267,7 +318,7 @@ export default {
         onCloseBackgroundVideoModal() { this.backgroundVideoModal = false; },
 
         onBackgroundVideoUpload({ targetId }) {
-            this.mediaRepository.get(targetId).then((mediaEntity) => {
+            this.mediaRepository.get(targetId, Context.api).then((mediaEntity) => {
                 this.element.config.backgroundVideo.value = targetId;
                 this.updateBackgroundVideoData(mediaEntity);
             });
@@ -297,13 +348,24 @@ export default {
         getBackgroundVideoUploadTag() { return `cms-background-video-${this.element.id}`; },
         getBackgroundVideoMediaItem() { return this.element.data?.backgroundVideo || null; },
 
+        onPlatformLinkTypeChange(index) {
+            this.updatePlatform(index, 'platformLinkUrl', '');
+        },
+
+        onPlatformExternalUrlChange(index) {
+            const url = this.element.config.platformItems.value[index]?.platformLinkUrl || '';
+            if (url && !/^https?:\/\//i.test(url)) {
+                this.updatePlatform(index, 'platformLinkUrl', `https://${url}`);
+            }
+        },
+
         async loadBackgroundMedia() {
             if (this.element.config.backgroundImage?.value && !this.element.data?.backgroundImage) {
-                const mediaEntity = await this.mediaRepository.get(this.element.config.backgroundImage.value);
+                const mediaEntity = await this.mediaRepository.get(this.element.config.backgroundImage.value, Context.api);
                 this.updateBackgroundImageData(mediaEntity);
             }
             if (this.element.config.backgroundVideo?.value && !this.element.data?.backgroundVideo) {
-                const mediaEntity = await this.mediaRepository.get(this.element.config.backgroundVideo.value);
+                const mediaEntity = await this.mediaRepository.get(this.element.config.backgroundVideo.value, Context.api);
                 this.updateBackgroundVideoData(mediaEntity);
             }
         }

@@ -1,6 +1,6 @@
 .sw-cms-preview-ict-single-title-button-section {
-    background: linear-gradient(to right, #dc2626 0%, #ec4899 100%);
-    padding: 20px;
+    background: linear-gradient(135deg, #0b5c8a 0%, #1559d6 100%);
+    padding: 18px;
     text-align: center;
     border-radius: 8px;
     color: white;
@@ -27,7 +27,7 @@
         p {
             margin: 0 0 16px 0;
             font-size: 11px;
-            color: #cbd5e1;
+            color: rgba(255, 255, 255, 0.88);
             opacity: 0.9;
             line-height: 1.4;
         }
@@ -39,23 +39,21 @@
 
             .preview-button {
                 padding: 8px 16px;
-                border-radius: 20px;
+                border-radius: 8px;
                 font-size: 10px;
                 font-weight: 600;
                 color: white;
                 border: none;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                box-shadow: none;
                 
                 &:first-child {
-                    background: #fff;
-                    box-shadow: 0 2px 8px #f8717166;
-                    color: #f87171;
+                    background: #0064ff;
+                    color: #ffffff;
                 }
                 
                 &:last-child {
-                    background: #fff;
-                    color: #f87171;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                    background: #6c757d;
+                    color: #ffffff;
                 }
             }
         }

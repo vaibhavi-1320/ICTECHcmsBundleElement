@@ -1,8 +1,13 @@
 .sw-cms-el-preview-ict-three-column-image {
+  position: relative;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 8px;
-  height: 120px;
+  height: 110px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 
   .left-image {
     position: relative;

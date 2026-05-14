@@ -3,7 +3,7 @@
     <div
         class="ifg-grid"
         :style="{
-            gridTemplateColumns: `repeat(${element.config.numberOfColumns.value}, minmax(0, 1fr))`,
+            gridTemplateColumns: `repeat(${effectiveColumns}, minmax(0, 1fr))`,
             gap: `${element.config.cardSpacing.value}px`,
         }"
     >
